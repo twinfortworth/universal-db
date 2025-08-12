@@ -2,8 +2,12 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 import logging
-from .models import IngestRSSRequest, SearchRequest, SearchResult, CreateDomainRequest, DomainIngestRequest, DomainAnalytics, DomainEntity, EntityType
-from .services import DatabaseService, VectorService, RSSService, DomainService
+from .models import (
+    IngestRSSRequest, SearchRequest, SearchResult, CreateDomainRequest, 
+    DomainIngestRequest, DomainAnalytics, DomainEntity, EntityType,
+    CreateRSSFeedRequest, UpdateRSSFeedRequest, RSSFeedListResponse, FeedUpdateResult, RSSFeed
+)
+from .services import DatabaseService, VectorService, RSSService, DomainService, RSSFeedService
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -12,6 +16,7 @@ db_service = DatabaseService()
 vector_service = VectorService()
 domain_service = DomainService()
 rss_service = RSSService(db_service, vector_service, domain_service)
+rss_feed_service = RSSFeedService(db_service, rss_service, domain_service)
 
 
 @asynccontextmanager
@@ -199,4 +204,108 @@ async def get_domain_analytics(domain_id: str, tenant_id: str = "default"):
         return analytics
     except Exception as e:
         logger.error(f"Failed to get domain analytics: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+
+@app.post("/feeds", response_model=RSSFeed)
+async def create_rss_feed(request: CreateRSSFeedRequest):
+    """Create a new RSS feed"""
+    try:
+        feed = await rss_feed_service.create_feed(request)
+        return feed
+    except Exception as e:
+        logger.error(f"Failed to create RSS feed: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/feeds", response_model=RSSFeedListResponse)
+async def list_rss_feeds(tenant_id: str = "default", page: int = 1, page_size: int = 10):
+    """List RSS feeds with pagination"""
+    try:
+        return await rss_feed_service.list_feeds(tenant_id, page, page_size)
+    except Exception as e:
+        logger.error(f"Failed to list RSS feeds: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/feeds/{feed_id}")
+async def get_rss_feed(feed_id: str):
+    """Get RSS feed by ID"""
+    try:
+        feed = await rss_feed_service.get_feed(feed_id)
+        if not feed:
+            raise HTTPException(status_code=404, detail="RSS feed not found")
+        return feed
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Failed to get RSS feed: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.put("/feeds/{feed_id}")
+async def update_rss_feed(feed_id: str, request: UpdateRSSFeedRequest):
+    """Update RSS feed"""
+    try:
+        feed = await rss_feed_service.update_feed(feed_id, request)
+        if not feed:
+            raise HTTPException(status_code=404, detail="RSS feed not found")
+        return feed
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Failed to update RSS feed: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.delete("/feeds/{feed_id}")
+async def delete_rss_feed(feed_id: str):
+    """Delete RSS feed"""
+    try:
+        success = await rss_feed_service.delete_feed(feed_id)
+        if not success:
+            raise HTTPException(status_code=404, detail="RSS feed not found")
+        return {"message": "RSS feed deleted successfully"}
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Failed to delete RSS feed: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/feeds/{feed_id}/toggle")
+async def toggle_rss_feed(feed_id: str):
+    """Toggle RSS feed active status"""
+    try:
+        feed = await rss_feed_service.toggle_feed_status(feed_id)
+        if not feed:
+            raise HTTPException(status_code=404, detail="RSS feed not found")
+        return feed
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Failed to toggle RSS feed: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/feeds/{feed_id}/update", response_model=FeedUpdateResult)
+async def update_rss_feed_manually(feed_id: str):
+    """Manually trigger RSS feed update"""
+    try:
+        result = await rss_feed_service.update_feed_manually(feed_id)
+        return result
+    except Exception as e:
+        logger.error(f"Failed to manually update RSS feed: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/feeds/due-for-update")
+async def get_feeds_due_for_update():
+    """Get feeds that are due for scheduled update"""
+    try:
+        feeds = await rss_feed_service.get_feeds_due_for_update()
+        return {"feeds": feeds, "count": len(feeds)}
+    except Exception as e:
+        logger.error(f"Failed to get feeds due for update: {e}")
         raise HTTPException(status_code=500, detail=str(e))

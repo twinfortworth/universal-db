@@ -125,3 +125,76 @@ class DomainAnalytics(BaseModel):
     new_entities: List[EntityRecommendation]
     trending_topics: List[str]
     time_period: str
+
+
+class UpdateFrequency(str, Enum):
+    HOURLY = "hourly"
+    DAILY = "daily"
+    WEEKLY = "weekly"
+    MONTHLY = "monthly"
+
+
+class FeedStatus(str, Enum):
+    ACTIVE = "active"
+    INACTIVE = "inactive"
+    ERROR = "error"
+    PENDING = "pending"
+
+
+class UpdateSchedule(BaseModel):
+    frequency: UpdateFrequency = Field(..., description="How often to update the feed")
+    time_of_day: Optional[str] = Field(default=None, description="Time of day to update (HH:MM format)")
+    day_of_week: Optional[int] = Field(default=None, description="Day of week for weekly updates (0=Monday)")
+    day_of_month: Optional[int] = Field(default=None, description="Day of month for monthly updates")
+    next_update: Optional[datetime] = Field(default=None, description="Next scheduled update time")
+
+
+class RSSFeed(BaseModel):
+    feed_id: str = Field(default_factory=lambda: str(uuid_lib.uuid4()), description="Unique identifier for the RSS feed")
+    name: str = Field(..., description="Human-readable name for the feed")
+    url: str = Field(..., description="RSS feed URL")
+    domain_id: Optional[str] = Field(default=None, description="Associated domain for filtering")
+    tenant_id: str = Field(default="default", description="Tenant identifier")
+    is_active: bool = Field(default=True, description="Whether the feed is active")
+    status: FeedStatus = Field(default=FeedStatus.PENDING, description="Current status of the feed")
+    schedule: UpdateSchedule = Field(..., description="Update schedule configuration")
+    last_update: Optional[datetime] = Field(default=None, description="Last successful update time")
+    last_error: Optional[str] = Field(default=None, description="Last error message if any")
+    total_articles: int = Field(default=0, description="Total articles ingested from this feed")
+    successful_updates: int = Field(default=0, description="Number of successful updates")
+    failed_updates: int = Field(default=0, description="Number of failed updates")
+    created_at: datetime = Field(default_factory=datetime.utcnow)
+    updated_at: datetime = Field(default_factory=datetime.utcnow)
+
+
+class CreateRSSFeedRequest(BaseModel):
+    name: str = Field(..., description="Human-readable name for the feed")
+    url: str = Field(..., description="RSS feed URL")
+    domain_id: Optional[str] = Field(default=None, description="Associated domain for filtering")
+    tenant_id: str = Field(default="default", description="Tenant identifier")
+    is_active: bool = Field(default=True, description="Whether the feed should be active")
+    schedule: UpdateSchedule = Field(..., description="Update schedule configuration")
+
+
+class UpdateRSSFeedRequest(BaseModel):
+    name: Optional[str] = Field(default=None, description="Human-readable name for the feed")
+    url: Optional[str] = Field(default=None, description="RSS feed URL")
+    domain_id: Optional[str] = Field(default=None, description="Associated domain for filtering")
+    is_active: Optional[bool] = Field(default=None, description="Whether the feed should be active")
+    schedule: Optional[UpdateSchedule] = Field(default=None, description="Update schedule configuration")
+
+
+class RSSFeedListResponse(BaseModel):
+    feeds: List[RSSFeed]
+    total: int
+    page: int
+    page_size: int
+
+
+class FeedUpdateResult(BaseModel):
+    feed_id: str
+    success: bool
+    articles_processed: int
+    articles_filtered: int
+    error_message: Optional[str] = None
+    update_time: datetime = Field(default_factory=datetime.utcnow)

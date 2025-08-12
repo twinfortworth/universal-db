@@ -6,7 +6,12 @@ from typing import List, Optional, Dict, Any
 import feedparser
 import httpx
 from openai import OpenAI
-from .models import UniversalWrapper, RSSItem, Source, DomainTemplate, CreateDomainRequest, DomainEntity, EntityType, EnhancedRSSItem
+from .models import (
+    UniversalWrapper, RSSItem, Source, DomainTemplate, CreateDomainRequest, 
+    DomainEntity, EntityType, EnhancedRSSItem, RSSFeed, CreateRSSFeedRequest, 
+    UpdateRSSFeedRequest, RSSFeedListResponse, FeedUpdateResult, UpdateSchedule, 
+    FeedStatus, UpdateFrequency
+)
 import os
 from dotenv import load_dotenv
 
@@ -358,6 +363,221 @@ class RSSService:
             error_msg = f"Failed to ingest RSS feed: {e}"
             logger.error(error_msg)
             return {"error": error_msg}
+
+
+class RSSFeedService:
+    def __init__(self, db_service: DatabaseService, rss_service: RSSService, domain_service: DomainService):
+        self.db_service = db_service
+        self.rss_service = rss_service
+        self.domain_service = domain_service
+        self.feeds: Dict[str, RSSFeed] = {}
+        
+    async def create_feed(self, request: CreateRSSFeedRequest) -> RSSFeed:
+        feed = RSSFeed(
+            name=request.name,
+            url=request.url,
+            domain_id=request.domain_id,
+            tenant_id=request.tenant_id,
+            is_active=request.is_active,
+            schedule=request.schedule,
+            status=FeedStatus.PENDING
+        )
+        
+        feed.schedule.next_update = self._calculate_next_update(feed.schedule)
+        
+        self.feeds[feed.feed_id] = feed
+        logger.info(f"Created RSS feed: {feed.name} ({feed.feed_id})")
+        return feed
+    
+    async def get_feed(self, feed_id: str) -> Optional[RSSFeed]:
+        return self.feeds.get(feed_id)
+    
+    async def list_feeds(self, tenant_id: str = "default", page: int = 1, page_size: int = 10) -> RSSFeedListResponse:
+        tenant_feeds = [feed for feed in self.feeds.values() if feed.tenant_id == tenant_id]
+        total = len(tenant_feeds)
+        
+        start_idx = (page - 1) * page_size
+        end_idx = start_idx + page_size
+        feeds = tenant_feeds[start_idx:end_idx]
+        
+        return RSSFeedListResponse(
+            feeds=feeds,
+            total=total,
+            page=page,
+            page_size=page_size
+        )
+    
+    async def update_feed(self, feed_id: str, request: UpdateRSSFeedRequest) -> Optional[RSSFeed]:
+        feed = self.feeds.get(feed_id)
+        if not feed:
+            return None
+        
+        if request.name is not None:
+            feed.name = request.name
+        if request.url is not None:
+            feed.url = request.url
+        if request.domain_id is not None:
+            feed.domain_id = request.domain_id
+        if request.is_active is not None:
+            feed.is_active = request.is_active
+        if request.schedule is not None:
+            feed.schedule = request.schedule
+            feed.schedule.next_update = self._calculate_next_update(feed.schedule)
+        
+        feed.updated_at = datetime.utcnow()
+        logger.info(f"Updated RSS feed: {feed.name} ({feed.feed_id})")
+        return feed
+    
+    async def delete_feed(self, feed_id: str) -> bool:
+        if feed_id in self.feeds:
+            feed = self.feeds[feed_id]
+            del self.feeds[feed_id]
+            logger.info(f"Deleted RSS feed: {feed.name} ({feed_id})")
+            return True
+        return False
+    
+    async def toggle_feed_status(self, feed_id: str) -> Optional[RSSFeed]:
+        feed = self.feeds.get(feed_id)
+        if not feed:
+            return None
+        
+        feed.is_active = not feed.is_active
+        feed.updated_at = datetime.utcnow()
+        logger.info(f"Toggled RSS feed status: {feed.name} ({feed.feed_id}) -> {'active' if feed.is_active else 'inactive'}")
+        return feed
+    
+    async def update_feed_manually(self, feed_id: str) -> FeedUpdateResult:
+        feed = self.feeds.get(feed_id)
+        if not feed:
+            return FeedUpdateResult(
+                feed_id=feed_id,
+                success=False,
+                articles_processed=0,
+                articles_filtered=0,
+                error_message="Feed not found"
+            )
+        
+        if not feed.is_active:
+            return FeedUpdateResult(
+                feed_id=feed_id,
+                success=False,
+                articles_processed=0,
+                articles_filtered=0,
+                error_message="Feed is inactive"
+            )
+        
+        try:
+            feed.status = FeedStatus.PENDING
+            
+            if feed.domain_id:
+                result = await self.rss_service.ingest_rss_feed_with_domain(
+                    feed.url, feed.tenant_id, feed.domain_id
+                )
+            else:
+                result = await self.rss_service.ingest_rss_feed(feed.url, feed.tenant_id)
+            
+            if "error" in result:
+                feed.status = FeedStatus.ERROR
+                feed.last_error = result["error"]
+                feed.failed_updates += 1
+                
+                return FeedUpdateResult(
+                    feed_id=feed_id,
+                    success=False,
+                    articles_processed=0,
+                    articles_filtered=0,
+                    error_message=result["error"]
+                )
+            else:
+                feed.status = FeedStatus.ACTIVE
+                feed.last_update = datetime.utcnow()
+                feed.last_error = None
+                feed.successful_updates += 1
+                feed.total_articles += result.get("processed_items", 0)
+                
+                feed.schedule.next_update = self._calculate_next_update(feed.schedule)
+                
+                return FeedUpdateResult(
+                    feed_id=feed_id,
+                    success=True,
+                    articles_processed=result.get("processed_items", 0),
+                    articles_filtered=result.get("filtered_out", 0)
+                )
+                
+        except Exception as e:
+            error_msg = f"Failed to update RSS feed: {e}"
+            logger.error(error_msg)
+            
+            feed.status = FeedStatus.ERROR
+            feed.last_error = error_msg
+            feed.failed_updates += 1
+            
+            return FeedUpdateResult(
+                feed_id=feed_id,
+                success=False,
+                articles_processed=0,
+                articles_filtered=0,
+                error_message=error_msg
+            )
+    
+    async def get_feeds_due_for_update(self) -> List[RSSFeed]:
+        now = datetime.utcnow()
+        due_feeds = []
+        
+        for feed in self.feeds.values():
+            if (feed.is_active and 
+                feed.schedule.next_update and 
+                feed.schedule.next_update <= now):
+                due_feeds.append(feed)
+        
+        return due_feeds
+    
+    def _calculate_next_update(self, schedule: UpdateSchedule) -> datetime:
+        from datetime import timedelta
+        
+        now = datetime.utcnow()
+        
+        if schedule.frequency == UpdateFrequency.HOURLY:
+            return now + timedelta(hours=1)
+        elif schedule.frequency == UpdateFrequency.DAILY:
+            next_update = now + timedelta(days=1)
+            if schedule.time_of_day:
+                try:
+                    hour, minute = map(int, schedule.time_of_day.split(':'))
+                    next_update = next_update.replace(hour=hour, minute=minute, second=0, microsecond=0)
+                except:
+                    pass
+            return next_update
+        elif schedule.frequency == UpdateFrequency.WEEKLY:
+            days_ahead = 7
+            if schedule.day_of_week is not None:
+                days_ahead = (schedule.day_of_week - now.weekday()) % 7
+                if days_ahead == 0:
+                    days_ahead = 7
+            next_update = now + timedelta(days=days_ahead)
+            if schedule.time_of_day:
+                try:
+                    hour, minute = map(int, schedule.time_of_day.split(':'))
+                    next_update = next_update.replace(hour=hour, minute=minute, second=0, microsecond=0)
+                except:
+                    pass
+            return next_update
+        elif schedule.frequency == UpdateFrequency.MONTHLY:
+            next_update = now + timedelta(days=30)
+            if schedule.day_of_month:
+                try:
+                    next_update = next_update.replace(day=schedule.day_of_month)
+                except:
+                    pass
+            if schedule.time_of_day:
+                try:
+                    hour, minute = map(int, schedule.time_of_day.split(':'))
+                    next_update = next_update.replace(hour=hour, minute=minute, second=0, microsecond=0)
+                except:
+                    pass
+            return next_update
+        
+        return now + timedelta(days=1)
 
     async def ingest_rss_feed_with_domain(self, feed_url: str, tenant_id: str, domain_id: str, 
                                         extract_entities: bool = True, min_relevance: Optional[float] = None) -> dict:

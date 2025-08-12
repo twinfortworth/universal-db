@@ -8,7 +8,10 @@ import { Badge } from '@/components/ui/badge'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { Label } from '@/components/ui/label'
-import { Search, Rss, Globe, Calendar, ExternalLink, Loader2, Plus, Settings } from 'lucide-react'
+import { Search, Rss, Globe, Calendar, ExternalLink, Loader2, Plus, Settings, CheckCircle, XCircle, Clock, Edit, Trash2, Database } from 'lucide-react'
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
+import { Switch } from '@/components/ui/switch'
+import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from '@/components/ui/pagination'
 import './App.css'
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
@@ -54,6 +57,32 @@ interface Domain {
   min_relevance_score: number
 }
 
+interface UpdateSchedule {
+  frequency: 'hourly' | 'daily' | 'weekly' | 'monthly'
+  time_of_day?: string
+  day_of_week?: number
+  day_of_month?: number
+  next_update?: string
+}
+
+interface RSSFeed {
+  feed_id: string
+  name: string
+  url: string
+  domain_id?: string
+  tenant_id: string
+  is_active: boolean
+  status: 'active' | 'inactive' | 'error' | 'pending'
+  schedule: UpdateSchedule
+  last_update?: string
+  last_error?: string
+  total_articles: number
+  successful_updates: number
+  failed_updates: number
+  created_at: string
+  updated_at: string
+}
+
 function App() {
   const [feedUrl, setFeedUrl] = useState('')
   const [tenantId, setTenantId] = useState('default')
@@ -63,7 +92,7 @@ function App() {
   const [loading, setLoading] = useState(false)
   const [searching, setSearching] = useState(false)
   const [message, setMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null)
-  const [activeTab, setActiveTab] = useState<'ingest' | 'domain' | 'browse' | 'search'>('ingest')
+  const [activeTab, setActiveTab] = useState<'ingest' | 'domain' | 'browse' | 'search' | 'manage'>('ingest')
   const [domains, setDomains] = useState<Domain[]>([])
   const [selectedDomain, setSelectedDomain] = useState('fort_worth_political')
   const [showCreateDomain, setShowCreateDomain] = useState(false)
@@ -75,6 +104,21 @@ function App() {
     locations: '',
     exclude_keywords: '',
     min_relevance_score: 0.3
+  })
+  const [rssFeeds, setRssFeeds] = useState<RSSFeed[]>([])
+  const [showCreateFeed, setShowCreateFeed] = useState(false)
+  const [showEditFeed, setShowEditFeed] = useState(false)
+  const [editingFeed, setEditingFeed] = useState<RSSFeed | null>(null)
+  const [currentPage, setCurrentPage] = useState(1)
+  const [totalPages, setTotalPages] = useState(1)
+  const [newFeed, setNewFeed] = useState({
+    name: '',
+    url: '',
+    domain_id: 'none',
+    schedule: {
+      frequency: 'daily' as const,
+      time_of_day: '09:00'
+    }
   })
 
   const showMessage = (type: 'success' | 'error', text: string) => {
@@ -274,23 +318,207 @@ function App() {
 
   useEffect(() => {
     loadDomains()
-  }, [])
+    if (activeTab === 'manage') {
+      loadRssFeeds()
+    }
+  }, [activeTab])
+
+  useEffect(() => {
+    if (activeTab === 'manage') {
+      loadRssFeeds()
+    }
+  }, [currentPage])
 
   useEffect(() => {
     if (activeTab === 'browse') {
       loadRecords()
+    } else if (activeTab === 'manage') {
+      loadRssFeeds()
     }
   }, [activeTab, tenantId])
 
+  useEffect(() => {
+    if (activeTab === 'manage') {
+      loadRssFeeds()
+    }
+  }, [currentPage])
+
   const formatDate = (dateString?: string) => {
-    if (!dateString) return 'Unknown date'
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
-    })
+    if (!dateString) return 'Never'
+    try {
+      return new Date(dateString).toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      })
+    } catch {
+      return 'Invalid date'
+    }
+  }
+
+  const loadRssFeeds = async () => {
+    try {
+      const response = await fetch(`${API_URL}/feeds?tenant_id=${tenantId}&page=${currentPage}&page_size=10`)
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`)
+      }
+      const data = await response.json()
+      setRssFeeds(data.feeds || [])
+      setTotalPages(Math.ceil(data.total / 10))
+    } catch (error) {
+      console.error('Failed to load RSS feeds:', error)
+      setRssFeeds([])
+      showMessage('error', 'Failed to load RSS feeds')
+    }
+  }
+
+  const handleCreateFeed = async () => {
+    if (!newFeed.name || !newFeed.url) {
+      showMessage('error', 'Please fill in all required fields')
+      return
+    }
+
+    setLoading(true)
+    try {
+      const response = await fetch(`${API_URL}/feeds`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...newFeed,
+          tenant_id: tenantId,
+          is_active: true,
+          domain_id: newFeed.domain_id === 'none' ? null : newFeed.domain_id
+        })
+      })
+
+      if (response.ok) {
+        showMessage('success', 'RSS feed created successfully')
+        setShowCreateFeed(false)
+        setNewFeed({
+          name: '',
+          url: '',
+          domain_id: 'none',
+          schedule: {
+            frequency: 'daily' as const,
+            time_of_day: '09:00'
+          }
+        })
+        loadRssFeeds()
+      } else {
+        const error = await response.json()
+        showMessage('error', error.detail || 'Failed to create RSS feed')
+      }
+    } catch (error) {
+      console.error('Failed to create RSS feed:', error)
+      showMessage('error', 'Failed to connect to the server')
+    }
+  }
+
+  const toggleFeedStatus = async (feedId: string) => {
+    try {
+      const response = await fetch(`${API_URL}/feeds/${feedId}/toggle`, {
+        method: 'POST'
+      })
+      if (response.ok) {
+        loadRssFeeds()
+      } else {
+        showMessage('error', 'Failed to toggle feed status')
+      }
+    } catch (error) {
+      console.error('Failed to toggle feed status:', error)
+      showMessage('error', 'Failed to connect to the server')
+    }
+  }
+
+  const updateFeedManually = async (feedId: string) => {
+    try {
+      const response = await fetch(`${API_URL}/feeds/${feedId}/update`, {
+        method: 'POST'
+      })
+      const result = await response.json()
+      if (result.success) {
+        showMessage('success', `Updated successfully: ${result.articles_processed} articles processed`)
+      } else {
+        showMessage('error', result.error_message || 'Update failed')
+      }
+      loadRssFeeds()
+    } catch (error) {
+      console.error('Failed to update feed:', error)
+      showMessage('error', 'Failed to connect to the server')
+    }
+  }
+
+  const deleteFeed = async (feedId: string) => {
+    if (!confirm('Are you sure you want to delete this RSS feed?')) {
+      return
+    }
+
+    try {
+      const response = await fetch(`${API_URL}/feeds/${feedId}`, {
+        method: 'DELETE'
+      })
+      if (response.ok) {
+        showMessage('success', 'RSS feed deleted successfully')
+        loadRssFeeds()
+      } else {
+        showMessage('error', 'Failed to delete RSS feed')
+      }
+    } catch (error) {
+      console.error('Failed to delete feed:', error)
+      showMessage('error', 'Failed to connect to the server')
+    }
+  }
+
+  const editFeed = (feed: RSSFeed) => {
+    setEditingFeed(feed)
+    setShowEditFeed(true)
+  }
+
+  const handleEditFeed = async () => {
+    if (!editingFeed) return
+
+    try {
+      const response = await fetch(`${API_URL}/feeds/${editingFeed.feed_id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: editingFeed.name,
+          url: editingFeed.url,
+          domain_id: editingFeed.domain_id,
+          schedule: editingFeed.schedule
+        })
+      })
+
+      if (response.ok) {
+        showMessage('success', 'RSS feed updated successfully')
+        setShowEditFeed(false)
+        setEditingFeed(null)
+        loadRssFeeds()
+      } else {
+        const error = await response.json()
+        showMessage('error', error.detail || 'Failed to update RSS feed')
+      }
+    } catch (error) {
+      console.error('Failed to update RSS feed:', error)
+      showMessage('error', 'Failed to connect to the server')
+    }
+  }
+
+  const getDomainName = (domainId?: string) => {
+    if (!domainId) return 'None'
+    const domain = domains.find(d => d.domain_id === domainId)
+    return domain ? domain.name : 'Unknown'
+  }
+
+  const getStatusVariant = (status: string) => {
+    switch (status) {
+      case 'active': return 'default'
+      case 'error': return 'destructive'
+      case 'pending': return 'secondary'
+      default: return 'outline'
+    }
   }
 
   return (
@@ -349,6 +577,14 @@ function App() {
           >
             <Search size={16} />
             Search
+          </Button>
+          <Button
+            variant={activeTab === 'manage' ? 'default' : 'outline'}
+            onClick={() => setActiveTab('manage')}
+            className="flex items-center gap-2"
+          >
+            <Database size={16} />
+            RSS Management
           </Button>
         </div>
 
@@ -761,6 +997,275 @@ function App() {
                 </div>
               </div>
             )}
+          </div>
+        )}
+
+        {/* RSS Management Tab */}
+        {activeTab === 'manage' && (
+          <div className="space-y-4">
+            <div className="flex justify-between items-center">
+              <h2 className="text-2xl font-bold">RSS Feed Management</h2>
+              <Button onClick={() => setShowCreateFeed(true)}>
+                <Plus className="w-4 h-4 mr-2" />
+                Add RSS Feed
+              </Button>
+            </div>
+            
+            {rssFeeds.length === 0 ? (
+              <Card>
+                <CardContent className="py-8 text-center">
+                  <p className="text-gray-500">No RSS feeds found. Create your first RSS feed to get started.</p>
+                </CardContent>
+              </Card>
+            ) : (
+              <Card>
+                <CardContent className="p-0">
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead>Name</TableHead>
+                        <TableHead>URL</TableHead>
+                        <TableHead>Domain</TableHead>
+                        <TableHead>Status</TableHead>
+                        <TableHead>On/Off</TableHead>
+                        <TableHead>Last Update</TableHead>
+                        <TableHead>Success/Failure</TableHead>
+                        <TableHead>Schedule</TableHead>
+                        <TableHead>Next Update</TableHead>
+                        <TableHead>Actions</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {rssFeeds.map((feed) => (
+                        <TableRow key={feed.feed_id}>
+                          <TableCell className="font-medium">{feed.name}</TableCell>
+                          <TableCell className="max-w-xs truncate" title={feed.url}>{feed.url}</TableCell>
+                          <TableCell>{getDomainName(feed.domain_id)}</TableCell>
+                          <TableCell>
+                            <Badge variant={getStatusVariant(feed.status)}>
+                              {feed.status}
+                            </Badge>
+                          </TableCell>
+                          <TableCell>
+                            <Switch
+                              checked={feed.is_active}
+                              onCheckedChange={() => toggleFeedStatus(feed.feed_id)}
+                            />
+                          </TableCell>
+                          <TableCell>{formatDate(feed.last_update)}</TableCell>
+                          <TableCell>
+                            {feed.status === 'active' ? (
+                              <CheckCircle className="w-4 h-4 text-green-500" />
+                            ) : feed.status === 'error' ? (
+                              <XCircle className="w-4 h-4 text-red-500" />
+                            ) : (
+                              <Clock className="w-4 h-4 text-gray-400" />
+                            )}
+                          </TableCell>
+                          <TableCell>{feed.schedule.frequency}</TableCell>
+                          <TableCell>{formatDate(feed.schedule.next_update)}</TableCell>
+                          <TableCell>
+                            <div className="flex gap-2">
+                              <Button size="sm" onClick={() => updateFeedManually(feed.feed_id)} disabled={loading}>
+                                {loading ? <Loader2 className="w-3 h-3 animate-spin" /> : 'Update Now'}
+                              </Button>
+                              <Button size="sm" variant="outline" onClick={() => editFeed(feed)}>
+                                <Edit className="w-3 h-3" />
+                              </Button>
+                              <Button size="sm" variant="destructive" onClick={() => deleteFeed(feed.feed_id)}>
+                                <Trash2 className="w-3 h-3" />
+                              </Button>
+                            </div>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </CardContent>
+              </Card>
+            )}
+
+            {totalPages > 1 && (
+              <Pagination>
+                <PaginationContent>
+                  <PaginationItem>
+                    <PaginationPrevious 
+                      onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+                      className={currentPage === 1 ? 'pointer-events-none opacity-50' : 'cursor-pointer'}
+                    />
+                  </PaginationItem>
+                  {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                    <PaginationItem key={page}>
+                      <PaginationLink
+                        onClick={() => setCurrentPage(page)}
+                        isActive={currentPage === page}
+                        className="cursor-pointer"
+                      >
+                        {page}
+                      </PaginationLink>
+                    </PaginationItem>
+                  ))}
+                  <PaginationItem>
+                    <PaginationNext 
+                      onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
+                      className={currentPage === totalPages ? 'pointer-events-none opacity-50' : 'cursor-pointer'}
+                    />
+                  </PaginationItem>
+                </PaginationContent>
+              </Pagination>
+            )}
+
+            {/* Create RSS Feed Dialog */}
+            <Dialog open={showCreateFeed} onOpenChange={setShowCreateFeed}>
+              <DialogContent className="max-w-2xl">
+                <DialogHeader>
+                  <DialogTitle>Create RSS Feed</DialogTitle>
+                  <DialogDescription>
+                    Add a new RSS feed with scheduling and domain filtering options.
+                  </DialogDescription>
+                </DialogHeader>
+                <div className="space-y-4">
+                  <div>
+                    <Label htmlFor="feed-name">Feed Name *</Label>
+                    <Input
+                      id="feed-name"
+                      placeholder="e.g., Tech News Daily"
+                      value={newFeed.name}
+                      onChange={(e) => setNewFeed({...newFeed, name: e.target.value})}
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="feed-url">RSS Feed URL *</Label>
+                    <Input
+                      id="feed-url"
+                      placeholder="https://example.com/rss.xml"
+                      value={newFeed.url}
+                      onChange={(e) => setNewFeed({...newFeed, url: e.target.value})}
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="feed-domain">Domain (Optional)</Label>
+                    <Select value={newFeed.domain_id} onValueChange={(value) => setNewFeed({...newFeed, domain_id: value})}>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select a domain" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="none">No domain filter</SelectItem>
+                        {domains.filter(domain => domain.domain_id && domain.domain_id.trim() !== '').map(domain => (
+                          <SelectItem key={domain.domain_id} value={domain.domain_id}>
+                            {domain.name}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div>
+                    <Label htmlFor="update-frequency">Update Frequency</Label>
+                    <Select value={newFeed.schedule.frequency} onValueChange={(value) => setNewFeed({...newFeed, schedule: {...newFeed.schedule, frequency: value as any}})}>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select frequency" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="hourly">Hourly</SelectItem>
+                        <SelectItem value="daily">Daily</SelectItem>
+                        <SelectItem value="weekly">Weekly</SelectItem>
+                        <SelectItem value="monthly">Monthly</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div>
+                    <Label htmlFor="time-of-day">Time of Day (HH:MM)</Label>
+                    <Input
+                      id="time-of-day"
+                      placeholder="14:30"
+                      value={newFeed.schedule.time_of_day}
+                      onChange={(e) => setNewFeed({...newFeed, schedule: {...newFeed.schedule, time_of_day: e.target.value}})}
+                    />
+                  </div>
+                  <Button onClick={handleCreateFeed} className="w-full" disabled={loading}>
+                    {loading ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : null}
+                    Create RSS Feed
+                  </Button>
+                </div>
+              </DialogContent>
+            </Dialog>
+
+            {/* Edit RSS Feed Dialog */}
+            <Dialog open={showEditFeed} onOpenChange={setShowEditFeed}>
+              <DialogContent className="max-w-2xl">
+                <DialogHeader>
+                  <DialogTitle>Edit RSS Feed</DialogTitle>
+                  <DialogDescription>
+                    Update RSS feed configuration and scheduling options.
+                  </DialogDescription>
+                </DialogHeader>
+                {editingFeed && (
+                  <div className="space-y-4">
+                    <div>
+                      <Label htmlFor="edit-feed-name">Feed Name *</Label>
+                      <Input
+                        id="edit-feed-name"
+                        placeholder="e.g., Tech News Daily"
+                        value={editingFeed.name}
+                        onChange={(e) => setEditingFeed({...editingFeed, name: e.target.value})}
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="edit-feed-url">RSS Feed URL *</Label>
+                      <Input
+                        id="edit-feed-url"
+                        placeholder="https://example.com/rss.xml"
+                        value={editingFeed.url}
+                        onChange={(e) => setEditingFeed({...editingFeed, url: e.target.value})}
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="edit-feed-domain">Domain (Optional)</Label>
+                      <Select value={editingFeed.domain_id || 'none'} onValueChange={(value) => setEditingFeed({...editingFeed, domain_id: value === 'none' ? undefined : value})}>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select a domain" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="none">No domain filter</SelectItem>
+                          {domains.filter(domain => domain.domain_id && domain.domain_id.trim() !== '').map(domain => (
+                            <SelectItem key={domain.domain_id} value={domain.domain_id}>
+                              {domain.name}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div>
+                      <Label htmlFor="edit-update-frequency">Update Frequency</Label>
+                      <Select value={editingFeed.schedule.frequency} onValueChange={(value) => setEditingFeed({...editingFeed, schedule: {...editingFeed.schedule, frequency: value as any}})}>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select frequency" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="hourly">Hourly</SelectItem>
+                          <SelectItem value="daily">Daily</SelectItem>
+                          <SelectItem value="weekly">Weekly</SelectItem>
+                          <SelectItem value="monthly">Monthly</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div>
+                      <Label htmlFor="edit-time-of-day">Time of Day (HH:MM)</Label>
+                      <Input
+                        id="edit-time-of-day"
+                        placeholder="14:30"
+                        value={editingFeed.schedule.time_of_day || ''}
+                        onChange={(e) => setEditingFeed({...editingFeed, schedule: {...editingFeed.schedule, time_of_day: e.target.value}})}
+                      />
+                    </div>
+                    <Button onClick={handleEditFeed} className="w-full" disabled={loading}>
+                      {loading ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : null}
+                      Update RSS Feed
+                    </Button>
+                  </div>
+                )}
+              </DialogContent>
+            </Dialog>
           </div>
         )}
       </div>
