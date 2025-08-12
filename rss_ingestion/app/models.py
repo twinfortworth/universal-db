@@ -1,6 +1,7 @@
 from datetime import datetime
 from typing import Optional, Dict, Any, List
 from pydantic import BaseModel, Field
+from enum import Enum
 import uuid as uuid_lib
 
 
@@ -47,3 +48,80 @@ class SearchResult(BaseModel):
     link: str
     score: float
     published: Optional[datetime]
+
+
+class EntityType(str, Enum):
+    PERSON = "person"
+    ORGANIZATION = "organization"
+    LOCATION = "location"
+    EVENT = "event"
+    POLICY = "policy"
+    VOTE = "vote"
+    PROJECT = "project"
+
+
+class DomainEntity(BaseModel):
+    name: str
+    type: EntityType
+    confidence: float = Field(ge=0.0, le=1.0, description="Confidence score for entity extraction")
+    context: Optional[str] = None
+    aliases: List[str] = Field(default_factory=list)
+
+
+class DomainTemplate(BaseModel):
+    domain_id: str = Field(..., description="Unique identifier for the domain")
+    name: str = Field(..., description="Human-readable domain name")
+    description: str = Field(..., description="Description of the domain")
+    keywords: List[str] = Field(default_factory=list, description="Keywords to match for domain relevance")
+    entities: List[str] = Field(default_factory=list, description="Known entities to track")
+    locations: List[str] = Field(default_factory=list, description="Geographic locations of interest")
+    exclude_keywords: List[str] = Field(default_factory=list, description="Keywords to exclude")
+    min_relevance_score: float = Field(default=0.3, ge=0.0, le=1.0, description="Minimum relevance score to accept")
+    entity_patterns: Dict[str, List[str]] = Field(default_factory=dict, description="Regex patterns for entity recognition by type")
+    created_at: datetime = Field(default_factory=datetime.utcnow)
+    updated_at: datetime = Field(default_factory=datetime.utcnow)
+
+
+class CreateDomainRequest(BaseModel):
+    name: str = Field(..., description="Human-readable domain name")
+    description: str = Field(..., description="Description of the domain")
+    keywords: List[str] = Field(default_factory=list)
+    entities: List[str] = Field(default_factory=list)
+    locations: List[str] = Field(default_factory=list)
+    exclude_keywords: List[str] = Field(default_factory=list)
+    min_relevance_score: float = Field(default=0.3, ge=0.0, le=1.0)
+    entity_patterns: Dict[str, List[str]] = Field(default_factory=dict)
+
+
+class EnhancedRSSItem(RSSItem):
+    entities: List[DomainEntity] = Field(default_factory=list, description="Extracted domain entities")
+    relevance_score: float = Field(default=0.0, ge=0.0, le=1.0, description="Domain relevance score")
+    domain_tags: List[str] = Field(default_factory=list, description="Domain-specific tags")
+    relationships: Dict[str, List[str]] = Field(default_factory=dict, description="Entity relationships")
+    sentiment: Optional[str] = Field(default=None, description="Sentiment analysis result")
+    importance_score: float = Field(default=0.0, ge=0.0, le=1.0, description="Calculated importance score")
+
+
+class DomainIngestRequest(IngestRSSRequest):
+    domain_id: str = Field(..., description="Domain template to use for filtering")
+    extract_entities: bool = Field(default=True, description="Whether to extract entities")
+    min_relevance: Optional[float] = Field(default=None, description="Override domain's min relevance score")
+
+
+class EntityRecommendation(BaseModel):
+    entity: DomainEntity
+    reason: str = Field(..., description="Why this entity is recommended")
+    source_articles: List[str] = Field(default_factory=list, description="UUIDs of articles mentioning this entity")
+    frequency: int = Field(default=1, description="How often this entity appears")
+    first_seen: datetime = Field(default_factory=datetime.utcnow)
+    last_seen: datetime = Field(default_factory=datetime.utcnow)
+
+
+class DomainAnalytics(BaseModel):
+    total_articles: int
+    relevant_articles: int
+    relevance_rate: float
+    top_entities: List[DomainEntity]
+    new_entities: List[EntityRecommendation]
+    trending_topics: List[str]
+    time_period: str

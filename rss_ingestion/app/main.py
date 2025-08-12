@@ -2,15 +2,16 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 import logging
-from .models import IngestRSSRequest, SearchRequest, SearchResult
-from .services import DatabaseService, VectorService, RSSService
+from .models import IngestRSSRequest, SearchRequest, SearchResult, CreateDomainRequest, DomainIngestRequest, DomainAnalytics, DomainEntity, EntityType
+from .services import DatabaseService, VectorService, RSSService, DomainService
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 db_service = DatabaseService()
 vector_service = VectorService()
-rss_service = RSSService(db_service, vector_service)
+domain_service = DomainService()
+rss_service = RSSService(db_service, vector_service, domain_service)
 
 
 @asynccontextmanager
@@ -106,4 +107,96 @@ async def search_records(request: SearchRequest):
         }
     except Exception as e:
         logger.error(f"Search failed: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/domains")
+async def create_domain(request: CreateDomainRequest):
+    try:
+        domain = await domain_service.create_domain(request)
+        return domain
+    except Exception as e:
+        logger.error(f"Failed to create domain: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/domains")
+async def list_domains():
+    try:
+        domains = await domain_service.list_domains()
+        return {"domains": domains, "count": len(domains)}
+    except Exception as e:
+        logger.error(f"Failed to list domains: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/domains/{domain_id}")
+async def get_domain(domain_id: str):
+    try:
+        domain = await domain_service.get_domain(domain_id)
+        if not domain:
+            raise HTTPException(status_code=404, detail="Domain not found")
+        return domain
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Failed to get domain: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/ingest/rss/domain")
+async def ingest_rss_with_domain(request: DomainIngestRequest):
+    try:
+        result = await rss_service.ingest_rss_feed_with_domain(
+            request.feed_url, 
+            request.tenant_id, 
+            request.domain_id,
+            request.extract_entities,
+            request.min_relevance
+        )
+        if "error" in result:
+            raise HTTPException(status_code=400, detail=result["error"])
+        return result
+    except Exception as e:
+        logger.error(f"Domain RSS ingestion failed: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/analytics/domain/{domain_id}")
+async def get_domain_analytics(domain_id: str, tenant_id: str = "default"):
+    try:
+        domain = await domain_service.get_domain(domain_id)
+        if not domain:
+            raise HTTPException(status_code=404, detail="Domain not found")
+        
+        all_records = await db_service.get_records(tenant_id, limit=1000)
+        domain_records = [r for r in all_records if r.get("data", {}).get("domain_tags", []) and domain.name in r["data"]["domain_tags"]]
+        
+        total_articles = len(all_records)
+        relevant_articles = len(domain_records)
+        relevance_rate = relevant_articles / max(total_articles, 1)
+        
+        entity_counts = {}
+        for record in domain_records:
+            entities = record.get("data", {}).get("entities", [])
+            for entity in entities:
+                name = entity.get("name", "")
+                if name:
+                    entity_counts[name] = entity_counts.get(name, 0) + 1
+        
+        top_entities = sorted(entity_counts.items(), key=lambda x: x[1], reverse=True)[:10]
+        
+        analytics = DomainAnalytics(
+            total_articles=total_articles,
+            relevant_articles=relevant_articles,
+            relevance_rate=relevance_rate,
+            top_entities=[DomainEntity(name=name, type=EntityType.PERSON, confidence=0.8) for name, _ in top_entities],
+            new_entities=[],
+            trending_topics=list(domain.keywords[:5]),
+            time_period="all_time"
+        )
+        
+        return analytics
+    except Exception as e:
+        logger.error(f"Failed to get domain analytics: {e}")
         raise HTTPException(status_code=500, detail=str(e))
