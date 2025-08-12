@@ -199,7 +199,13 @@ function App() {
 
       const result = await response.json()
       if (response.ok) {
-        showMessage('success', `Successfully ingested ${result.processed_items} articles from ${result.domain_name} domain! (${result.filtered_out} filtered out)`)
+        if (result.processed_items === 0 && result.filtered_out > 0) {
+          showMessage('error', `No articles matched the ${result.domain_name} domain criteria. ${result.filtered_out} articles were filtered out. Try adjusting the domain keywords or using a different RSS feed.`)
+        } else if (result.processed_items === 0) {
+          showMessage('error', `No articles were processed from ${result.domain_name} domain. The RSS feed may be empty or incompatible.`)
+        } else {
+          showMessage('success', `Successfully ingested ${result.processed_items} articles from ${result.domain_name} domain! (${result.filtered_out} filtered out)`)
+        }
         setFeedUrl('')
         if (activeTab === 'browse') {
           loadRecords()
@@ -445,7 +451,7 @@ function App() {
                     <SelectValue placeholder="Select a domain" />
                   </SelectTrigger>
                   <SelectContent>
-                    {domains.map(domain => (
+                    {domains.filter(domain => domain.domain_id && domain.domain_id.trim() !== '').map(domain => (
                       <SelectItem key={domain.domain_id} value={domain.domain_id}>
                         {domain.name} - {domain.description}
                       </SelectItem>
