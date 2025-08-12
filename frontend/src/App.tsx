@@ -91,6 +91,8 @@ function App() {
   const [searchResults, setSearchResults] = useState<SearchResult[]>([])
   const [loading, setLoading] = useState(false)
   const [searching, setSearching] = useState(false)
+  const [searchMode, setSearchMode] = useState<string>('hybrid')
+  const [selectedDomainForSearch, setSelectedDomainForSearch] = useState<string>('')
   const [message, setMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null)
   const [activeTab, setActiveTab] = useState<'ingest' | 'domain' | 'browse' | 'search' | 'manage'>('ingest')
   const [domains, setDomains] = useState<Domain[]>([])
@@ -288,16 +290,39 @@ function App() {
 
     setSearching(true)
     try {
-      const response = await fetch(`${API_URL}/search`, {
+      let endpoint = '/search'
+      let requestBody: any = {
+        query: searchQuery,
+        tenant_id: tenantId,
+        limit: 10
+      }
+
+      if (searchMode === 'hybrid') {
+        endpoint = '/search/hybrid'
+        requestBody = {
+          ...requestBody,
+          search_type: 'hybrid',
+          bm25_weight: 0.5,
+          vector_weight: 0.5,
+          use_reranking: true
+        }
+      } else if (searchMode === 'domain' && selectedDomainForSearch) {
+        endpoint = `/search/domain?domain_id=${selectedDomainForSearch}`
+        requestBody = {
+          ...requestBody,
+          search_type: 'hybrid',
+          bm25_weight: 0.5,
+          vector_weight: 0.5,
+          use_reranking: true
+        }
+      }
+
+      const response = await fetch(`${API_URL}${endpoint}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          query: searchQuery,
-          tenant_id: tenantId,
-          limit: 10
-        })
+        body: JSON.stringify(requestBody)
       })
 
       const result = await response.json()
@@ -936,9 +961,9 @@ function App() {
           <div className="space-y-4">
             <Card>
               <CardHeader>
-                <CardTitle>Semantic Search</CardTitle>
+                <CardTitle>Advanced RAG Search</CardTitle>
                 <CardDescription>
-                  Search through ingested articles using natural language queries.
+                  Search through ingested articles using hybrid search (BM25 + semantic) with re-ranking.
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -947,10 +972,41 @@ function App() {
                   <Textarea
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="Enter your search query (e.g., 'technology news', 'climate change', 'artificial intelligence')"
+                    placeholder="Enter your search query (e.g., 'Fort Worth politics', 'city council meetings', 'local government')"
                     className="w-full"
                     rows={3}
                   />
+                </div>
+                <div className="flex gap-4">
+                  <div className="flex-1">
+                    <label className="text-sm font-medium text-gray-700 mb-2 block">Search Mode</label>
+                    <select 
+                      value={searchMode} 
+                      onChange={(e) => setSearchMode(e.target.value)}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                    >
+                      <option value="vector">Vector Only</option>
+                      <option value="hybrid">Hybrid (BM25 + Vector)</option>
+                      <option value="domain">Domain Filtered</option>
+                    </select>
+                  </div>
+                  {searchMode === 'domain' && (
+                    <div className="flex-1">
+                      <label className="text-sm font-medium text-gray-700 mb-2 block">Domain</label>
+                      <select 
+                        value={selectedDomainForSearch} 
+                        onChange={(e) => setSelectedDomainForSearch(e.target.value)}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                      >
+                        <option value="">Select Domain</option>
+                        {domains.map(domain => (
+                          <option key={domain.domain_id} value={domain.domain_id}>
+                            {domain.name}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  )}
                 </div>
                 <Button 
                   onClick={handleSearch} 
@@ -975,7 +1031,13 @@ function App() {
             {/* Search Results */}
             {searchResults.length > 0 && (
               <div className="space-y-4">
-                <h3 className="text-xl font-semibold">Search Results</h3>
+                <div className="flex justify-between items-center">
+                  <h3 className="text-xl font-semibold">Search Results ({searchResults.length})</h3>
+                  <Badge variant="outline" className="text-sm">
+                    {searchMode === 'hybrid' ? 'Hybrid + Re-ranking' : 
+                     searchMode === 'domain' ? 'Domain Filtered' : 'Vector Search'}
+                  </Badge>
+                </div>
                 <div className="grid gap-4">
                   {searchResults.map((result) => (
                     <Card key={result.uuid} className="hover:shadow-md transition-shadow">
@@ -986,7 +1048,7 @@ function App() {
                           </h4>
                           <div className="flex items-center gap-2 ml-4">
                             <Badge variant="outline" className="text-xs">
-                              {Math.round(result.score * 100)}% match
+                              Score: {result.score.toFixed(3)}
                             </Badge>
                             <a
                               href={result.link}

@@ -124,6 +124,105 @@ async def search_records(request: SearchRequest):
         raise HTTPException(status_code=500, detail=str(e))
 
 
+@app.post("/search/hybrid")
+async def hybrid_search_records(request: SearchRequest):
+    """Advanced search using hybrid search (BM25 + vector similarity) with re-ranking"""
+    try:
+        hybrid_results = await vector_service.hybrid_search(
+            request.query, request.tenant_id, request.limit * 2,
+            request.bm25_weight, request.vector_weight
+        )
+        
+        if request.use_reranking:
+            reranked_results = await vector_service.rerank_results(
+                request.query, hybrid_results, request.limit
+            )
+        else:
+            reranked_results = hybrid_results[:request.limit]
+        
+        search_results = []
+        for result in reranked_results:
+            metadata = result["metadata"]
+            search_results.append(SearchResult(
+                uuid=result["uuid"],
+                title=metadata.get("title", ""),
+                description=metadata.get("description"),
+                link=metadata.get("link", ""),
+                score=result.get("rerank_score", result.get("rrf_score", 0.0)),
+                published=metadata.get("published")
+            ))
+        
+        return {
+            "query": request.query,
+            "search_type": "hybrid_with_reranking" if request.use_reranking else "hybrid",
+            "results": search_results,
+            "count": len(search_results)
+        }
+    except Exception as e:
+        logger.error(f"Hybrid search failed: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/search/domain")
+async def domain_filtered_search(request: SearchRequest):
+    """Domain-specific search with relevance filtering"""
+    try:
+        if not request.domain_id:
+            raise HTTPException(status_code=400, detail="domain_id is required for domain search")
+        
+        domain = await domain_service.get_domain(request.domain_id)
+        if not domain:
+            raise HTTPException(status_code=404, detail="Domain not found")
+        
+        hybrid_results = await vector_service.hybrid_search(
+            request.query, request.tenant_id, request.limit * 3,
+            request.bm25_weight, request.vector_weight
+        )
+        
+        domain_filtered_results = []
+        for result in hybrid_results:
+            metadata = result["metadata"]
+            if metadata.get("domain_id") == request.domain_id:
+                title = metadata.get("title", "")
+                description = metadata.get("description", "")
+                text_content = f"{title} {description}"
+                relevance_score = domain_service.calculate_relevance_score(text_content, domain)
+                
+                if relevance_score >= domain.min_relevance_score:
+                    result["domain_relevance_score"] = relevance_score
+                    domain_filtered_results.append(result)
+        
+        if request.use_reranking:
+            reranked_results = await vector_service.rerank_results(
+                request.query, domain_filtered_results, request.limit
+            )
+        else:
+            reranked_results = domain_filtered_results[:request.limit]
+        
+        search_results = []
+        for result in reranked_results:
+            metadata = result["metadata"]
+            search_results.append(SearchResult(
+                uuid=result["uuid"],
+                title=metadata.get("title", ""),
+                description=metadata.get("description"),
+                link=metadata.get("link", ""),
+                score=result.get("rerank_score", result.get("domain_relevance_score", 0.0)),
+                published=metadata.get("published")
+            ))
+        
+        return {
+            "query": request.query,
+            "domain_id": request.domain_id,
+            "search_type": "domain_filtered_hybrid",
+            "results": search_results,
+            "count": len(search_results)
+        }
+    except Exception as e:
+        logger.error(f"Domain filtered search failed: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 @app.post("/domains")
 async def create_domain(request: CreateDomainRequest):
     try:

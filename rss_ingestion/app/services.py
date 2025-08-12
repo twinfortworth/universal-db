@@ -6,14 +6,29 @@ from typing import List, Optional, Dict, Any
 import feedparser
 import httpx
 from openai import OpenAI
+import os
+from dotenv import load_dotenv
+import uuid as uuid_lib
+
+try:
+    from rank_bm25 import BM25Okapi
+    from transformers import AutoTokenizer, AutoModelForSequenceClassification
+    import torch
+    RAG_DEPENDENCIES_AVAILABLE = True
+except ImportError as e:
+    logging.warning(f"RAG dependencies not available: {e}")
+    RAG_DEPENDENCIES_AVAILABLE = False
+    BM25Okapi = None
+    AutoTokenizer = None
+    AutoModelForSequenceClassification = None
+    torch = None
+
 from .models import (
     UniversalWrapper, RSSItem, Source, DomainTemplate, CreateDomainRequest, 
     DomainEntity, EntityType, EnhancedRSSItem, RSSFeed, CreateRSSFeedRequest, 
     UpdateRSSFeedRequest, RSSFeedListResponse, FeedUpdateResult, UpdateSchedule, 
     FeedStatus, UpdateFrequency
 )
-import os
-from dotenv import load_dotenv
 
 load_dotenv()
 
@@ -75,6 +90,22 @@ class VectorService:
     def __init__(self):
         self.openai_api_key = os.getenv("OPENAI_API_KEY")
         self.vectors: Dict[str, dict] = {}
+        self.bm25_index = None
+        self.bm25_documents = []
+        self.bm25_metadata = []
+        
+        if RAG_DEPENDENCIES_AVAILABLE:
+            try:
+                self.reranker_tokenizer = AutoTokenizer.from_pretrained("BAAI/bge-reranker-v2-m3")
+                self.reranker_model = AutoModelForSequenceClassification.from_pretrained("BAAI/bge-reranker-v2-m3")
+                logger.info("Re-ranking model loaded successfully")
+            except Exception as e:
+                logger.warning(f"Failed to load re-ranking model: {e}")
+                self.reranker_tokenizer = None
+                self.reranker_model = None
+        else:
+            self.reranker_tokenizer = None
+            self.reranker_model = None
         
         if self.openai_api_key:
             self.openai_client = OpenAI(api_key=self.openai_api_key)
@@ -104,13 +135,21 @@ class VectorService:
             return [0.1] * 1536
 
     async def save_vector(self, uuid: str, embedding: List[float], metadata: dict) -> bool:
-        """Save vector to in-memory storage"""
+        """Save vector to in-memory storage and BM25 index"""
         try:
             self.vectors[uuid] = {
                 "uuid": uuid,
                 "embedding": embedding,
                 "metadata": metadata
             }
+            
+            title = metadata.get("title", "")
+            description = metadata.get("description", "")
+            text_content = f"{title} {description}".strip()
+            
+            if text_content:
+                await self.add_to_bm25_index(uuid, text_content, metadata)
+            
             return True
         except Exception as e:
             logger.error(f"Failed to save vector: {e}")
@@ -143,6 +182,128 @@ class VectorService:
         except Exception as e:
             logger.error(f"Failed to search vectors: {e}")
             return []
+
+    def _preprocess_text(self, text: str) -> List[str]:
+        """Preprocess text for BM25 indexing"""
+        text = text.lower()
+        tokens = re.findall(r'\b\w+\b', text)
+        return tokens
+
+    async def add_to_bm25_index(self, uuid: str, text: str, metadata: dict):
+        """Add document to BM25 index"""
+        try:
+            tokens = self._preprocess_text(text)
+            self.bm25_documents.append(tokens)
+            self.bm25_metadata.append({"uuid": uuid, "metadata": metadata})
+            
+            if len(self.bm25_documents) > 0 and BM25Okapi:
+                self.bm25_index = BM25Okapi(self.bm25_documents)
+            
+            logger.info(f"Added document {uuid} to BM25 index")
+        except Exception as e:
+            logger.error(f"Failed to add document to BM25 index: {e}")
+
+    async def search_bm25(self, query: str, tenant_id: str, limit: int = 10) -> List[dict]:
+        """Search using BM25 keyword matching"""
+        try:
+            if not self.bm25_index or len(self.bm25_documents) == 0:
+                return []
+            
+            query_tokens = self._preprocess_text(query)
+            scores = self.bm25_index.get_scores(query_tokens)
+            
+            results = []
+            for i, score in enumerate(scores):
+                metadata_entry = self.bm25_metadata[i]
+                if metadata_entry["metadata"].get("tenant_id") == tenant_id:
+                    results.append({
+                        "uuid": metadata_entry["uuid"],
+                        "score": float(score),
+                        "metadata": metadata_entry["metadata"]
+                    })
+            
+            results.sort(key=lambda x: x["score"], reverse=True)
+            return results[:limit]
+            
+        except Exception as e:
+            logger.error(f"BM25 search failed: {e}")
+            return []
+
+    async def hybrid_search(self, query: str, tenant_id: str, limit: int = 10, 
+                          bm25_weight: float = 0.5, vector_weight: float = 0.5) -> List[dict]:
+        """Hybrid search combining BM25 and vector similarity with reciprocal rank fusion"""
+        try:
+            query_embedding = await self.generate_embedding(query)
+            vector_results = await self.search_vectors(query_embedding, tenant_id, limit * 2)
+            
+            bm25_results = await self.search_bm25(query, tenant_id, limit * 2)
+            
+            def reciprocal_rank_fusion(results_list: List[List[dict]], weights: List[float]) -> List[dict]:
+                rrf_scores = {}
+                
+                for results, weight in zip(results_list, weights):
+                    for rank, result in enumerate(results):
+                        uuid = result["uuid"]
+                        rrf_score = weight / (rank + 60)
+                        
+                        if uuid in rrf_scores:
+                            rrf_scores[uuid]["rrf_score"] += rrf_score
+                        else:
+                            rrf_scores[uuid] = {
+                                "uuid": uuid,
+                                "metadata": result["metadata"],
+                                "rrf_score": rrf_score,
+                                "vector_score": 0.0,
+                                "bm25_score": 0.0
+                            }
+                
+                for result in vector_results:
+                    if result["uuid"] in rrf_scores:
+                        rrf_scores[result["uuid"]]["vector_score"] = result["score"]
+                
+                for result in bm25_results:
+                    if result["uuid"] in rrf_scores:
+                        rrf_scores[result["uuid"]]["bm25_score"] = result["score"]
+                
+                final_results = list(rrf_scores.values())
+                final_results.sort(key=lambda x: x["rrf_score"], reverse=True)
+                return final_results[:limit]
+            
+            return reciprocal_rank_fusion([vector_results, bm25_results], [vector_weight, bm25_weight])
+            
+        except Exception as e:
+            logger.error(f"Hybrid search failed: {e}")
+            return []
+
+    async def rerank_results(self, query: str, results: List[dict], top_n: int = 5) -> List[dict]:
+        """Re-rank search results using cross-encoder model"""
+        try:
+            if len(results) == 0 or not self.reranker_model or not self.reranker_tokenizer:
+                return results[:top_n]
+            
+            pairs = []
+            for result in results:
+                title = result["metadata"].get("title", "")
+                description = result["metadata"].get("description", "")
+                doc_text = f"{title} {description}".strip()
+                pairs.append([query, doc_text])
+            
+            inputs = self.reranker_tokenizer(pairs, padding=True, truncation=True, 
+                                          return_tensors="pt", max_length=512)
+            
+            with torch.no_grad():
+                outputs = self.reranker_model(**inputs)
+                scores = torch.nn.functional.softmax(outputs.logits, dim=-1)[:, 1].cpu().numpy()
+            
+            for i, result in enumerate(results):
+                result["rerank_score"] = float(scores[i])
+            
+            results.sort(key=lambda x: x["rerank_score"], reverse=True)
+            return results[:top_n]
+            
+        except Exception as e:
+            logger.error(f"Re-ranking failed: {e}")
+            return results[:top_n]
 
 
 class DomainService:
@@ -265,6 +426,53 @@ class RSSService:
     def _generate_content_hash(self, content: str) -> str:
         """Generate SHA-256 hash of content for deduplication"""
         return hashlib.sha256(content.encode()).hexdigest()
+
+    async def _generate_contextual_embedding_text(self, rss_item: RSSItem, domain_id: Optional[str] = None) -> str:
+        """Generate contextual embedding text for RSS item"""
+        try:
+            base_text = f"{rss_item.title} {rss_item.description or ''} {rss_item.content or ''}"
+            
+            if not domain_id:
+                return base_text
+            
+            domain = await self.domain_service.get_domain(domain_id)
+            if not domain:
+                return base_text
+            
+            context_prompt = f"""You are an AI assistant specializing in content analysis.
+Your task is to provide brief, relevant context for this RSS article
+based on the domain: {domain.name}.
+
+Domain Description: {domain.description}
+Domain Keywords: {', '.join(domain.keywords)}
+Domain Locations: {', '.join(domain.locations)}
+
+Here is the RSS article:
+Title: {rss_item.title}
+Content: {base_text[:2000]}
+
+Provide a concise context (2-3 sentences max) for this article,
+focusing on its relevance to the {domain.name} domain.
+Answer only with the context and nothing else.
+Context should start with 'This article focuses on...'
+
+Context:"""
+            
+            if self.vector_service.openai_client:
+                response = self.vector_service.openai_client.chat.completions.create(
+                    model="gpt-4o-mini",
+                    messages=[{"role": "user", "content": context_prompt}],
+                    max_tokens=150,
+                    temperature=0
+                )
+                context = response.choices[0].message.content.strip()
+                return f"{context}\n\n{base_text}"
+            
+            return base_text
+            
+        except Exception as e:
+            logger.error(f"Failed to generate contextual embedding text: {e}")
+            return f"{rss_item.title} {rss_item.description or ''} {rss_item.content or ''}"
 
     def _parse_rss_item(self, entry) -> RSSItem:
         """Parse a single RSS entry into RSSItem"""

@@ -39,6 +39,11 @@ class SearchRequest(BaseModel):
     query: str = Field(..., description="Search query")
     tenant_id: str = Field(default="default", description="Tenant identifier")
     limit: int = Field(default=10, description="Maximum number of results")
+    search_type: str = Field(default="vector", description="Search type: vector, bm25, hybrid")
+    bm25_weight: float = Field(default=0.5, description="Weight for BM25 in hybrid search")
+    vector_weight: float = Field(default=0.5, description="Weight for vector search in hybrid search")
+    use_reranking: bool = Field(default=True, description="Whether to apply re-ranking")
+    domain_id: Optional[str] = Field(default=None, description="Domain ID for domain-specific search")
 
 
 class SearchResult(BaseModel):
