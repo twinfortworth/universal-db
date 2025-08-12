@@ -111,6 +111,7 @@ function App() {
   const [editingFeed, setEditingFeed] = useState<RSSFeed | null>(null)
   const [currentPage, setCurrentPage] = useState(1)
   const [totalPages, setTotalPages] = useState(1)
+  const [updatingFeeds, setUpdatingFeeds] = useState<Set<string>>(new Set())
   const [newFeed, setNewFeed] = useState({
     name: '',
     url: '',
@@ -413,6 +414,8 @@ function App() {
     } catch (error) {
       console.error('Failed to create RSS feed:', error)
       showMessage('error', 'Failed to connect to the server')
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -433,6 +436,7 @@ function App() {
   }
 
   const updateFeedManually = async (feedId: string) => {
+    setUpdatingFeeds(prev => new Set(prev).add(feedId))
     try {
       const response = await fetch(`${API_URL}/feeds/${feedId}/update`, {
         method: 'POST'
@@ -447,6 +451,12 @@ function App() {
     } catch (error) {
       console.error('Failed to update feed:', error)
       showMessage('error', 'Failed to connect to the server')
+    } finally {
+      setUpdatingFeeds(prev => {
+        const newSet = new Set(prev)
+        newSet.delete(feedId)
+        return newSet
+      })
     }
   }
 
@@ -479,6 +489,7 @@ function App() {
   const handleEditFeed = async () => {
     if (!editingFeed) return
 
+    setLoading(true)
     try {
       const response = await fetch(`${API_URL}/feeds/${editingFeed.feed_id}`, {
         method: 'PUT',
@@ -503,6 +514,8 @@ function App() {
     } catch (error) {
       console.error('Failed to update RSS feed:', error)
       showMessage('error', 'Failed to connect to the server')
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -1066,8 +1079,8 @@ function App() {
                           <TableCell>{formatDate(feed.schedule.next_update)}</TableCell>
                           <TableCell>
                             <div className="flex gap-2">
-                              <Button size="sm" onClick={() => updateFeedManually(feed.feed_id)} disabled={loading}>
-                                {loading ? <Loader2 className="w-3 h-3 animate-spin" /> : 'Update Now'}
+                              <Button size="sm" onClick={() => updateFeedManually(feed.feed_id)} disabled={updatingFeeds.has(feed.feed_id)}>
+                                {updatingFeeds.has(feed.feed_id) ? <Loader2 className="w-3 h-3 animate-spin" /> : 'Update Now'}
                               </Button>
                               <Button size="sm" variant="outline" onClick={() => editFeed(feed)}>
                                 <Edit className="w-3 h-3" />
