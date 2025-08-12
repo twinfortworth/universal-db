@@ -107,8 +107,10 @@ class VectorService:
                 self.reranker_model = None
                 
             try:
-                self.local_embedding_model = SentenceTransformer('all-MiniLM-L6-v2')
-                logger.info("Local embedding model loaded successfully")
+                import torch
+                torch.cuda.is_available = lambda: False
+                self.local_embedding_model = SentenceTransformer('all-MiniLM-L6-v2', device='cpu')
+                logger.info("Local embedding model loaded successfully (CPU mode)")
                 test_embedding = self.local_embedding_model.encode("test text")
                 logger.info(f"Test embedding generated successfully: shape {test_embedding.shape}")
             except Exception as e:
