@@ -961,67 +961,109 @@ function App() {
           <div className="space-y-4">
             <Card>
               <CardHeader>
-                <CardTitle>Advanced RAG Search</CardTitle>
+                <CardTitle className="flex items-center gap-2">
+                  <Search className="w-5 h-5" />
+                  Advanced RAG Search
+                </CardTitle>
                 <CardDescription>
-                  Search through ingested articles using hybrid search (BM25 + semantic) with re-ranking.
+                  Powered by hybrid search (BM25 + semantic embeddings), contextual understanding, and AI re-ranking for superior relevance.
                 </CardDescription>
               </CardHeader>
-              <CardContent className="space-y-4">
+              <CardContent className="space-y-6">
                 <div>
                   <label className="text-sm font-medium text-gray-700 mb-2 block">Search Query</label>
                   <Textarea
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="Enter your search query (e.g., 'Fort Worth politics', 'city council meetings', 'local government')"
+                    placeholder="Enter your search query (e.g., 'football transfer news', 'political developments', 'technology trends')"
                     className="w-full"
                     rows={3}
                   />
                 </div>
-                <div className="flex gap-4">
-                  <div className="flex-1">
-                    <label className="text-sm font-medium text-gray-700 mb-2 block">Search Mode</label>
-                    <select 
-                      value={searchMode} 
-                      onChange={(e) => setSearchMode(e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md"
-                    >
-                      <option value="vector">Vector Only</option>
-                      <option value="hybrid">Hybrid (BM25 + Vector)</option>
-                      <option value="domain">Domain Filtered</option>
-                    </select>
+                
+                <div className="space-y-4">
+                  <div>
+                    <label className="text-sm font-medium text-gray-700 mb-3 block">Search Mode</label>
+                    <div className="grid gap-3">
+                      <div className={`p-4 border rounded-lg cursor-pointer transition-all ${searchMode === 'vector' ? 'border-blue-500 bg-blue-50' : 'border-gray-200 hover:border-gray-300'}`}
+                           onClick={() => setSearchMode('vector')}>
+                        <div className="flex items-center gap-3">
+                          <input type="radio" checked={searchMode === 'vector'} onChange={() => setSearchMode('vector')} className="text-blue-600" />
+                          <div className="flex-1">
+                            <div className="font-medium text-gray-900">Vector Similarity Search</div>
+                            <div className="text-sm text-gray-600">Semantic understanding using contextual embeddings. Best for conceptual queries and finding similar meaning.</div>
+                          </div>
+                          <Badge variant="outline" className="text-xs">Semantic</Badge>
+                        </div>
+                      </div>
+                      
+                      <div className={`p-4 border rounded-lg cursor-pointer transition-all ${searchMode === 'hybrid' ? 'border-blue-500 bg-blue-50' : 'border-gray-200 hover:border-gray-300'}`}
+                           onClick={() => setSearchMode('hybrid')}>
+                        <div className="flex items-center gap-3">
+                          <input type="radio" checked={searchMode === 'hybrid'} onChange={() => setSearchMode('hybrid')} className="text-blue-600" />
+                          <div className="flex-1">
+                            <div className="font-medium text-gray-900">Hybrid Search + AI Re-ranking</div>
+                            <div className="text-sm text-gray-600">Combines BM25 keyword matching with semantic search, then re-ranks using cross-encoder AI for optimal relevance.</div>
+                          </div>
+                          <div className="flex gap-1">
+                            <Badge variant="outline" className="text-xs">BM25</Badge>
+                            <Badge variant="outline" className="text-xs">Vector</Badge>
+                            <Badge variant="outline" className="text-xs">AI Re-rank</Badge>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div className={`p-4 border rounded-lg cursor-pointer transition-all ${searchMode === 'domain' ? 'border-blue-500 bg-blue-50' : 'border-gray-200 hover:border-gray-300'}`}
+                           onClick={() => setSearchMode('domain')}>
+                        <div className="flex items-center gap-3">
+                          <input type="radio" checked={searchMode === 'domain'} onChange={() => setSearchMode('domain')} className="text-blue-600" />
+                          <div className="flex-1">
+                            <div className="font-medium text-gray-900">Domain-Filtered Hybrid Search</div>
+                            <div className="text-sm text-gray-600">Hybrid search with domain-specific filtering and relevance scoring. Perfect for specialized content areas.</div>
+                          </div>
+                          <div className="flex gap-1">
+                            <Badge variant="outline" className="text-xs">Domain</Badge>
+                            <Badge variant="outline" className="text-xs">Filtered</Badge>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
+                  
                   {searchMode === 'domain' && (
-                    <div className="flex-1">
-                      <label className="text-sm font-medium text-gray-700 mb-2 block">Domain</label>
+                    <div className="p-4 bg-gray-50 rounded-lg">
+                      <label className="text-sm font-medium text-gray-700 mb-2 block">Select Domain</label>
                       <select 
                         value={selectedDomainForSearch} 
                         onChange={(e) => setSelectedDomainForSearch(e.target.value)}
                         className="w-full px-3 py-2 border border-gray-300 rounded-md"
                       >
-                        <option value="">Select Domain</option>
+                        <option value="">Choose a domain for specialized search...</option>
                         {domains.map(domain => (
                           <option key={domain.domain_id} value={domain.domain_id}>
-                            {domain.name}
+                            {domain.name} - {domain.description}
                           </option>
                         ))}
                       </select>
                     </div>
                   )}
                 </div>
+                
                 <Button 
                   onClick={handleSearch} 
                   disabled={searching}
-                  className="w-full"
+                  className="w-full bg-blue-600 hover:bg-blue-700"
+                  size="lg"
                 >
                   {searching ? (
                     <>
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                      Searching...
+                      Processing with Advanced RAG...
                     </>
                   ) : (
                     <>
                       <Search className="mr-2 h-4 w-4" />
-                      Search Articles
+                      Search with Advanced RAG
                     </>
                   )}
                 </Button>
@@ -1031,30 +1073,62 @@ function App() {
             {/* Search Results */}
             {searchResults.length > 0 && (
               <div className="space-y-4">
-                <div className="flex justify-between items-center">
-                  <h3 className="text-xl font-semibold">Search Results ({searchResults.length})</h3>
-                  <Badge variant="outline" className="text-sm">
-                    {searchMode === 'hybrid' ? 'Hybrid + Re-ranking' : 
-                     searchMode === 'domain' ? 'Domain Filtered' : 'Vector Search'}
-                  </Badge>
-                </div>
+                <Card className="bg-gradient-to-r from-blue-50 to-indigo-50 border-blue-200">
+                  <CardContent className="pt-4">
+                    <div className="flex justify-between items-center">
+                      <div>
+                        <h3 className="text-xl font-semibold text-gray-900">Search Results ({searchResults.length})</h3>
+                        <p className="text-sm text-gray-600 mt-1">
+                          {searchMode === 'hybrid' && 'Results processed through BM25 keyword matching, semantic vector search, and AI re-ranking'}
+                          {searchMode === 'domain' && 'Results filtered by domain relevance and processed through hybrid search'}
+                          {searchMode === 'vector' && 'Results ranked by semantic similarity using contextual embeddings'}
+                        </p>
+                      </div>
+                      <div className="flex flex-col items-end gap-2">
+                        <Badge variant="default" className="text-sm font-medium">
+                          {searchMode === 'hybrid' ? '🔄 Hybrid + AI Re-ranking' : 
+                           searchMode === 'domain' ? '🎯 Domain Filtered' : '🧠 Semantic Search'}
+                        </Badge>
+                        {searchMode === 'hybrid' && (
+                          <div className="flex gap-1">
+                            <Badge variant="outline" className="text-xs">BM25</Badge>
+                            <Badge variant="outline" className="text-xs">Vector</Badge>
+                            <Badge variant="outline" className="text-xs">Cross-Encoder</Badge>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+                
                 <div className="grid gap-4">
-                  {searchResults.map((result) => (
-                    <Card key={result.uuid} className="hover:shadow-md transition-shadow">
+                  {searchResults.map((result, index) => (
+                    <Card key={result.uuid} className="hover:shadow-lg transition-all duration-200 border-l-4 border-l-blue-500">
                       <CardContent className="pt-6">
                         <div className="flex justify-between items-start mb-3">
-                          <h4 className="text-lg font-semibold text-gray-900 leading-tight">
-                            {result.title}
-                          </h4>
-                          <div className="flex items-center gap-2 ml-4">
-                            <Badge variant="outline" className="text-xs">
-                              Score: {result.score.toFixed(3)}
-                            </Badge>
+                          <div className="flex items-start gap-3">
+                            <div className="flex-shrink-0 w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-sm font-semibold text-blue-700">
+                              {index + 1}
+                            </div>
+                            <h4 className="text-lg font-semibold text-gray-900 leading-tight">
+                              {result.title}
+                            </h4>
+                          </div>
+                          <div className="flex items-center gap-2 ml-4 flex-shrink-0">
+                            <div className="text-right">
+                              <Badge variant="outline" className="text-xs mb-1">
+                                Relevance: {(result.score * 100).toFixed(1)}%
+                              </Badge>
+                              <div className="text-xs text-gray-500">
+                                {searchMode === 'hybrid' ? 'AI Re-ranked' : 
+                                 searchMode === 'domain' ? 'Domain Filtered' : 'Vector Similarity'}
+                              </div>
+                            </div>
                             <a
                               href={result.link}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="text-blue-600 hover:text-blue-800"
+                              className="text-blue-600 hover:text-blue-800 p-1 hover:bg-blue-50 rounded"
                             >
                               <ExternalLink size={16} />
                             </a>
@@ -1062,21 +1136,65 @@ function App() {
                         </div>
                         
                         {result.description && (
-                          <p className="text-gray-600 mb-3">
-                            {result.description}
-                          </p>
+                          <div className="ml-11">
+                            <p className="text-gray-600 mb-3 leading-relaxed">
+                              {result.description}
+                            </p>
+                          </div>
                         )}
                         
-                        <div className="flex items-center gap-4 text-sm text-gray-500">
-                          <div className="flex items-center gap-1">
-                            <Calendar size={14} />
-                            {formatDate(result.published)}
+                        <div className="ml-11 flex items-center justify-between">
+                          <div className="flex items-center gap-4 text-sm text-gray-500">
+                            <div className="flex items-center gap-1">
+                              <Calendar size={14} />
+                              {formatDate(result.published)}
+                            </div>
+                          </div>
+                          
+                          <div className="flex gap-2">
+                            {searchMode === 'hybrid' && (
+                              <>
+                                <Badge variant="secondary" className="text-xs">
+                                  🔍 Keyword Match
+                                </Badge>
+                                <Badge variant="secondary" className="text-xs">
+                                  🧠 Semantic Match
+                                </Badge>
+                                <Badge variant="secondary" className="text-xs">
+                                  ⭐ AI Re-ranked
+                                </Badge>
+                              </>
+                            )}
+                            {searchMode === 'domain' && (
+                              <Badge variant="secondary" className="text-xs">
+                                🎯 Domain Relevant
+                              </Badge>
+                            )}
+                            {searchMode === 'vector' && (
+                              <Badge variant="secondary" className="text-xs">
+                                🧠 Contextual Match
+                              </Badge>
+                            )}
                           </div>
                         </div>
                       </CardContent>
                     </Card>
                   ))}
                 </div>
+                
+                <Card className="bg-gray-50 border-gray-200">
+                  <CardContent className="pt-4">
+                    <div className="text-center text-sm text-gray-600">
+                      <p className="font-medium mb-2">🚀 Advanced RAG Technology Stack</p>
+                      <div className="flex justify-center gap-4 text-xs">
+                        <span>• BM25 Keyword Indexing</span>
+                        <span>• Contextual Vector Embeddings</span>
+                        <span>• HuggingFace Cross-Encoder Re-ranking</span>
+                        <span>• Reciprocal Rank Fusion</span>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
               </div>
             )}
           </div>
