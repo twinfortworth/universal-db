@@ -325,11 +325,24 @@ class RSSService:
                     content_for_hash = f"{rss_item.title}{rss_item.link}{rss_item.content}"
                     content_hash = self._generate_content_hash(content_for_hash)
                     
+                    rss_data = rss_item.model_dump()
+                    if hasattr(self, 'current_domain_id') and self.current_domain_id:
+                        rss_data['staging_metadata'] = {
+                            'domain_id': self.current_domain_id,
+                            'requires_domain_filtering': True,
+                            'ingestion_timestamp': datetime.utcnow().isoformat()
+                        }
+                    else:
+                        rss_data['staging_metadata'] = {
+                            'requires_domain_filtering': False,
+                            'ingestion_timestamp': datetime.utcnow().isoformat()
+                        }
+                    
                     wrapper = UniversalWrapper(
-                        schema_id="rss_item",
+                        schema_id="staged_rss_item",
                         tenant_id=tenant_id,
                         source=Source(origin=feed_url, type="rss"),
-                        data=rss_item.model_dump()
+                        data=rss_data
                     )
                     
                     saved = await self.db_service.save_record(wrapper, content_hash)
@@ -341,10 +354,12 @@ class RSSService:
                         if embedding:
                             metadata = {
                                 "tenant_id": tenant_id,
-                                "schema_id": "rss_item",
+                                "schema_id": "staged_rss_item",
                                 "title": rss_item.title,
                                 "link": rss_item.link,
-                                "published": rss_item.published.isoformat() if rss_item.published else None
+                                "published": rss_item.published.isoformat() if rss_item.published else None,
+                                "domain_id": getattr(self, 'current_domain_id', None),
+                                "requires_filtering": rss_data['staging_metadata']['requires_domain_filtering']
                             }
                             await self.vector_service.save_vector(wrapper.uuid, embedding, metadata)
                         
@@ -363,6 +378,9 @@ class RSSService:
             error_msg = f"Failed to ingest RSS feed: {e}"
             logger.error(error_msg)
             return {"error": error_msg}
+
+    # async def ingest_rss_feed_with_domain(self, feed_url: str, tenant_id: str, domain_id: str, 
+    #                                     extract_entities: bool = True, min_relevance: Optional[float] = None) -> dict:
 
 
 class RSSFeedService:
@@ -469,12 +487,17 @@ class RSSFeedService:
         try:
             feed.status = FeedStatus.PENDING
             
+            logger.info(f"DEBUG: RSS service type: {type(self.rss_service)}")
+            logger.info(f"DEBUG: RSS service methods: {dir(self.rss_service)}")
+            
             if feed.domain_id:
-                result = await self.rss_service.ingest_rss_feed_with_domain(
-                    feed.url, feed.tenant_id, feed.domain_id
-                )
+                self.rss_service.current_domain_id = feed.domain_id
+                logger.info(f"DEBUG: Calling ingest_rss_feed for feed {feed_id} with domain context {feed.domain_id}")
             else:
-                result = await self.rss_service.ingest_rss_feed(feed.url, feed.tenant_id)
+                self.rss_service.current_domain_id = None
+                logger.info(f"DEBUG: Calling ingest_rss_feed for feed {feed_id}")
+            
+            result = await self.rss_service.ingest_rss_feed(feed.url, feed.tenant_id)
             
             if "error" in result:
                 feed.status = FeedStatus.ERROR
@@ -578,101 +601,3 @@ class RSSFeedService:
             return next_update
         
         return now + timedelta(days=1)
-
-    async def ingest_rss_feed_with_domain(self, feed_url: str, tenant_id: str, domain_id: str, 
-                                        extract_entities: bool = True, min_relevance: Optional[float] = None) -> dict:
-        domain = await self.domain_service.get_domain(domain_id)
-        if not domain:
-            return {"error": f"Domain {domain_id} not found"}
-        
-        min_score = min_relevance if min_relevance is not None else domain.min_relevance_score
-        
-        try:
-            async with httpx.AsyncClient() as client:
-                response = await client.get(feed_url)
-                response.raise_for_status()
-                
-            feed = feedparser.parse(response.content)
-            
-            if feed.bozo:
-                logger.warning(f"RSS feed parsing had issues: {feed.bozo_exception}")
-
-            results = {
-                "feed_url": feed_url,
-                "domain_id": domain_id,
-                "domain_name": domain.name,
-                "feed_title": getattr(feed.feed, 'title', 'Unknown'),
-                "total_items": len(feed.entries),
-                "processed_items": 0,
-                "filtered_out": 0,
-                "skipped_duplicates": 0,
-                "errors": []
-            }
-
-            for entry in feed.entries:
-                try:
-                    rss_item = self._parse_rss_item(entry)
-                    
-                    full_text = f"{rss_item.title} {rss_item.description or ''} {rss_item.content or ''}"
-                    relevance_score = self.domain_service.calculate_relevance_score(full_text, domain)
-                    
-                    if relevance_score < min_score:
-                        results["filtered_out"] += 1
-                        continue
-                    
-                    entities = []
-                    if extract_entities:
-                        entities = self.domain_service.extract_entities(full_text, domain)
-                    
-                    enhanced_item = EnhancedRSSItem(
-                        **rss_item.model_dump(),
-                        entities=entities,
-                        relevance_score=relevance_score,
-                        domain_tags=[domain.name],
-                        importance_score=relevance_score
-                    )
-                    
-                    content_for_hash = f"{rss_item.title}{rss_item.link}{rss_item.content}"
-                    content_hash = self._generate_content_hash(content_for_hash)
-                    
-                    wrapper = UniversalWrapper(
-                        schema_id="enhanced_rss_item",
-                        tenant_id=tenant_id,
-                        source=Source(origin=feed_url, type="rss"),
-                        data=enhanced_item.model_dump()
-                    )
-                    
-                    saved = await self.db_service.save_record(wrapper, content_hash)
-                    
-                    if saved:
-                        embedding_text = f"Domain: {domain.name}. {full_text}"
-                        embedding = await self.vector_service.generate_embedding(embedding_text)
-                        
-                        if embedding:
-                            metadata = {
-                                "tenant_id": tenant_id,
-                                "domain_id": domain_id,
-                                "schema_id": "enhanced_rss_item",
-                                "title": rss_item.title,
-                                "link": rss_item.link,
-                                "relevance_score": relevance_score,
-                                "entity_count": len(entities),
-                                "published": rss_item.published.isoformat() if rss_item.published else None
-                            }
-                            await self.vector_service.save_vector(wrapper.uuid, embedding, metadata)
-                        
-                        results["processed_items"] += 1
-                    else:
-                        results["skipped_duplicates"] += 1
-                        
-                except Exception as e:
-                    error_msg = f"Failed to process RSS item: {e}"
-                    logger.error(error_msg)
-                    results["errors"].append(error_msg)
-
-            return results
-            
-        except Exception as e:
-            error_msg = f"Failed to ingest RSS feed: {e}"
-            logger.error(error_msg)
-            return {"error": error_msg}

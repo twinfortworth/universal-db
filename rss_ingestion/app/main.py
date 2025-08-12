@@ -24,6 +24,15 @@ async def lifespan(app: FastAPI):
     logger.info("Initializing databases...")
     await db_service.init_db()
     await vector_service.init_collection()
+    
+    logger.info(f"DEBUG: RSS service type: {type(rss_service)}")
+    logger.info(f"DEBUG: RSS service has ingest_rss_feed_with_domain: {hasattr(rss_service, 'ingest_rss_feed_with_domain')}")
+    if hasattr(rss_service, 'ingest_rss_feed_with_domain'):
+        logger.info(f"DEBUG: Method type: {type(rss_service.ingest_rss_feed_with_domain)}")
+    else:
+        logger.error("DEBUG: ingest_rss_feed_with_domain method NOT FOUND!")
+        logger.info(f"DEBUG: Available methods: {[method for method in dir(rss_service) if not method.startswith('_')]}")
+    
     logger.info("Application startup complete")
     yield
     logger.info("Application shutdown")
@@ -152,13 +161,10 @@ async def get_domain(domain_id: str):
 @app.post("/ingest/rss/domain")
 async def ingest_rss_with_domain(request: DomainIngestRequest):
     try:
-        result = await rss_service.ingest_rss_feed_with_domain(
-            request.feed_url, 
-            request.tenant_id, 
-            request.domain_id,
-            request.extract_entities,
-            request.min_relevance
-        )
+        rss_service.current_domain_id = request.domain_id
+        result = await rss_service.ingest_rss_feed(request.feed_url, request.tenant_id)
+        rss_service.current_domain_id = None  # Reset context
+        
         if "error" in result:
             raise HTTPException(status_code=400, detail=result["error"])
         return result
@@ -292,11 +298,18 @@ async def toggle_rss_feed(feed_id: str):
 @app.post("/feeds/{feed_id}/update", response_model=FeedUpdateResult)
 async def update_rss_feed_manually(feed_id: str):
     """Manually trigger RSS feed update"""
+    logger.info(f"DEBUG: Manual update endpoint called for feed_id: {feed_id}")
+    logger.info(f"DEBUG: rss_feed_service type: {type(rss_feed_service)}")
+    logger.info(f"DEBUG: rss_feed_service.rss_service type: {type(rss_feed_service.rss_service)}")
+    logger.info(f"DEBUG: rss_feed_service.rss_service has ingest_rss_feed_with_domain: {hasattr(rss_feed_service.rss_service, 'ingest_rss_feed_with_domain')}")
     try:
         result = await rss_feed_service.update_feed_manually(feed_id)
+        logger.info(f"DEBUG: Manual update result: {result}")
         return result
     except Exception as e:
         logger.error(f"Failed to manually update RSS feed: {e}")
+        logger.error(f"DEBUG: Exception type: {type(e)}")
+        logger.error(f"DEBUG: Exception args: {e.args}")
         raise HTTPException(status_code=500, detail=str(e))
 
 
