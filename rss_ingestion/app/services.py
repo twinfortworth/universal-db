@@ -13,6 +13,7 @@ import uuid as uuid_lib
 try:
     from rank_bm25 import BM25Okapi
     from transformers import AutoTokenizer, AutoModelForSequenceClassification
+    from sentence_transformers import SentenceTransformer
     import torch
     RAG_DEPENDENCIES_AVAILABLE = True
 except ImportError as e:
@@ -21,6 +22,7 @@ except ImportError as e:
     BM25Okapi = None
     AutoTokenizer = None
     AutoModelForSequenceClassification = None
+    SentenceTransformer = None
     torch = None
 
 from .models import (
@@ -103,15 +105,23 @@ class VectorService:
                 logger.warning(f"Failed to load re-ranking model: {e}")
                 self.reranker_tokenizer = None
                 self.reranker_model = None
+                
+            try:
+                self.local_embedding_model = SentenceTransformer('all-MiniLM-L6-v2')
+                logger.info("Local embedding model loaded successfully")
+            except Exception as e:
+                logger.warning(f"Failed to load local embedding model: {e}")
+                self.local_embedding_model = None
         else:
             self.reranker_tokenizer = None
             self.reranker_model = None
+            self.local_embedding_model = None
         
         if self.openai_api_key:
             self.openai_client = OpenAI(api_key=self.openai_api_key)
         else:
             self.openai_client = None
-            logger.warning("OpenAI API key not provided - embeddings will be disabled")
+            logger.info("OpenAI API key not provided - using local embeddings")
 
     async def init_collection(self):
         """Initialize in-memory vector storage"""
@@ -119,20 +129,24 @@ class VectorService:
         self.vectors = {}
 
     async def generate_embedding(self, text: str) -> Optional[List[float]]:
-        """Generate embedding using OpenAI"""
-        if not self.openai_client:
-            logger.warning("OpenAI client not available - returning mock embedding")
-            return [0.1] * 1536
-            
+        """Generate embedding using OpenAI or local model"""
         try:
-            response = self.openai_client.embeddings.create(
-                model="text-embedding-3-small",
-                input=text
-            )
-            return response.data[0].embedding
+            if self.openai_client:
+                response = self.openai_client.embeddings.create(
+                    model="text-embedding-3-small",
+                    input=text
+                )
+                return response.data[0].embedding
+            elif self.local_embedding_model:
+                logger.info("Using local embedding model")
+                embedding = self.local_embedding_model.encode(text)
+                return embedding.tolist()
+            else:
+                logger.warning("No embedding model available - returning mock embedding")
+                return [0.1] * 384  # all-MiniLM-L6-v2 has 384 dimensions
         except Exception as e:
             logger.error(f"Failed to generate embedding: {e}")
-            return [0.1] * 1536
+            return None
 
     async def save_vector(self, uuid: str, embedding: List[float], metadata: dict) -> bool:
         """Save vector to in-memory storage and BM25 index"""
