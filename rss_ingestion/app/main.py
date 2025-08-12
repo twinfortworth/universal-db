@@ -60,6 +60,25 @@ async def healthz():
     return {"status": "ok"}
 
 
+@app.get("/health/embeddings")
+async def check_embedding_health():
+    """Health check for embedding generation"""
+    try:
+        test_texts = ["football sports game", "japanese culture technology", "politics government policy"]
+        embeddings = []
+        
+        for text in test_texts:
+            embedding = await vector_service.generate_embedding(text)
+            if embedding:
+                embeddings.append({"text": text, "embedding_length": len(embedding), "first_few": embedding[:5]})
+            else:
+                return {"status": "error", "message": f"Failed to generate embedding for: {text}"}
+        
+        return {"status": "healthy", "embedding_model": "working", "test_embeddings": embeddings}
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
+
+
 @app.post("/ingest/rss")
 async def ingest_rss_feed(request: IngestRSSRequest):
     """Ingest an RSS feed and store items in universal wrapper format"""

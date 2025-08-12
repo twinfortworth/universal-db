@@ -109,8 +109,12 @@ class VectorService:
             try:
                 self.local_embedding_model = SentenceTransformer('all-MiniLM-L6-v2')
                 logger.info("Local embedding model loaded successfully")
+                test_embedding = self.local_embedding_model.encode("test text")
+                logger.info(f"Test embedding generated successfully: shape {test_embedding.shape}")
             except Exception as e:
-                logger.warning(f"Failed to load local embedding model: {e}")
+                logger.error(f"Failed to load local embedding model: {e}")
+                logger.error(f"Exception type: {type(e).__name__}")
+                logger.error(f"Exception details: {str(e)}")
                 self.local_embedding_model = None
         else:
             self.reranker_tokenizer = None
@@ -132,18 +136,22 @@ class VectorService:
         """Generate embedding using OpenAI or local model"""
         try:
             if self.openai_client:
+                logger.debug("Using OpenAI embedding model")
                 response = self.openai_client.embeddings.create(
                     model="text-embedding-3-small",
                     input=text
                 )
                 return response.data[0].embedding
             elif self.local_embedding_model:
-                logger.info("Using local embedding model")
+                logger.debug("Using local embedding model")
                 embedding = self.local_embedding_model.encode(text)
                 return embedding.tolist()
             else:
-                logger.warning("No embedding model available - returning mock embedding")
-                return [0.1] * 384  # all-MiniLM-L6-v2 has 384 dimensions
+                logger.error("No embedding model available - this will cause identical search results!")
+                logger.error("OpenAI client: %s, Local model: %s", 
+                           "available" if self.openai_client else "not available",
+                           "available" if self.local_embedding_model else "not available")
+                return None
         except Exception as e:
             logger.error(f"Failed to generate embedding: {e}")
             return None
@@ -584,6 +592,9 @@ Context:"""
                                 "requires_filtering": rss_data['staging_metadata']['requires_domain_filtering']
                             }
                             await self.vector_service.save_vector(wrapper.uuid, embedding, metadata)
+                            logger.info(f"Successfully indexed article: {rss_item.title}")
+                        else:
+                            logger.warning(f"Skipping vector indexing for article due to embedding failure: {rss_item.title}")
                         
                         results["processed_items"] += 1
                     else:
