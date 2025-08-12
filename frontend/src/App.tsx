@@ -444,10 +444,17 @@ function App() {
       const result = await response.json()
       if (result.success) {
         showMessage('success', `Updated successfully: ${result.articles_processed} articles processed`)
+        
+        const feedResponse = await fetch(`${API_URL}/feeds/${feedId}`)
+        if (feedResponse.ok) {
+          const updatedFeed = await feedResponse.json()
+          setRssFeeds(prev => prev.map(feed => 
+            feed.feed_id === feedId ? updatedFeed : feed
+          ))
+        }
       } else {
         showMessage('error', result.error_message || 'Update failed')
       }
-      loadRssFeeds()
     } catch (error) {
       console.error('Failed to update feed:', error)
       showMessage('error', 'Failed to connect to the server')
