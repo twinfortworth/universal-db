@@ -8,7 +8,7 @@ import { Badge } from '@/components/ui/badge'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { Label } from '@/components/ui/label'
-import { Search, Rss, Globe, Calendar, ExternalLink, Loader2, Plus, Settings, CheckCircle, XCircle, Clock, Edit, Trash2, Database } from 'lucide-react'
+import { Search, Rss, Globe, Calendar, ExternalLink, Loader2, Plus, Settings, CheckCircle, XCircle, Clock, Edit, Trash2, Database, MessageSquare, Send } from 'lucide-react'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { Switch } from '@/components/ui/switch'
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from '@/components/ui/pagination'
@@ -95,7 +95,11 @@ function App() {
   const [searching, setSearching] = useState(false)
   const [searchMode, setSearchMode] = useState<string>('manual')
   const [message, setMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null)
-  const [activeTab, setActiveTab] = useState<'ingest' | 'domain' | 'browse' | 'search' | 'manage' | 'domains'>('ingest')
+  
+  const [chatMessages, setChatMessages] = useState<Array<{role: 'user' | 'assistant', content: string, sources?: SearchResult[]}>>([])
+  const [chatInput, setChatInput] = useState('')
+  const [chatLoading, setChatLoading] = useState(false)
+  const [activeTab, setActiveTab] = useState<'ingest' | 'domain' | 'browse' | 'search' | 'chat' | 'manage' | 'domains'>('ingest')
   const [domains, setDomains] = useState<Domain[]>([])
   const [selectedDomain, setSelectedDomain] = useState('fort_worth_political')
   const [showCreateDomain, setShowCreateDomain] = useState(false)
@@ -437,6 +441,63 @@ function App() {
     }
   }, [currentPage])
 
+  const handleChatSubmit = async () => {
+    if (!chatInput.trim() || chatLoading) return
+    
+    const userMessage = chatInput.trim()
+    setChatInput('')
+    setChatLoading(true)
+    
+    setChatMessages(prev => [...prev, { role: 'user', content: userMessage }])
+    
+    try {
+      const searchResponse = await fetch(`${API_URL}/search`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          query: userMessage,
+          tenant_id: tenantId,
+          limit: 5,
+          search_type: 'hybrid',
+          bm25_weight: 0.5,
+          vector_weight: 0.5,
+          use_reranking: true
+        })
+      })
+      
+      const searchResults = await searchResponse.json()
+      
+      if (searchResponse.ok && searchResults.results?.length > 0) {
+        const sources = searchResults.results.slice(0, 3)
+        const sourceText = sources.map((result: SearchResult) => 
+          `Title: ${result.title}\nDescription: ${result.description}\nLink: ${result.link}`
+        ).join('\n\n')
+        
+        const assistantResponse = `Based on the articles in our database, here's what I found:\n\n${sourceText}\n\nThese articles from our universal database are most relevant to your question about "${userMessage}".`
+        
+        setChatMessages(prev => [...prev, { 
+          role: 'assistant', 
+          content: assistantResponse,
+          sources: sources
+        }])
+      } else {
+        setChatMessages(prev => [...prev, { 
+          role: 'assistant', 
+          content: `I couldn't find any relevant articles in our database for "${userMessage}". Try asking about technology, AI, startups, or other topics covered in our RSS feeds.`
+        }])
+      }
+    } catch (error) {
+      setChatMessages(prev => [...prev, { 
+        role: 'assistant', 
+        content: 'Sorry, I encountered an error while searching our database. Please try again.'
+      }])
+    } finally {
+      setChatLoading(false)
+    }
+  }
+
   const formatDate = (dateString?: string) => {
     if (!dateString) return 'Never'
     try {
@@ -775,6 +836,14 @@ function App() {
           >
             <Search size={16} />
             Search
+          </Button>
+          <Button
+            variant={activeTab === 'chat' ? 'default' : 'outline'}
+            onClick={() => setActiveTab('chat')}
+            className="flex items-center gap-2"
+          >
+            <MessageSquare size={16} />
+            AI Chat
           </Button>
           <Button
             variant={activeTab === 'manage' ? 'default' : 'outline'}
@@ -1983,6 +2052,105 @@ function App() {
                 )}
               </DialogContent>
             </Dialog>
+          </div>
+        )}
+
+        {activeTab === 'chat' && (
+          <div className="space-y-4">
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <MessageSquare className="w-5 h-5" />
+                  AI Database Chat
+                </CardTitle>
+                <CardDescription>
+                  Ask questions and get answers based exclusively on articles in our universal database. The AI will search through RSS feeds and provide responses with source citations.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  <div className="h-96 overflow-y-auto border rounded-lg p-4 space-y-4 bg-gray-50">
+                    {chatMessages.length === 0 ? (
+                      <div className="text-center text-gray-500 mt-20">
+                        <MessageSquare className="w-12 h-12 mx-auto mb-4 text-gray-300" />
+                        <p>Start a conversation! Ask me anything about the articles in our database.</p>
+                        <p className="text-sm mt-2">Try: "What are the latest AI developments?" or "Tell me about startup news"</p>
+                      </div>
+                    ) : (
+                      chatMessages.map((message, index) => (
+                        <div key={index} className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+                          <div className={`max-w-3/4 p-3 rounded-lg ${
+                            message.role === 'user' 
+                              ? 'bg-blue-500 text-white' 
+                              : 'bg-white border shadow-sm'
+                          }`}>
+                            <div className="whitespace-pre-wrap">{message.content}</div>
+                            {message.sources && message.sources.length > 0 && (
+                              <div className="mt-3 pt-3 border-t border-gray-200">
+                                <div className="text-sm font-medium text-gray-700 mb-2">Sources:</div>
+                                <div className="space-y-2">
+                                  {message.sources.map((source, sourceIndex) => (
+                                    <div key={sourceIndex} className="text-sm">
+                                      <a 
+                                        href={source.link} 
+                                        target="_blank" 
+                                        rel="noopener noreferrer"
+                                        className="text-blue-600 hover:text-blue-800 font-medium flex items-center gap-1"
+                                      >
+                                        {source.title}
+                                        <ExternalLink className="w-3 h-3" />
+                                      </a>
+                                      <div className="text-gray-600 mt-1">{source.description}</div>
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      ))
+                    )}
+                    {chatLoading && (
+                      <div className="flex justify-start">
+                        <div className="bg-white border shadow-sm p-3 rounded-lg">
+                          <div className="flex items-center gap-2">
+                            <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-500"></div>
+                            <span className="text-gray-600">Searching database...</span>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="flex gap-2">
+                    <Textarea
+                      value={chatInput}
+                      onChange={(e) => setChatInput(e.target.value)}
+                      placeholder="Ask me anything about the articles in our database..."
+                      className="flex-1"
+                      rows={2}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' && !e.shiftKey) {
+                          e.preventDefault()
+                          handleChatSubmit()
+                        }
+                      }}
+                    />
+                    <Button 
+                      onClick={handleChatSubmit}
+                      disabled={!chatInput.trim() || chatLoading}
+                      className="self-end"
+                    >
+                      <Send className="w-4 h-4" />
+                    </Button>
+                  </div>
+                  
+                  <div className="text-xs text-gray-500">
+                    Press Enter to send, Shift+Enter for new line. Responses are based exclusively on articles in our database.
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         )}
       </div>
