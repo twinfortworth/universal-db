@@ -426,17 +426,47 @@ async def manual_filter_search(request: ManualFilterRequest):
         included_articles = []
         excluded_articles = []
         
+        prompt_lower = request.prompt_description.lower()
+        
         for record in all_records:
             title = record.get("data", {}).get("title", "")
             description = record.get("data", {}).get("description", "")
-            text_content = f"{title} {description}".lower()
+            content = record.get("data", {}).get("content", "")
+            text_content = f"{title} {description} {content}".lower()
             
             include_score = 0
+            
             if request.include_keywords:
                 include_matches = sum(1 for keyword in request.include_keywords if keyword.lower() in text_content)
                 include_score = include_matches / len(request.include_keywords) if request.include_keywords else 0
+            else:
+                relevance_keywords = []
+                if "fort worth" in prompt_lower or "government" in prompt_lower or "city council" in prompt_lower or "mayor" in prompt_lower or "municipal" in prompt_lower:
+                    relevance_keywords = ["fort worth", "city council", "mayor", "municipal", "government", "politics", "tarrant county"]
+                elif "tech" in prompt_lower or "startup" in prompt_lower or "venture capital" in prompt_lower or "funding" in prompt_lower:
+                    relevance_keywords = ["startup", "venture capital", "funding", "tech", "innovation", "entrepreneur"]
+                elif "business" in prompt_lower or "local" in prompt_lower or "innovation" in prompt_lower:
+                    relevance_keywords = ["business", "innovation", "local", "company"]
+                elif "policy" in prompt_lower or "official" in prompt_lower or "announcement" in prompt_lower:
+                    relevance_keywords = ["policy", "announcement", "official", "government"]
+                
+                if relevance_keywords:
+                    include_matches = sum(1 for keyword in relevance_keywords if keyword in text_content)
+                    include_score = include_matches / len(relevance_keywords) if relevance_keywords else 0
+                else:
+                    include_score = 0.1
             
-            exclude_penalty = sum(1 for keyword in request.exclude_keywords if keyword.lower() in text_content)
+            exclude_keywords = request.exclude_keywords or []
+            if "fort worth" in prompt_lower or "government" in prompt_lower:
+                exclude_keywords.extend(["sports", "entertainment", "celebrity", "movie"])
+            elif "tech" in prompt_lower or "startup" in prompt_lower:
+                exclude_keywords.extend(["sports", "politics", "celebrity"])
+            elif "business" in prompt_lower:
+                exclude_keywords.extend(["celebrity", "gossip", "sports"])
+            elif "policy" in prompt_lower or "official" in prompt_lower:
+                exclude_keywords.extend(["recipe", "movie", "horoscope", "celebrity", "sports"])
+            
+            exclude_penalty = sum(1 for keyword in exclude_keywords if keyword in text_content)
             
             is_included = (include_score >= request.min_include_score) and (exclude_penalty == 0)
             
@@ -462,7 +492,7 @@ async def manual_filter_search(request: ManualFilterRequest):
             "total_excluded": len(excluded_articles),
             "filter_settings": {
                 "include_keywords": request.include_keywords,
-                "exclude_keywords": request.exclude_keywords,
+                "exclude_keywords": exclude_keywords,
                 "min_include_score": request.min_include_score
             }
         }        
