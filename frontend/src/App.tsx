@@ -347,9 +347,11 @@ function App() {
       const result = await response.json()
       
       if (response.ok) {
-        setSearchResults(result.results)
-        if (result.results.length === 0) {
+        setSearchResults(result.results || [])
+        if (!result.results || result.results.length === 0) {
           showMessage('error', 'No results found for your search query')
+        } else {
+          showMessage('success', `Found ${result.results.length} results`)
         }
       } else {
         showMessage('error', result.detail || 'Search failed')
