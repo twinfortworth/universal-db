@@ -1,0 +1,82 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "created": "2025-08-13T20:32:27Z",
+    "description": "Synthetic test data for universal database record promotion system",
+    "total_articles": 400,
+    "categories": 4,
+    "expected_staged_records": 290
+  },
+  "domains": [
+    {
+      "name": "Fort Worth Political",
+      "domain_id": "fort_worth_political",
+      "description": "Fort Worth city politics, government, and municipal affairs",
+      "keywords": ["fort worth", "city council", "mayor", "municipal", "government", "politics", "tarrant county"],
+      "entities": ["Fort Worth", "City Council", "Mayor", "Tarrant County"],
+      "locations": ["Fort Worth", "Texas", "Tarrant County"],
+      "exclude_keywords": ["sports", "entertainment", "celebrity", "movie"],
+      "min_relevance_score": 0.3
+    },
+    {
+      "name": "Tech Startups",
+      "domain_id": "tech_startups",
+      "description": "Technology startups, venture capital, and innovation",
+      "keywords": ["startup", "venture capital", "funding", "tech", "innovation", "entrepreneur"],
+      "entities": ["startup", "VC", "venture capital", "entrepreneur"],
+      "locations": ["Silicon Valley", "Austin", "Dallas"],
+      "exclude_keywords": ["sports", "politics", "celebrity"],
+      "min_relevance_score": 0.3
+    },
+    {
+      "name": "Mixed Content",
+      "domain_id": "mixed_content",
+      "description": "Mixed content with some business and innovation focus",
+      "keywords": ["business", "innovation", "local"],
+      "entities": ["business", "company"],
+      "locations": ["Texas", "Dallas"],
+      "exclude_keywords": ["celebrity", "gossip", "sports"],
+      "min_relevance_score": 0.3
+    },
+    {
+      "name": "Noise Heavy",
+      "domain_id": "noise_heavy",
+      "description": "General content with very specific filtering",
+      "keywords": ["policy", "announcement", "official"],
+      "entities": ["government", "official"],
+      "locations": [],
+      "exclude_keywords": ["recipe", "movie", "horoscope", "celebrity", "sports"],
+      "min_relevance_score": 0.4
+    }
+  ],
+  "test_prompts": [
+    {
+      "name": "Fort Worth Government Focus",
+      "prompt": "Articles about Fort Worth city government, city council meetings, mayoral announcements, municipal policies, and local political decisions. Include city budget discussions, zoning changes, and public works projects. Exclude sports, entertainment, and celebrity news.",
+      "expected_precision": 0.95,
+      "expected_recall": 0.85,
+      "target_domain": "fort_worth_political"
+    },
+    {
+      "name": "Tech Startup Funding",
+      "prompt": "Technology startup companies receiving venture capital funding, new product launches by startups, entrepreneur success stories, and innovation in the tech sector. Include VC investment rounds, startup acquisitions, and emerging technology trends. Exclude general consumer tech news and established big tech companies.",
+      "expected_precision": 0.80,
+      "expected_recall": 0.75,
+      "target_domain": "tech_startups"
+    },
+    {
+      "name": "Local Business Innovation",
+      "prompt": "Local businesses implementing innovative practices, new business openings with unique concepts, entrepreneurship in the local community, and business growth stories. Include small business success, local economic development, and community business initiatives. Exclude celebrity gossip, sports, and entertainment.",
+      "expected_precision": 0.85,
+      "expected_recall": 0.70,
+      "target_domain": "mixed_content"
+    },
+    {
+      "name": "Official Policy Announcements",
+      "prompt": "Official government policy announcements, regulatory changes, and formal institutional statements. Focus on significant policy decisions and official communications from government bodies. Exclude recipes, movie reviews, horoscopes, celebrity news, and sports coverage.",
+      "expected_precision": 0.90,
+      "expected_recall": 0.60,
+      "target_domain": "noise_heavy"
+    }
+  ]
+}

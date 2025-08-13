@@ -122,6 +122,8 @@ function App() {
   const [updatingFeeds, setUpdatingFeeds] = useState<Set<string>>(new Set())
   const [domainPrompt, setDomainPrompt] = useState('')
   const [isFilteringLive, setIsFilteringLive] = useState(false)
+  const [loadingTestData, setLoadingTestData] = useState(false)
+  const [testDataStatus, setTestDataStatus] = useState<{success: boolean, message: string} | null>(null)
 
   useEffect(() => {
     if (domainPrompt.trim() && searchMode === 'manual') {
@@ -780,6 +782,43 @@ function App() {
     }
   }
 
+  const loadTestData = async () => {
+    setLoadingTestData(true)
+    setTestDataStatus(null)
+
+    try {
+      const response = await fetch(`${API_URL}/test-data/load`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`)
+      }
+
+      const data = await response.json()
+      setTestDataStatus({
+        success: true,
+        message: `Loaded ${data.test_records} test articles across ${Object.keys(data.by_category).length} categories`
+      })
+      
+      setTimeout(() => setTestDataStatus(null), 5000)
+      
+    } catch (error) {
+      console.error('Load test data error:', error)
+      setTestDataStatus({
+        success: false,
+        message: 'Failed to load test data. Please try again.'
+      })
+      
+      setTimeout(() => setTestDataStatus(null), 5000)
+    } finally {
+      setLoadingTestData(false)
+    }
+  }
+
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="container mx-auto px-4 py-8 max-w-6xl">
@@ -1308,6 +1347,35 @@ function App() {
                       </div>
                     </div>
                   )}
+                </div>
+                
+                <div className="flex items-center justify-between p-4 bg-blue-50 rounded-lg border border-blue-200">
+                  <div>
+                    <h4 className="font-medium text-blue-900">Test Data</h4>
+                    <p className="text-sm text-blue-700">Load 290 synthetic articles to test domain filtering</p>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    {testDataStatus && (
+                      <span className={`text-sm ${testDataStatus.success ? 'text-green-600' : 'text-red-600'}`}>
+                        {testDataStatus.message}
+                      </span>
+                    )}
+                    <Button
+                      onClick={loadTestData}
+                      disabled={loadingTestData}
+                      className="bg-blue-600 hover:bg-blue-700"
+                      size="sm"
+                    >
+                      {loadingTestData ? (
+                        <>
+                          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                          Loading...
+                        </>
+                      ) : (
+                        'Load Test Data'
+                      )}
+                    </Button>
+                  </div>
                 </div>
                 
                 <Button 

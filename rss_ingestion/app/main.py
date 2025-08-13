@@ -6,7 +6,8 @@ from .models import (
     IngestRSSRequest, SearchRequest, SearchResult, CreateDomainRequest, 
     DomainIngestRequest, DomainAnalytics, DomainEntity, EntityType,
     CreateRSSFeedRequest, UpdateRSSFeedRequest, RSSFeedListResponse, FeedUpdateResult, RSSFeed,
-    ManualFilterRequest, PromotionRequest, PromotionResult, PromotionStatistics
+    ManualFilterRequest, PromotionRequest, PromotionResult, PromotionStatistics,
+    UniversalWrapper, RSSItem, Source
 )
 from .services import DatabaseService, VectorService, RSSService, DomainService, RSSFeedService
 from .promotion_service import RecordPromotionService
@@ -495,6 +496,166 @@ async def get_promotion_statistics(tenant_id: str = "default"):
         return stats
     except Exception as e:
         logger.error(f"Failed to get promotion statistics: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.post("/test-data/load")
+async def load_test_data():
+    """Load synthetic test data from GitHub into the database"""
+    try:
+        import json
+        import httpx
+        from datetime import datetime
+        import hashlib
+        
+        github_url = "https://raw.githubusercontent.com/twinfortworth/universal-db/devin/1754989671-rss-ingestion/test_dataset.json"
+        
+        async with httpx.AsyncClient() as client:
+            response = await client.get(github_url)
+            if response.status_code != 200:
+                raise HTTPException(status_code=404, detail="Test data file not found on GitHub")
+            
+            dataset = response.json()
+        
+        domain_mapping = {}
+        domains_data = [
+            {
+                'name': 'Fort Worth Political',
+                'description': 'Fort Worth city politics, government, and municipal affairs',
+                'keywords': ['fort worth', 'city council', 'mayor', 'municipal', 'government', 'politics', 'tarrant county'],
+                'entities': ['Fort Worth', 'City Council', 'Mayor', 'Tarrant County'],
+                'locations': ['Fort Worth', 'Texas', 'Tarrant County'],
+                'exclude_keywords': ['sports', 'entertainment', 'celebrity', 'movie'],
+                'min_relevance_score': 0.3
+            },
+            {
+                'name': 'Tech Startups',
+                'description': 'Technology startups, venture capital, and innovation',
+                'keywords': ['startup', 'venture capital', 'funding', 'tech', 'innovation', 'entrepreneur'],
+                'entities': ['startup', 'VC', 'venture capital', 'entrepreneur'],
+                'locations': ['Silicon Valley', 'Austin', 'Dallas'],
+                'exclude_keywords': ['sports', 'politics', 'celebrity'],
+                'min_relevance_score': 0.3
+            },
+            {
+                'name': 'Mixed Content',
+                'description': 'Mixed content with some business and innovation focus',
+                'keywords': ['business', 'innovation', 'local'],
+                'entities': ['business', 'company'],
+                'locations': ['Texas', 'Dallas'],
+                'exclude_keywords': ['celebrity', 'gossip', 'sports'],
+                'min_relevance_score': 0.3
+            },
+            {
+                'name': 'Noise Heavy',
+                'description': 'General content with very specific filtering',
+                'keywords': ['policy', 'announcement', 'official'],
+                'entities': ['government', 'official'],
+                'locations': [],
+                'exclude_keywords': ['recipe', 'movie', 'horoscope', 'celebrity', 'sports'],
+                'min_relevance_score': 0.4
+            }
+        ]
+        
+        for domain_data in domains_data:
+            request = CreateDomainRequest(**domain_data)
+            domain = await domain_service.create_domain(request)
+            domain_mapping[domain_data['name']] = domain.domain_id
+        
+        category_to_domain = {
+            'fort_worth_political': 'Fort Worth Political',
+            'tech_startups': 'Tech Startups', 
+            'mixed_content': 'Mixed Content',
+            'noise_heavy': 'Noise Heavy'
+        }
+        
+        total_loaded = 0
+        
+        for category, articles in dataset['articles'].items():
+            domain_name = category_to_domain.get(category)
+            domain_id = domain_mapping.get(domain_name) if domain_name else None
+            
+            if not domain_id:
+                continue
+            
+            for article in articles:
+                try:
+                    rss_item = RSSItem(
+                        title=article['title'],
+                        description=article['description'],
+                        link=article['link'],
+                        published=datetime.fromisoformat(article['published']) if article['published'] else None,
+                        content=article.get('content', ''),
+                        author=article.get('author', ''),
+                        tags=article.get('tags', [])
+                    )
+                    
+                    content_text = f"{rss_item.title} {rss_item.description or ''} {rss_item.content or ''}"
+                    content_hash = hashlib.md5(content_text.encode()).hexdigest()
+                    
+                    rss_data = rss_item.model_dump()
+                    rss_data['staging_metadata'] = {
+                        'domain_id': domain_id,
+                        'requires_domain_filtering': True,
+                        'ingestion_timestamp': datetime.utcnow().isoformat(),
+                        'test_data': True,
+                        'expected_outcome': article.get('expected_outcome', 'UNKNOWN'),
+                        'category': category
+                    }
+                    
+                    wrapper = UniversalWrapper(
+                        schema_id="staged_rss_item",
+                        tenant_id="default",
+                        source=Source(origin=f"test_data_{category}", type="rss"),
+                        data=rss_data
+                    )
+                    
+                    saved = await db_service.save_record(wrapper, content_hash)
+                    
+                    if saved:
+                        embedding_text = f"{rss_item.title} {rss_item.description or ''} {rss_item.content or ''}"
+                        embedding = await vector_service.generate_embedding(embedding_text)
+                        
+                        if embedding:
+                            metadata = {
+                                "tenant_id": "default",
+                                "schema_id": "staged_rss_item",
+                                "title": rss_item.title,
+                                "link": rss_item.link,
+                                "published": rss_item.published.isoformat() if rss_item.published else None,
+                                "domain_id": domain_id,
+                                "requires_filtering": True,
+                                "test_data": True,
+                                "expected_outcome": article.get('expected_outcome', 'UNKNOWN'),
+                                "category": category
+                            }
+                            await vector_service.save_vector(wrapper.uuid, embedding, metadata)
+                        
+                        total_loaded += 1
+                
+                except Exception as e:
+                    logger.error(f"Error loading article from {category}: {e}")
+        
+        all_records = await db_service.get_records("default", limit=1000)
+        staged_records = [r for r in all_records if r.get('schema_id') == 'staged_rss_item']
+        test_records = [r for r in staged_records if r.get('data', {}).get('staging_metadata', {}).get('test_data')]
+        
+        by_category = {}
+        for record in test_records:
+            category = record.get('data', {}).get('staging_metadata', {}).get('category', 'Unknown')
+            by_category[category] = by_category.get(category, 0) + 1
+        
+        return {
+            "success": True,
+            "message": f"Successfully loaded {total_loaded} test articles",
+            "total_records": len(all_records),
+            "staged_records": len(staged_records),
+            "test_records": len(test_records),
+            "by_category": by_category,
+            "domain_mapping": domain_mapping
+        }
+        
+    except Exception as e:
+        logger.error(f"Failed to load test data: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 
