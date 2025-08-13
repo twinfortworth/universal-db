@@ -326,13 +326,14 @@ function App() {
           use_reranking: true
         }
       } else if (searchMode === 'domain' && selectedDomainForSearch) {
-        endpoint = `/search/domain?domain_id=${selectedDomainForSearch}`
+        endpoint = '/search/domain'
         requestBody = {
           ...requestBody,
           search_type: 'hybrid',
           bm25_weight: 0.5,
           vector_weight: 0.5,
-          use_reranking: true
+          use_reranking: true,
+          domain_id: selectedDomainForSearch
         }
       }
 
