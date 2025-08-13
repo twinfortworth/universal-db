@@ -89,13 +89,11 @@ interface RSSFeed {
 function App() {
   const [feedUrl, setFeedUrl] = useState('')
   const [tenantId, setTenantId] = useState('default')
-  const [searchQuery, setSearchQuery] = useState('')
   const [records, setRecords] = useState<RSSItem[]>([])
   const [searchResults, setSearchResults] = useState<SearchResult[]>([])
   const [loading, setLoading] = useState(false)
   const [searching, setSearching] = useState(false)
   const [searchMode, setSearchMode] = useState<string>('manual')
-  const [selectedDomainForSearch, setSelectedDomainForSearch] = useState<string>('')
   const [message, setMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null)
   const [activeTab, setActiveTab] = useState<'ingest' | 'domain' | 'browse' | 'search' | 'manage' | 'domains'>('ingest')
   const [domains, setDomains] = useState<Domain[]>([])
@@ -345,39 +343,18 @@ function App() {
   }
 
   const handleSearch = async () => {
-    if (!searchQuery.trim()) {
-      showMessage('error', 'Please enter a search query')
-      return
-    }
-
     setSearching(true)
     try {
-      let endpoint = '/search'
+      let endpoint = '/records'
       let requestBody: any = {
-        query: searchQuery,
         tenant_id: tenantId,
-        limit: 10
+        limit: 20
       }
 
-      if (searchMode === 'hybrid') {
-        endpoint = '/search/hybrid'
-        requestBody = {
-          ...requestBody,
-          search_type: 'hybrid',
-          bm25_weight: 0.5,
-          vector_weight: 0.5,
-          use_reranking: true
-        }
-      } else if (searchMode === 'domain' && selectedDomainForSearch) {
-        endpoint = '/search/domain'
-        requestBody = {
-          ...requestBody,
-          search_type: 'hybrid',
-          bm25_weight: 0.5,
-          vector_weight: 0.5,
-          use_reranking: true,
-          domain_id: selectedDomainForSearch
-        }
+      if (searchMode === 'vector') {
+        endpoint = '/records'
+      } else if (searchMode === 'hybrid') {
+        endpoint = '/records'
       } else if (searchMode === 'manual') {
         endpoint = '/search/manual-filter'
         requestBody = {
@@ -390,12 +367,12 @@ function App() {
         }
       }
 
-      const response = await fetch(`${API_URL}${endpoint}`, {
-        method: 'POST',
+      const response = await fetch(`${API_URL}${endpoint}${searchMode === 'manual' ? '' : `?tenant_id=${tenantId}&limit=20`}`, {
+        method: searchMode === 'manual' ? 'POST' : 'GET',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(requestBody)
+        ...(searchMode === 'manual' && { body: JSON.stringify(requestBody) })
       })
 
       const result = await response.json()
@@ -408,14 +385,22 @@ function App() {
           setTotalExcluded(result.total_excluded || 0)
           showMessage('success', `Filter applied: ${result.total_included} included, ${result.total_excluded} excluded`)
         } else {
-          setSearchResults(result.results || [])
-          if (!result.results || result.results.length === 0) {
-            showMessage('error', 'No results found for your search query')
+          const searchResults = (result.records || []).map((record: any) => ({
+            uuid: record.uuid,
+            title: record.data?.title || '',
+            description: record.data?.description || '',
+            link: record.data?.link || '',
+            score: 1.0,
+            published: record.data?.published
+          }))
+          setSearchResults(searchResults)
+          if (searchResults.length === 0) {
+            showMessage('error', 'No articles found')
           } else {
-            showMessage('success', `Found ${result.results.length} results`)
+            showMessage('success', `Found ${searchResults.length} articles`)
           }
         }
-      }else {
+      } else {
         showMessage('error', result.detail || 'Search failed')
       }
     } catch (error) {
@@ -1155,16 +1140,6 @@ function App() {
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
-                <div>
-                  <label className="text-sm font-medium text-gray-700 mb-2 block">Search Query</label>
-                  <Textarea
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="Enter your search query (e.g., 'football transfer news', 'political developments', 'technology trends')"
-                    className="w-full"
-                    rows={3}
-                  />
-                </div>
                 
                 <div className="space-y-4">
                   <div>
@@ -1198,21 +1173,6 @@ function App() {
                         </div>
                       </div>
                       
-                      <div className={`p-4 border rounded-lg cursor-pointer transition-all ${searchMode === 'domain' ? 'border-blue-500 bg-blue-50' : 'border-gray-200 hover:border-gray-300'}`}
-                           onClick={() => setSearchMode('domain')}>
-                        <div className="flex items-center gap-3">
-                          <input type="radio" checked={searchMode === 'domain'} onChange={() => setSearchMode('domain')} className="text-blue-600" />
-                          <div className="flex-1">
-                            <div className="font-medium text-gray-900">Domain-Filtered Hybrid Search</div>
-                            <div className="text-sm text-gray-600">Hybrid search with domain-specific filtering and relevance scoring. Perfect for specialized content areas.</div>
-                          </div>
-                          <div className="flex gap-1">
-                            <Badge variant="outline" className="text-xs">Domain</Badge>
-                            <Badge variant="outline" className="text-xs">Filtered</Badge>
-                          </div>
-                        </div>
-                      </div>
-                      
                       <div className={`p-4 border rounded-lg cursor-pointer transition-all ${searchMode === 'manual' ? 'border-blue-500 bg-blue-50' : 'border-gray-200 hover:border-gray-300'}`}
                            onClick={() => setSearchMode('manual')}>
                         <div className="flex items-center gap-3">
@@ -1230,23 +1190,6 @@ function App() {
                     </div>
                   </div>
                   
-                  {searchMode === 'domain' && (
-                    <div className="p-4 bg-gray-50 rounded-lg">
-                      <label className="text-sm font-medium text-gray-700 mb-2 block">Select Domain</label>
-                      <select 
-                        value={selectedDomainForSearch} 
-                        onChange={(e) => setSelectedDomainForSearch(e.target.value)}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-md"
-                      >
-                        <option value="">Choose a domain for specialized search...</option>
-                        {domains.map(domain => (
-                          <option key={domain.domain_id} value={domain.domain_id}>
-                            {domain.name} - {domain.description}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-                  )}
                   
                   {searchMode === 'manual' && (
                     <div className="p-4 bg-gray-50 rounded-lg space-y-4">
@@ -1312,7 +1255,7 @@ function App() {
                   ) : (
                     <>
                       <Search className="mr-2 h-4 w-4" />
-                      Search with Advanced RAG
+                      {searchMode === 'manual' ? 'Apply Filter' : 'Browse Articles'}
                     </>
                   )}
                 </Button>
@@ -1423,15 +1366,13 @@ function App() {
                       <div>
                         <h3 className="text-xl font-semibold text-gray-900">Search Results ({searchResults.length})</h3>
                         <p className="text-sm text-gray-600 mt-1">
-                          {searchMode === 'hybrid' && 'Results processed through BM25 keyword matching, semantic vector search, and AI re-ranking'}
-                          {searchMode === 'domain' && 'Results filtered by domain relevance and processed through hybrid search'}
-                          {searchMode === 'vector' && 'Results ranked by semantic similarity using contextual embeddings'}
+                          {searchMode === 'hybrid' && 'Browse all articles with hybrid search capabilities'}
+                          {searchMode === 'vector' && 'Browse all articles ranked by semantic similarity'}
                         </p>
                       </div>
                       <div className="flex flex-col items-end gap-2">
                         <Badge variant="default" className="text-sm font-medium">
-                          {searchMode === 'hybrid' ? '🔄 Hybrid + AI Re-ranking' : 
-                           searchMode === 'domain' ? '🎯 Domain Filtered' : '🧠 Semantic Search'}
+                          {searchMode === 'hybrid' ? '🔄 Hybrid Browse' : '🧠 Semantic Browse'}
                         </Badge>
                         {searchMode === 'hybrid' && (
                           <div className="flex gap-1">
@@ -1464,8 +1405,7 @@ function App() {
                                 Relevance: {(result.score * 100).toFixed(1)}%
                               </Badge>
                               <div className="text-xs text-gray-500">
-                                {searchMode === 'hybrid' ? 'AI Re-ranked' : 
-                                 searchMode === 'domain' ? 'Domain Filtered' : 'Vector Similarity'}
+                                {searchMode === 'hybrid' ? 'Hybrid Browse' : 'Vector Browse'}
                               </div>
                             </div>
                             <a
@@ -1499,24 +1439,16 @@ function App() {
                             {searchMode === 'hybrid' && (
                               <>
                                 <Badge variant="secondary" className="text-xs">
-                                  🔍 Keyword Match
+                                  🔍 Browse Mode
                                 </Badge>
                                 <Badge variant="secondary" className="text-xs">
-                                  🧠 Semantic Match
-                                </Badge>
-                                <Badge variant="secondary" className="text-xs">
-                                  ⭐ AI Re-ranked
+                                  📚 All Articles
                                 </Badge>
                               </>
                             )}
-                            {searchMode === 'domain' && (
-                              <Badge variant="secondary" className="text-xs">
-                                🎯 Domain Relevant
-                              </Badge>
-                            )}
                             {searchMode === 'vector' && (
                               <Badge variant="secondary" className="text-xs">
-                                🧠 Contextual Match
+                                🧠 Browse Mode
                               </Badge>
                             )}
                           </div>

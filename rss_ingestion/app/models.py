@@ -43,7 +43,6 @@ class SearchRequest(BaseModel):
     bm25_weight: float = Field(default=0.5, description="Weight for BM25 in hybrid search")
     vector_weight: float = Field(default=0.5, description="Weight for vector search in hybrid search")
     use_reranking: bool = Field(default=True, description="Whether to apply re-ranking")
-    domain_id: Optional[str] = Field(default=None, description="Domain ID for domain-specific search")
 
 
 class SearchResult(BaseModel):
