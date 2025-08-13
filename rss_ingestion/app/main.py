@@ -441,30 +441,58 @@ async def manual_filter_search(request: ManualFilterRequest):
                 include_score = include_matches / len(request.include_keywords) if request.include_keywords else 0
             else:
                 relevance_keywords = []
-                if "fort worth" in prompt_lower or "government" in prompt_lower or "city council" in prompt_lower or "mayor" in prompt_lower or "municipal" in prompt_lower:
-                    relevance_keywords = ["fort worth", "city council", "mayor", "municipal", "government", "politics", "tarrant county"]
-                elif "tech" in prompt_lower or "startup" in prompt_lower or "venture capital" in prompt_lower or "funding" in prompt_lower:
-                    relevance_keywords = ["startup", "venture capital", "funding", "tech", "innovation", "entrepreneur"]
-                elif "business" in prompt_lower or "local" in prompt_lower or "innovation" in prompt_lower:
-                    relevance_keywords = ["business", "innovation", "local", "company"]
-                elif "policy" in prompt_lower or "official" in prompt_lower or "announcement" in prompt_lower:
-                    relevance_keywords = ["policy", "announcement", "official", "government"]
+                category_match = False
                 
-                if relevance_keywords:
+                if any(term in prompt_lower for term in ["fort worth", "government", "city council", "mayor", "municipal", "politics"]):
+                    relevance_keywords = ["fort worth", "city council", "mayor", "municipal", "government", "politics", "tarrant county", "city", "council"]
+                    staging_metadata = record.get("data", {}).get("staging_metadata", {})
+                    if staging_metadata.get("category") == "fort_worth_political":
+                        category_match = True
+                
+                elif any(term in prompt_lower for term in ["tech", "startup", "venture capital", "funding", "innovation", "entrepreneur"]):
+                    relevance_keywords = ["startup", "venture capital", "funding", "tech", "innovation", "entrepreneur", "vc", "investment"]
+                    if staging_metadata.get("category") == "tech_startups":
+                        category_match = True
+                
+                elif any(term in prompt_lower for term in ["business", "local", "innovation", "company"]):
+                    relevance_keywords = ["business", "innovation", "local", "company", "entrepreneur", "economic"]
+                    if staging_metadata.get("category") == "mixed_content":
+                        category_match = True
+                
+                elif any(term in prompt_lower for term in ["policy", "official", "announcement", "regulatory"]):
+                    relevance_keywords = ["policy", "announcement", "official", "government", "regulatory", "law"]
+                    if staging_metadata.get("category") in ["fort_worth_political", "noise_heavy"]:
+                        category_match = True
+                
+                if category_match:
+                    include_score = 0.8  # High score for category match
+                elif relevance_keywords:
                     include_matches = sum(1 for keyword in relevance_keywords if keyword in text_content)
                     include_score = include_matches / len(relevance_keywords) if relevance_keywords else 0
+                    if include_matches >= 2:
+                        include_score = min(1.0, include_score * 1.5)
                 else:
-                    include_score = 0.1
+                    include_score = 0.05
             
             exclude_keywords = request.exclude_keywords or []
-            if "fort worth" in prompt_lower or "government" in prompt_lower:
-                exclude_keywords.extend(["sports", "entertainment", "celebrity", "movie"])
-            elif "tech" in prompt_lower or "startup" in prompt_lower:
-                exclude_keywords.extend(["sports", "politics", "celebrity"])
-            elif "business" in prompt_lower:
-                exclude_keywords.extend(["celebrity", "gossip", "sports"])
-            elif "policy" in prompt_lower or "official" in prompt_lower:
-                exclude_keywords.extend(["recipe", "movie", "horoscope", "celebrity", "sports"])
+            
+            if any(term in prompt_lower for term in ["fort worth", "government", "municipal", "politics"]):
+                exclude_keywords.extend(["sports", "entertainment", "celebrity", "movie", "music", "gaming", "horoscope"])
+            elif any(term in prompt_lower for term in ["tech", "startup", "venture", "innovation"]):
+                exclude_keywords.extend(["sports", "celebrity", "entertainment", "horoscope", "recipe"])
+            elif any(term in prompt_lower for term in ["business", "local", "company"]):
+                exclude_keywords.extend(["celebrity", "gossip", "sports", "entertainment", "horoscope"])
+            elif any(term in prompt_lower for term in ["policy", "official", "announcement"]):
+                exclude_keywords.extend(["recipe", "movie", "horoscope", "celebrity", "sports", "entertainment", "music", "gaming"])
+            
+            if "sports" not in prompt_lower:
+                exclude_keywords.extend(["sports", "football", "basketball", "tennis"])
+            if "entertainment" not in prompt_lower:
+                exclude_keywords.extend(["entertainment", "celebrity", "movie", "music"])
+            if "recipe" not in prompt_lower:
+                exclude_keywords.extend(["recipe", "cooking"])
+            if "horoscope" not in prompt_lower:
+                exclude_keywords.extend(["horoscope", "astrology"])
             
             exclude_penalty = sum(1 for keyword in exclude_keywords if keyword in text_content)
             
