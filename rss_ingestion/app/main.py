@@ -6,9 +6,10 @@ from .models import (
     IngestRSSRequest, SearchRequest, SearchResult, CreateDomainRequest, 
     DomainIngestRequest, DomainAnalytics, DomainEntity, EntityType,
     CreateRSSFeedRequest, UpdateRSSFeedRequest, RSSFeedListResponse, FeedUpdateResult, RSSFeed,
-    ManualFilterRequest
+    ManualFilterRequest, PromotionRequest, PromotionResult, PromotionStatistics
 )
 from .services import DatabaseService, VectorService, RSSService, DomainService, RSSFeedService
+from .promotion_service import RecordPromotionService
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -18,6 +19,7 @@ vector_service = VectorService()
 domain_service = DomainService()
 rss_service = RSSService(db_service, vector_service, domain_service)
 rss_feed_service = RSSFeedService(db_service, rss_service, domain_service)
+promotion_service = RecordPromotionService(db_service, domain_service, vector_service)
 
 
 @asynccontextmanager
@@ -462,7 +464,46 @@ async def manual_filter_search(request: ManualFilterRequest):
                 "exclude_keywords": request.exclude_keywords,
                 "min_include_score": request.min_include_score
             }
-        }
+        }        
     except Exception as e:
         logger.error(f"Manual filter search failed: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/promotion/promote", response_model=PromotionResult)
+async def promote_staged_records(request: PromotionRequest):
+    """Promote staged records to permanent storage based on filtering criteria"""
+    try:
+        result = await promotion_service.promote_staged_records(
+            tenant_id=request.tenant_id,
+            domain_id=request.domain_id,
+            promotion_threshold=request.promotion_threshold,
+            max_records=request.max_records,
+            dry_run=request.dry_run
+        )
+        return result.to_dict()
+    except Exception as e:
+        logger.error(f"Failed to promote records: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/promotion/statistics", response_model=PromotionStatistics)
+async def get_promotion_statistics(tenant_id: str = "default"):
+    """Get statistics about record promotion for a tenant"""
+    try:
+        stats = await promotion_service.get_promotion_statistics(tenant_id)
+        return stats
+    except Exception as e:
+        logger.error(f"Failed to get promotion statistics: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/promotion/cleanup")
+async def cleanup_old_records(tenant_id: str = "default", max_age_days: int = 90, dry_run: bool = True):
+    """Clean up old discarded records to free storage space"""
+    try:
+        result = await promotion_service.cleanup_old_records(tenant_id, max_age_days, dry_run)
+        return result
+    except Exception as e:
+        logger.error(f"Failed to cleanup old records: {e}")
         raise HTTPException(status_code=500, detail=str(e))

@@ -213,3 +213,37 @@ class ManualFilterRequest(BaseModel):
     min_include_score: float = Field(default=0.3, ge=0.0, le=1.0, description="Minimum ratio of include keywords that must match")
     tenant_id: str = Field(default="default", description="Tenant identifier")
     limit: int = Field(default=20, description="Maximum number of results per category")
+
+
+class PromotionRequest(BaseModel):
+    tenant_id: str = Field(default="default", description="Tenant identifier")
+    domain_id: Optional[str] = Field(default=None, description="Specific domain to process")
+    promotion_threshold: Optional[float] = Field(default=None, description="Custom threshold for promotion")
+    max_records: Optional[int] = Field(default=None, description="Maximum number of records to process")
+    dry_run: bool = Field(default=False, description="If True, only evaluate without making changes")
+
+
+class PromotionResult(BaseModel):
+    total_evaluated: int
+    promoted: int
+    discarded: int
+    errors: int
+    promotion_rate: float
+    discard_rate: float
+    error_rate: float
+    processing_time: float
+    promoted_records: List[Dict[str, Any]] = Field(default_factory=list)
+    discarded_records: List[Dict[str, Any]] = Field(default_factory=list)
+    error_messages: List[str] = Field(default_factory=list)
+
+
+class PromotionStatistics(BaseModel):
+    total_records: int
+    staged_records: int
+    permanent_records: int
+    discarded_records: int
+    promotion_rate: float
+    discard_rate: float
+    staging_rate: float
+    by_domain: Dict[str, Dict[str, int]]
+    by_age: Dict[str, int]

@@ -1,0 +1,810 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>General Interest News</title>
+    <description>Test RSS feed for noise_heavy articles</description>
+    <link>https://example.com/noise_heavy</link>
+    <lastBuildDate>Wed, 13 Aug 2025 20:20:37 GMT</lastBuildDate>
+
+    <item>
+      <title><![CDATA[Breaking: Major policy announcement affects local businesses in North Texas]]></title>
+      <description><![CDATA[Important policy news about breaking: major policy announcement affects local businesses in north texas]]></description>
+      <link>https://example.com/noise-heavy-signal/5e7bab44-b2f7-4f53-97d7-c7011a3eafd2</link>
+      <pubDate>Thu, 07 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Government Affairs</author>
+      <guid>https://example.com/noise-heavy-signal/5e7bab44-b2f7-4f53-97d7-c7011a3eafd2</guid>
+    </item>
+    <item>
+      <title><![CDATA[Government initiative supports healthcare development with new support services]]></title>
+      <description><![CDATA[Important policy news about government initiative supports healthcare development with new support services]]></description>
+      <link>https://example.com/noise-heavy-signal/22b0d26e-4a61-4aca-946f-e80be8ac2cd9</link>
+      <pubDate>Mon, 11 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Business News</author>
+      <guid>https://example.com/noise-heavy-signal/22b0d26e-4a61-4aca-946f-e80be8ac2cd9</guid>
+    </item>
+    <item>
+      <title><![CDATA[Breaking: Major policy announcement affects local businesses in East Texas]]></title>
+      <description><![CDATA[Important policy news about breaking: major policy announcement affects local businesses in east texas]]></description>
+      <link>https://example.com/noise-heavy-signal/b8a90087-1663-459a-ac8e-de23009ec1a6</link>
+      <pubDate>Sat, 19 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Business News</author>
+      <guid>https://example.com/noise-heavy-signal/b8a90087-1663-459a-ac8e-de23009ec1a6</guid>
+    </item>
+    <item>
+      <title><![CDATA[Breaking: Major policy announcement affects local businesses in North Texas]]></title>
+      <description><![CDATA[Important policy news about breaking: major policy announcement affects local businesses in north texas]]></description>
+      <link>https://example.com/noise-heavy-signal/401cbbe2-c39d-4d72-8b0f-08bef0d0d606</link>
+      <pubDate>Mon, 11 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Government Affairs</author>
+      <guid>https://example.com/noise-heavy-signal/401cbbe2-c39d-4d72-8b0f-08bef0d0d606</guid>
+    </item>
+    <item>
+      <title><![CDATA[Breaking: Major policy announcement affects local businesses in North Texas]]></title>
+      <description><![CDATA[Important policy news about breaking: major policy announcement affects local businesses in north texas]]></description>
+      <link>https://example.com/noise-heavy-signal/327c033b-33e6-4970-8c46-fdad15549cab</link>
+      <pubDate>Sun, 10 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Economic Analysis</author>
+      <guid>https://example.com/noise-heavy-signal/327c033b-33e6-4970-8c46-fdad15549cab</guid>
+    </item>
+    <item>
+      <title><![CDATA[Entertainment: Food Fair features famous artist this year]]></title>
+      <description><![CDATA[General interest content about entertainment: food fair features famous artist this year]]></description>
+      <link>https://example.com/noise-heavy-general/0ad2b8fb-7a0e-45ac-aa30-48d904cf53e8</link>
+      <pubDate>Fri, 01 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Popular Culture</author>
+      <guid>https://example.com/noise-heavy-general/0ad2b8fb-7a0e-45ac-aa30-48d904cf53e8</guid>
+    </item>
+    <item>
+      <title><![CDATA[Gaming: FIFA releases patch with new multiplayer mode]]></title>
+      <description><![CDATA[General interest content about gaming: fifa releases patch with new multiplayer mode]]></description>
+      <link>https://example.com/noise-heavy-general/0fbc4994-b438-4c62-98a5-853f9f289240</link>
+      <pubDate>Thu, 17 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Entertainment Reporter</author>
+      <guid>https://example.com/noise-heavy-general/0fbc4994-b438-4c62-98a5-853f9f289240</guid>
+    </item>
+    <item>
+      <title><![CDATA[Gaming: Call of Duty releases DLC with new storyline]]></title>
+      <description><![CDATA[General interest content about gaming: call of duty releases dlc with new storyline]]></description>
+      <link>https://example.com/noise-heavy-general/1ca228fe-244b-4f46-86e4-9df96b288d3a</link>
+      <pubDate>Mon, 14 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Popular Culture</author>
+      <guid>https://example.com/noise-heavy-general/1ca228fe-244b-4f46-86e4-9df96b288d3a</guid>
+    </item>
+    <item>
+      <title><![CDATA[Recipe: How to make perfect pasta carbonara with premium chocolate]]></title>
+      <description><![CDATA[General interest content about recipe: how to make perfect pasta carbonara with premium chocolate]]></description>
+      <link>https://example.com/noise-heavy-general/abf0d1b9-169c-46a8-b42a-b243b57243aa</link>
+      <pubDate>Mon, 14 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Popular Culture</author>
+      <guid>https://example.com/noise-heavy-general/abf0d1b9-169c-46a8-b42a-b243b57243aa</guid>
+    </item>
+    <item>
+      <title><![CDATA[Food: Coastal Grill serves Italian in suburbs]]></title>
+      <description><![CDATA[General interest content about food: coastal grill serves italian in suburbs]]></description>
+      <link>https://example.com/noise-heavy-general/425251b6-bca8-45c9-a8ec-32661b60da05</link>
+      <pubDate>Wed, 13 Aug 2025 20:20:37 GMT</pubDate>
+      <author>General Interest</author>
+      <guid>https://example.com/noise-heavy-general/425251b6-bca8-45c9-a8ec-32661b60da05</guid>
+    </item>
+    <item>
+      <title><![CDATA[Fashion: bold colors is the new must-have for summer]]></title>
+      <description><![CDATA[General interest content about fashion: bold colors is the new must-have for summer]]></description>
+      <link>https://example.com/noise-heavy-general/a52fed7a-e317-4a71-b238-57d1348c7e80</link>
+      <pubDate>Mon, 14 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Entertainment Reporter</author>
+      <guid>https://example.com/noise-heavy-general/a52fed7a-e317-4a71-b238-57d1348c7e80</guid>
+    </item>
+    <item>
+      <title><![CDATA[Pet care tips for new fish owners]]></title>
+      <description><![CDATA[General interest content about pet care tips for new fish owners]]></description>
+      <link>https://example.com/noise-heavy-general/4a3b6a54-14a0-4867-bea3-fa6369cb3117</link>
+      <pubDate>Thu, 17 Jul 2025 20:20:37 GMT</pubDate>
+      <author>General Interest</author>
+      <guid>https://example.com/noise-heavy-general/4a3b6a54-14a0-4867-bea3-fa6369cb3117</guid>
+    </item>
+    <item>
+      <title><![CDATA[Movie review: Action Blockbuster disappoints critics with great acting]]></title>
+      <description><![CDATA[General interest content about movie review: action blockbuster disappoints critics with great acting]]></description>
+      <link>https://example.com/noise-heavy-general/7495c42f-e5ff-427b-805b-9390efe36446</link>
+      <pubDate>Tue, 05 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Popular Culture</author>
+      <guid>https://example.com/noise-heavy-general/7495c42f-e5ff-427b-805b-9390efe36446</guid>
+    </item>
+    <item>
+      <title><![CDATA[Movie review: Horror Movie disappoints critics with great acting]]></title>
+      <description><![CDATA[General interest content about movie review: horror movie disappoints critics with great acting]]></description>
+      <link>https://example.com/noise-heavy-general/e909cdc9-f8dc-4350-8816-ea5b77a069dd</link>
+      <pubDate>Fri, 01 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Popular Culture</author>
+      <guid>https://example.com/noise-heavy-general/e909cdc9-f8dc-4350-8816-ea5b77a069dd</guid>
+    </item>
+    <item>
+      <title><![CDATA[Weather: clear skies expected for DFW area this week]]></title>
+      <description><![CDATA[General interest content about weather: clear skies expected for dfw area this week]]></description>
+      <link>https://example.com/noise-heavy-general/00b2fc41-4d09-4b45-97d9-25abb099f12e</link>
+      <pubDate>Mon, 14 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Popular Culture</author>
+      <guid>https://example.com/noise-heavy-general/00b2fc41-4d09-4b45-97d9-25abb099f12e</guid>
+    </item>
+    <item>
+      <title><![CDATA[Home improvement: DIY garden makeover for beginners]]></title>
+      <description><![CDATA[General interest content about home improvement: diy garden makeover for beginners]]></description>
+      <link>https://example.com/noise-heavy-general/ead64d56-cd85-48cd-a00d-bfeefa3b2325</link>
+      <pubDate>Mon, 11 Aug 2025 20:20:37 GMT</pubDate>
+      <author>General Interest</author>
+      <guid>https://example.com/noise-heavy-general/ead64d56-cd85-48cd-a00d-bfeefa3b2325</guid>
+    </item>
+    <item>
+      <title><![CDATA[Horoscope predictions for Cancer this month]]></title>
+      <description><![CDATA[General interest content about horoscope predictions for cancer this month]]></description>
+      <link>https://example.com/noise-heavy-general/727abdad-93fb-4b2e-ab94-050f3b311adc</link>
+      <pubDate>Sat, 19 Jul 2025 20:20:37 GMT</pubDate>
+      <author>General Interest</author>
+      <guid>https://example.com/noise-heavy-general/727abdad-93fb-4b2e-ab94-050f3b311adc</guid>
+    </item>
+    <item>
+      <title><![CDATA[Gaming: Minecraft releases patch with new multiplayer mode]]></title>
+      <description><![CDATA[General interest content about gaming: minecraft releases patch with new multiplayer mode]]></description>
+      <link>https://example.com/noise-heavy-general/156da1df-17e9-4018-88d3-81d8ddf8953a</link>
+      <pubDate>Fri, 01 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Popular Culture</author>
+      <guid>https://example.com/noise-heavy-general/156da1df-17e9-4018-88d3-81d8ddf8953a</guid>
+    </item>
+    <item>
+      <title><![CDATA[Sports: Tom Brady breaks record in soccer competition]]></title>
+      <description><![CDATA[General interest content about sports: tom brady breaks record in soccer competition]]></description>
+      <link>https://example.com/noise-heavy-general/b9e93ea7-6b0c-45fc-888d-b0f10047ea18</link>
+      <pubDate>Thu, 07 Aug 2025 20:20:37 GMT</pubDate>
+      <author>General Interest</author>
+      <guid>https://example.com/noise-heavy-general/b9e93ea7-6b0c-45fc-888d-b0f10047ea18</guid>
+    </item>
+    <item>
+      <title><![CDATA[Pet care tips for new fish owners]]></title>
+      <description><![CDATA[General interest content about pet care tips for new fish owners]]></description>
+      <link>https://example.com/noise-heavy-general/7592262a-3115-4aca-9823-940d0dec4983</link>
+      <pubDate>Tue, 29 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Entertainment Reporter</author>
+      <guid>https://example.com/noise-heavy-general/7592262a-3115-4aca-9823-940d0dec4983</guid>
+    </item>
+    <item>
+      <title><![CDATA[Entertainment: Art Exhibition features dance troupe this year]]></title>
+      <description><![CDATA[General interest content about entertainment: art exhibition features dance troupe this year]]></description>
+      <link>https://example.com/noise-heavy-general/ecd8f4f2-b36a-4c3d-a36f-da7604d052a2</link>
+      <pubDate>Mon, 14 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Popular Culture</author>
+      <guid>https://example.com/noise-heavy-general/ecd8f4f2-b36a-4c3d-a36f-da7604d052a2</guid>
+    </item>
+    <item>
+      <title><![CDATA[Health: physical fitness of meditation for families]]></title>
+      <description><![CDATA[General interest content about health: physical fitness of meditation for families]]></description>
+      <link>https://example.com/noise-heavy-general/db1c0a92-51e1-4d22-85eb-0410f216b3fc</link>
+      <pubDate>Mon, 21 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Lifestyle Writer</author>
+      <guid>https://example.com/noise-heavy-general/db1c0a92-51e1-4d22-85eb-0410f216b3fc</guid>
+    </item>
+    <item>
+      <title><![CDATA[Travel guide: Tokyo offers restaurants for visitors]]></title>
+      <description><![CDATA[General interest content about travel guide: tokyo offers restaurants for visitors]]></description>
+      <link>https://example.com/noise-heavy-general/c26fb21b-7316-40f5-9c7a-f06484dd7ddb</link>
+      <pubDate>Fri, 25 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Lifestyle Writer</author>
+      <guid>https://example.com/noise-heavy-general/c26fb21b-7316-40f5-9c7a-f06484dd7ddb</guid>
+    </item>
+    <item>
+      <title><![CDATA[Music: Billie Eilish drops new album featuring guest vocals]]></title>
+      <description><![CDATA[General interest content about music: billie eilish drops new album featuring guest vocals]]></description>
+      <link>https://example.com/noise-heavy-general/53e76096-562c-45d7-9ab8-b626983fdbb5</link>
+      <pubDate>Mon, 11 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Entertainment Reporter</author>
+      <guid>https://example.com/noise-heavy-general/53e76096-562c-45d7-9ab8-b626983fdbb5</guid>
+    </item>
+    <item>
+      <title><![CDATA[Horoscope predictions for Taurus this week]]></title>
+      <description><![CDATA[General interest content about horoscope predictions for taurus this week]]></description>
+      <link>https://example.com/noise-heavy-general/4d227bc5-fa25-4b4c-8206-abbba384acda</link>
+      <pubDate>Mon, 28 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Popular Culture</author>
+      <guid>https://example.com/noise-heavy-general/4d227bc5-fa25-4b4c-8206-abbba384acda</guid>
+    </item>
+    <item>
+      <title><![CDATA[Movie review: Romantic Comedy receives mixed reviews with weak plot]]></title>
+      <description><![CDATA[General interest content about movie review: romantic comedy receives mixed reviews with weak plot]]></description>
+      <link>https://example.com/noise-heavy-general/bd7c4db4-c74a-4ee3-82ed-40f9898d1957</link>
+      <pubDate>Fri, 18 Jul 2025 20:20:37 GMT</pubDate>
+      <author>General Interest</author>
+      <guid>https://example.com/noise-heavy-general/bd7c4db4-c74a-4ee3-82ed-40f9898d1957</guid>
+    </item>
+    <item>
+      <title><![CDATA[Movie review: Action Blockbuster disappoints critics with stunning visuals]]></title>
+      <description><![CDATA[General interest content about movie review: action blockbuster disappoints critics with stunning visuals]]></description>
+      <link>https://example.com/noise-heavy-general/fe3a27d5-ac3b-4577-9c4f-e4319aebc958</link>
+      <pubDate>Tue, 29 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Entertainment Reporter</author>
+      <guid>https://example.com/noise-heavy-general/fe3a27d5-ac3b-4577-9c4f-e4319aebc958</guid>
+    </item>
+    <item>
+      <title><![CDATA[Pet care tips for new dog owners]]></title>
+      <description><![CDATA[General interest content about pet care tips for new dog owners]]></description>
+      <link>https://example.com/noise-heavy-general/d9ad0ed8-8294-4d15-934b-d3efdde0ffc8</link>
+      <pubDate>Thu, 24 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Lifestyle Writer</author>
+      <guid>https://example.com/noise-heavy-general/d9ad0ed8-8294-4d15-934b-d3efdde0ffc8</guid>
+    </item>
+    <item>
+      <title><![CDATA[Travel guide: Paris offers shopping for visitors]]></title>
+      <description><![CDATA[General interest content about travel guide: paris offers shopping for visitors]]></description>
+      <link>https://example.com/noise-heavy-general/09d73549-4095-45a5-924b-9058b441241e</link>
+      <pubDate>Thu, 31 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Lifestyle Writer</author>
+      <guid>https://example.com/noise-heavy-general/09d73549-4095-45a5-924b-9058b441241e</guid>
+    </item>
+    <item>
+      <title><![CDATA[Weather: snow storms expected for Houston area this year]]></title>
+      <description><![CDATA[General interest content about weather: snow storms expected for houston area this year]]></description>
+      <link>https://example.com/noise-heavy-general/da05f3fb-7af5-40aa-b227-094b4cf97cc9</link>
+      <pubDate>Sat, 02 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Popular Culture</author>
+      <guid>https://example.com/noise-heavy-general/da05f3fb-7af5-40aa-b227-094b4cf97cc9</guid>
+    </item>
+    <item>
+      <title><![CDATA[Pet care tips for new bird owners]]></title>
+      <description><![CDATA[General interest content about pet care tips for new bird owners]]></description>
+      <link>https://example.com/noise-heavy-general/71606584-cb74-436a-a2e3-ee99ad5daf0f</link>
+      <pubDate>Wed, 23 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Popular Culture</author>
+      <guid>https://example.com/noise-heavy-general/71606584-cb74-436a-a2e3-ee99ad5daf0f</guid>
+    </item>
+    <item>
+      <title><![CDATA[Sports: LeBron James wins championship in football competition]]></title>
+      <description><![CDATA[General interest content about sports: lebron james wins championship in football competition]]></description>
+      <link>https://example.com/noise-heavy-general/2f6da305-5ff6-4965-8cc6-733b2512a422</link>
+      <pubDate>Thu, 17 Jul 2025 20:20:37 GMT</pubDate>
+      <author>General Interest</author>
+      <guid>https://example.com/noise-heavy-general/2f6da305-5ff6-4965-8cc6-733b2512a422</guid>
+    </item>
+    <item>
+      <title><![CDATA[Sports: Tom Brady wins championship in basketball competition]]></title>
+      <description><![CDATA[General interest content about sports: tom brady wins championship in basketball competition]]></description>
+      <link>https://example.com/noise-heavy-general/46b14024-d04b-455f-8e52-0180bc12354e</link>
+      <pubDate>Sat, 09 Aug 2025 20:20:37 GMT</pubDate>
+      <author>General Interest</author>
+      <guid>https://example.com/noise-heavy-general/46b14024-d04b-455f-8e52-0180bc12354e</guid>
+    </item>
+    <item>
+      <title><![CDATA[Music: Drake drops surprise EP featuring guest vocals]]></title>
+      <description><![CDATA[General interest content about music: drake drops surprise ep featuring guest vocals]]></description>
+      <link>https://example.com/noise-heavy-general/7fc19e15-5316-4ac2-9d28-b63cc99bae7c</link>
+      <pubDate>Sat, 09 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Popular Culture</author>
+      <guid>https://example.com/noise-heavy-general/7fc19e15-5316-4ac2-9d28-b63cc99bae7c</guid>
+    </item>
+    <item>
+      <title><![CDATA[Music: Billie Eilish drops new album featuring guest vocals]]></title>
+      <description><![CDATA[General interest content about music: billie eilish drops new album featuring guest vocals]]></description>
+      <link>https://example.com/noise-heavy-general/07009fa4-967c-4e61-befd-8d532ad46641</link>
+      <pubDate>Fri, 18 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Lifestyle Writer</author>
+      <guid>https://example.com/noise-heavy-general/07009fa4-967c-4e61-befd-8d532ad46641</guid>
+    </item>
+    <item>
+      <title><![CDATA[Weather: sunny weather expected for Central Texas this season]]></title>
+      <description><![CDATA[General interest content about weather: sunny weather expected for central texas this season]]></description>
+      <link>https://example.com/noise-heavy-general/abfabad7-f6f4-409e-9ff3-599cf24d9814</link>
+      <pubDate>Sat, 19 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Popular Culture</author>
+      <guid>https://example.com/noise-heavy-general/abfabad7-f6f4-409e-9ff3-599cf24d9814</guid>
+    </item>
+    <item>
+      <title><![CDATA[Weather: clear skies expected for Houston area this year]]></title>
+      <description><![CDATA[General interest content about weather: clear skies expected for houston area this year]]></description>
+      <link>https://example.com/noise-heavy-general/f100893a-8e6a-4959-8821-4020bb8224a4</link>
+      <pubDate>Sat, 09 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Lifestyle Writer</author>
+      <guid>https://example.com/noise-heavy-general/f100893a-8e6a-4959-8821-4020bb8224a4</guid>
+    </item>
+    <item>
+      <title><![CDATA[Home improvement: DIY bedroom refresh for beginners]]></title>
+      <description><![CDATA[General interest content about home improvement: diy bedroom refresh for beginners]]></description>
+      <link>https://example.com/noise-heavy-general/c3c99bb9-5357-4fa8-8b4e-7ce836aa281e</link>
+      <pubDate>Fri, 01 Aug 2025 20:20:37 GMT</pubDate>
+      <author>General Interest</author>
+      <guid>https://example.com/noise-heavy-general/c3c99bb9-5357-4fa8-8b4e-7ce836aa281e</guid>
+    </item>
+    <item>
+      <title><![CDATA[Fashion: vintage style is the new must-have for fall]]></title>
+      <description><![CDATA[General interest content about fashion: vintage style is the new must-have for fall]]></description>
+      <link>https://example.com/noise-heavy-general/12ff1515-efc8-4511-93ef-cb115c889e3e</link>
+      <pubDate>Fri, 25 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Lifestyle Writer</author>
+      <guid>https://example.com/noise-heavy-general/12ff1515-efc8-4511-93ef-cb115c889e3e</guid>
+    </item>
+    <item>
+      <title><![CDATA[Food: Bistro 21 serves Mexican in downtown]]></title>
+      <description><![CDATA[General interest content about food: bistro 21 serves mexican in downtown]]></description>
+      <link>https://example.com/noise-heavy-general/56856bd2-65e0-47ba-ac5a-0439f088b8a7</link>
+      <pubDate>Tue, 22 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Lifestyle Writer</author>
+      <guid>https://example.com/noise-heavy-general/56856bd2-65e0-47ba-ac5a-0439f088b8a7</guid>
+    </item>
+    <item>
+      <title><![CDATA[Music: Billie Eilish drops surprise EP featuring duet]]></title>
+      <description><![CDATA[General interest content about music: billie eilish drops surprise ep featuring duet]]></description>
+      <link>https://example.com/noise-heavy-general/69961e12-9acb-4237-a865-889dc8875ea1</link>
+      <pubDate>Tue, 22 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Entertainment Reporter</author>
+      <guid>https://example.com/noise-heavy-general/69961e12-9acb-4237-a865-889dc8875ea1</guid>
+    </item>
+    <item>
+      <title><![CDATA[Music: Taylor Swift drops surprise EP featuring guest vocals]]></title>
+      <description><![CDATA[General interest content about music: taylor swift drops surprise ep featuring guest vocals]]></description>
+      <link>https://example.com/noise-heavy-general/634f3920-9435-405c-a9e0-169f44ab2373</link>
+      <pubDate>Wed, 23 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Entertainment Reporter</author>
+      <guid>https://example.com/noise-heavy-general/634f3920-9435-405c-a9e0-169f44ab2373</guid>
+    </item>
+    <item>
+      <title><![CDATA[Movie review: Sci-Fi Thriller impresses audiences with weak plot]]></title>
+      <description><![CDATA[General interest content about movie review: sci-fi thriller impresses audiences with weak plot]]></description>
+      <link>https://example.com/noise-heavy-general/738a7e83-4e50-4e4e-ae02-599338c45138</link>
+      <pubDate>Mon, 28 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Lifestyle Writer</author>
+      <guid>https://example.com/noise-heavy-general/738a7e83-4e50-4e4e-ae02-599338c45138</guid>
+    </item>
+    <item>
+      <title><![CDATA[Fashion: vintage style is the new must-have for winter]]></title>
+      <description><![CDATA[General interest content about fashion: vintage style is the new must-have for winter]]></description>
+      <link>https://example.com/noise-heavy-general/3bc3c624-9327-481a-82c2-9ea75ca0f302</link>
+      <pubDate>Tue, 12 Aug 2025 20:20:37 GMT</pubDate>
+      <author>General Interest</author>
+      <guid>https://example.com/noise-heavy-general/3bc3c624-9327-481a-82c2-9ea75ca0f302</guid>
+    </item>
+    <item>
+      <title><![CDATA[Recipe: How to make perfect banana bread with premium chocolate]]></title>
+      <description><![CDATA[General interest content about recipe: how to make perfect banana bread with premium chocolate]]></description>
+      <link>https://example.com/noise-heavy-general/33c44efa-89bd-4dc5-833b-84233d0bfa6e</link>
+      <pubDate>Sat, 02 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Popular Culture</author>
+      <guid>https://example.com/noise-heavy-general/33c44efa-89bd-4dc5-833b-84233d0bfa6e</guid>
+    </item>
+    <item>
+      <title><![CDATA[Home improvement: DIY garden makeover for beginners]]></title>
+      <description><![CDATA[General interest content about home improvement: diy garden makeover for beginners]]></description>
+      <link>https://example.com/noise-heavy-general/61d0c546-9b8d-4686-b2d2-89aeff217c77</link>
+      <pubDate>Wed, 16 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Entertainment Reporter</author>
+      <guid>https://example.com/noise-heavy-general/61d0c546-9b8d-4686-b2d2-89aeff217c77</guid>
+    </item>
+    <item>
+      <title><![CDATA[Travel guide: London offers shopping for visitors]]></title>
+      <description><![CDATA[General interest content about travel guide: london offers shopping for visitors]]></description>
+      <link>https://example.com/noise-heavy-general/723e7643-d8fd-4cb9-bcd8-cf168c240cab</link>
+      <pubDate>Sun, 20 Jul 2025 20:20:37 GMT</pubDate>
+      <author>General Interest</author>
+      <guid>https://example.com/noise-heavy-general/723e7643-d8fd-4cb9-bcd8-cf168c240cab</guid>
+    </item>
+    <item>
+      <title><![CDATA[Pet care tips for new cat owners]]></title>
+      <description><![CDATA[General interest content about pet care tips for new cat owners]]></description>
+      <link>https://example.com/noise-heavy-general/6b452ede-8327-4f43-9aa6-fb763a084bbe</link>
+      <pubDate>Fri, 08 Aug 2025 20:20:37 GMT</pubDate>
+      <author>General Interest</author>
+      <guid>https://example.com/noise-heavy-general/6b452ede-8327-4f43-9aa6-fb763a084bbe</guid>
+    </item>
+    <item>
+      <title><![CDATA[Sports: Tom Brady wins championship in football competition]]></title>
+      <description><![CDATA[General interest content about sports: tom brady wins championship in football competition]]></description>
+      <link>https://example.com/noise-heavy-general/ccc35deb-3bd3-4997-b860-57d6ddabf376</link>
+      <pubDate>Sun, 27 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Popular Culture</author>
+      <guid>https://example.com/noise-heavy-general/ccc35deb-3bd3-4997-b860-57d6ddabf376</guid>
+    </item>
+    <item>
+      <title><![CDATA[Pet care tips for new cat owners]]></title>
+      <description><![CDATA[General interest content about pet care tips for new cat owners]]></description>
+      <link>https://example.com/noise-heavy-general/61c43496-20ab-4ec1-8ef2-4f33088dbbc0</link>
+      <pubDate>Wed, 06 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Entertainment Reporter</author>
+      <guid>https://example.com/noise-heavy-general/61c43496-20ab-4ec1-8ef2-4f33088dbbc0</guid>
+    </item>
+    <item>
+      <title><![CDATA[Pet care tips for new fish owners]]></title>
+      <description><![CDATA[General interest content about pet care tips for new fish owners]]></description>
+      <link>https://example.com/noise-heavy-general/2e693aff-864b-4eb4-a745-8abda9f75da2</link>
+      <pubDate>Tue, 22 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Lifestyle Writer</author>
+      <guid>https://example.com/noise-heavy-general/2e693aff-864b-4eb4-a745-8abda9f75da2</guid>
+    </item>
+    <item>
+      <title><![CDATA[Fashion: bold colors is the new must-have for fall]]></title>
+      <description><![CDATA[General interest content about fashion: bold colors is the new must-have for fall]]></description>
+      <link>https://example.com/noise-heavy-general/2984f153-f89e-4ca5-b5e4-532471340920</link>
+      <pubDate>Mon, 11 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Lifestyle Writer</author>
+      <guid>https://example.com/noise-heavy-general/2984f153-f89e-4ca5-b5e4-532471340920</guid>
+    </item>
+    <item>
+      <title><![CDATA[Gaming: FIFA releases DLC with new multiplayer mode]]></title>
+      <description><![CDATA[General interest content about gaming: fifa releases dlc with new multiplayer mode]]></description>
+      <link>https://example.com/noise-heavy-general/26fed072-b213-418f-bdb5-7057199ca5af</link>
+      <pubDate>Wed, 16 Jul 2025 20:20:37 GMT</pubDate>
+      <author>General Interest</author>
+      <guid>https://example.com/noise-heavy-general/26fed072-b213-418f-bdb5-7057199ca5af</guid>
+    </item>
+    <item>
+      <title><![CDATA[Food: Bistro 21 serves Mexican in midtown]]></title>
+      <description><![CDATA[General interest content about food: bistro 21 serves mexican in midtown]]></description>
+      <link>https://example.com/noise-heavy-general/c7bcd8cc-e9cb-4f3e-ac58-329834c235c3</link>
+      <pubDate>Wed, 06 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Popular Culture</author>
+      <guid>https://example.com/noise-heavy-general/c7bcd8cc-e9cb-4f3e-ac58-329834c235c3</guid>
+    </item>
+    <item>
+      <title><![CDATA[Food: Urban Kitchen serves Mexican in midtown]]></title>
+      <description><![CDATA[General interest content about food: urban kitchen serves mexican in midtown]]></description>
+      <link>https://example.com/noise-heavy-general/0f44a962-263d-43b0-a65f-7caab8536bef</link>
+      <pubDate>Sat, 26 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Entertainment Reporter</author>
+      <guid>https://example.com/noise-heavy-general/0f44a962-263d-43b0-a65f-7caab8536bef</guid>
+    </item>
+    <item>
+      <title><![CDATA[Horoscope predictions for Virgo this week]]></title>
+      <description><![CDATA[General interest content about horoscope predictions for virgo this week]]></description>
+      <link>https://example.com/noise-heavy-general/dd883450-25f7-4316-b98e-061c7f966906</link>
+      <pubDate>Sun, 27 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Popular Culture</author>
+      <guid>https://example.com/noise-heavy-general/dd883450-25f7-4316-b98e-061c7f966906</guid>
+    </item>
+    <item>
+      <title><![CDATA[Music: Taylor Swift drops remix collection featuring featured artist]]></title>
+      <description><![CDATA[General interest content about music: taylor swift drops remix collection featuring featured artist]]></description>
+      <link>https://example.com/noise-heavy-general/1ff9192c-8be2-4464-8bf0-145aa809b0d7</link>
+      <pubDate>Fri, 25 Jul 2025 20:20:37 GMT</pubDate>
+      <author>General Interest</author>
+      <guid>https://example.com/noise-heavy-general/1ff9192c-8be2-4464-8bf0-145aa809b0d7</guid>
+    </item>
+    <item>
+      <title><![CDATA[Celebrity: Chris Evans announces new project on social media]]></title>
+      <description><![CDATA[General interest content about celebrity: chris evans announces new project on social media]]></description>
+      <link>https://example.com/noise-heavy-general/e5188a96-afd4-4179-b47e-9b239bdc848c</link>
+      <pubDate>Mon, 28 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Popular Culture</author>
+      <guid>https://example.com/noise-heavy-general/e5188a96-afd4-4179-b47e-9b239bdc848c</guid>
+    </item>
+    <item>
+      <title><![CDATA[Entertainment: Cultural Celebration features dance troupe this season]]></title>
+      <description><![CDATA[General interest content about entertainment: cultural celebration features dance troupe this season]]></description>
+      <link>https://example.com/noise-heavy-general/65f0d680-17b0-4577-aba5-b50fc1660d8e</link>
+      <pubDate>Sun, 03 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Entertainment Reporter</author>
+      <guid>https://example.com/noise-heavy-general/65f0d680-17b0-4577-aba5-b50fc1660d8e</guid>
+    </item>
+    <item>
+      <title><![CDATA[Weather: snow storms expected for Central Texas this year]]></title>
+      <description><![CDATA[General interest content about weather: snow storms expected for central texas this year]]></description>
+      <link>https://example.com/noise-heavy-general/c98a3159-c036-4ed5-8449-cf540b244c36</link>
+      <pubDate>Sun, 10 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Popular Culture</author>
+      <guid>https://example.com/noise-heavy-general/c98a3159-c036-4ed5-8449-cf540b244c36</guid>
+    </item>
+    <item>
+      <title><![CDATA[Horoscope predictions for Gemini this week]]></title>
+      <description><![CDATA[General interest content about horoscope predictions for gemini this week]]></description>
+      <link>https://example.com/noise-heavy-general/cd404f91-d7df-438a-86ac-3217d4a095f4</link>
+      <pubDate>Wed, 16 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Lifestyle Writer</author>
+      <guid>https://example.com/noise-heavy-general/cd404f91-d7df-438a-86ac-3217d4a095f4</guid>
+    </item>
+    <item>
+      <title><![CDATA[Home improvement: DIY kitchen renovation for beginners]]></title>
+      <description><![CDATA[General interest content about home improvement: diy kitchen renovation for beginners]]></description>
+      <link>https://example.com/noise-heavy-general/9021604d-54ca-4d64-ba49-f9f169cbee61</link>
+      <pubDate>Sun, 10 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Entertainment Reporter</author>
+      <guid>https://example.com/noise-heavy-general/9021604d-54ca-4d64-ba49-f9f169cbee61</guid>
+    </item>
+    <item>
+      <title><![CDATA[Sports: LeBron James signs contract in basketball competition]]></title>
+      <description><![CDATA[General interest content about sports: lebron james signs contract in basketball competition]]></description>
+      <link>https://example.com/noise-heavy-general/81832d83-3006-4426-be35-5a065a769c62</link>
+      <pubDate>Tue, 29 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Lifestyle Writer</author>
+      <guid>https://example.com/noise-heavy-general/81832d83-3006-4426-be35-5a065a769c62</guid>
+    </item>
+    <item>
+      <title><![CDATA[Pet care tips for new dog owners]]></title>
+      <description><![CDATA[General interest content about pet care tips for new dog owners]]></description>
+      <link>https://example.com/noise-heavy-general/2ddb965c-d1f1-47f9-95dd-04bd9263bcff</link>
+      <pubDate>Mon, 21 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Entertainment Reporter</author>
+      <guid>https://example.com/noise-heavy-general/2ddb965c-d1f1-47f9-95dd-04bd9263bcff</guid>
+    </item>
+    <item>
+      <title><![CDATA[Horoscope predictions for Aries this month]]></title>
+      <description><![CDATA[General interest content about horoscope predictions for aries this month]]></description>
+      <link>https://example.com/noise-heavy-general/388f4b61-1458-4f9e-80d7-0c3cfca5d87d</link>
+      <pubDate>Mon, 04 Aug 2025 20:20:37 GMT</pubDate>
+      <author>General Interest</author>
+      <guid>https://example.com/noise-heavy-general/388f4b61-1458-4f9e-80d7-0c3cfca5d87d</guid>
+    </item>
+    <item>
+      <title><![CDATA[Pet care tips for new cat owners]]></title>
+      <description><![CDATA[General interest content about pet care tips for new cat owners]]></description>
+      <link>https://example.com/noise-heavy-general/179b38e1-734a-494c-be77-c54ac3836403</link>
+      <pubDate>Thu, 31 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Popular Culture</author>
+      <guid>https://example.com/noise-heavy-general/179b38e1-734a-494c-be77-c54ac3836403</guid>
+    </item>
+    <item>
+      <title><![CDATA[Horoscope predictions for Gemini this season]]></title>
+      <description><![CDATA[General interest content about horoscope predictions for gemini this season]]></description>
+      <link>https://example.com/noise-heavy-general/515ec1bf-1bf2-4e08-b28f-3734f1a16af7</link>
+      <pubDate>Wed, 30 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Lifestyle Writer</author>
+      <guid>https://example.com/noise-heavy-general/515ec1bf-1bf2-4e08-b28f-3734f1a16af7</guid>
+    </item>
+    <item>
+      <title><![CDATA[Sports: Serena Williams signs contract in basketball competition]]></title>
+      <description><![CDATA[General interest content about sports: serena williams signs contract in basketball competition]]></description>
+      <link>https://example.com/noise-heavy-general/07c76709-65bb-4c3e-aab5-087820e1d41d</link>
+      <pubDate>Wed, 30 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Popular Culture</author>
+      <guid>https://example.com/noise-heavy-general/07c76709-65bb-4c3e-aab5-087820e1d41d</guid>
+    </item>
+    <item>
+      <title><![CDATA[Movie review: Romantic Comedy receives mixed reviews with poor dialogue]]></title>
+      <description><![CDATA[General interest content about movie review: romantic comedy receives mixed reviews with poor dialogue]]></description>
+      <link>https://example.com/noise-heavy-general/5f5910a8-dca3-40b4-8920-39bf90c3745e</link>
+      <pubDate>Fri, 25 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Lifestyle Writer</author>
+      <guid>https://example.com/noise-heavy-general/5f5910a8-dca3-40b4-8920-39bf90c3745e</guid>
+    </item>
+    <item>
+      <title><![CDATA[Gaming: Fortnite releases major update with new multiplayer mode]]></title>
+      <description><![CDATA[General interest content about gaming: fortnite releases major update with new multiplayer mode]]></description>
+      <link>https://example.com/noise-heavy-general/f50ad028-f149-43f5-a10d-74b0a7fe480a</link>
+      <pubDate>Sun, 03 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Lifestyle Writer</author>
+      <guid>https://example.com/noise-heavy-general/f50ad028-f149-43f5-a10d-74b0a7fe480a</guid>
+    </item>
+    <item>
+      <title><![CDATA[Health: stress relief of meditation for young adults]]></title>
+      <description><![CDATA[General interest content about health: stress relief of meditation for young adults]]></description>
+      <link>https://example.com/noise-heavy-general/63d1c000-681f-474b-9812-9925ebeafc8f</link>
+      <pubDate>Mon, 28 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Lifestyle Writer</author>
+      <guid>https://example.com/noise-heavy-general/63d1c000-681f-474b-9812-9925ebeafc8f</guid>
+    </item>
+    <item>
+      <title><![CDATA[Sports: LeBron James breaks record in football competition]]></title>
+      <description><![CDATA[General interest content about sports: lebron james breaks record in football competition]]></description>
+      <link>https://example.com/noise-heavy-general/2635baa4-01a4-4336-8d4b-c976160cbe8b</link>
+      <pubDate>Sat, 09 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Popular Culture</author>
+      <guid>https://example.com/noise-heavy-general/2635baa4-01a4-4336-8d4b-c976160cbe8b</guid>
+    </item>
+    <item>
+      <title><![CDATA[Music: The Weeknd drops surprise EP featuring duet]]></title>
+      <description><![CDATA[General interest content about music: the weeknd drops surprise ep featuring duet]]></description>
+      <link>https://example.com/noise-heavy-general/4c946fb9-6ea3-496e-843b-f9bb090f0c6d</link>
+      <pubDate>Fri, 08 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Popular Culture</author>
+      <guid>https://example.com/noise-heavy-general/4c946fb9-6ea3-496e-843b-f9bb090f0c6d</guid>
+    </item>
+    <item>
+      <title><![CDATA[Gaming: Minecraft releases DLC with new character customization]]></title>
+      <description><![CDATA[General interest content about gaming: minecraft releases dlc with new character customization]]></description>
+      <link>https://example.com/noise-heavy-general/c7f8d092-cb6b-4d48-884f-fa9d8cf50878</link>
+      <pubDate>Sun, 03 Aug 2025 20:20:37 GMT</pubDate>
+      <author>General Interest</author>
+      <guid>https://example.com/noise-heavy-general/c7f8d092-cb6b-4d48-884f-fa9d8cf50878</guid>
+    </item>
+    <item>
+      <title><![CDATA[Home improvement: DIY kitchen renovation for beginners]]></title>
+      <description><![CDATA[General interest content about home improvement: diy kitchen renovation for beginners]]></description>
+      <link>https://example.com/noise-heavy-general/cb99d61c-3906-46a4-b9ce-87a361dbec63</link>
+      <pubDate>Mon, 14 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Lifestyle Writer</author>
+      <guid>https://example.com/noise-heavy-general/cb99d61c-3906-46a4-b9ce-87a361dbec63</guid>
+    </item>
+    <item>
+      <title><![CDATA[Pet care tips for new dog owners]]></title>
+      <description><![CDATA[General interest content about pet care tips for new dog owners]]></description>
+      <link>https://example.com/noise-heavy-general/0752b5de-841d-4b98-ad8b-f7138f9bf7c7</link>
+      <pubDate>Fri, 18 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Lifestyle Writer</author>
+      <guid>https://example.com/noise-heavy-general/0752b5de-841d-4b98-ad8b-f7138f9bf7c7</guid>
+    </item>
+    <item>
+      <title><![CDATA[Food: The Garden Cafe serves Italian in uptown]]></title>
+      <description><![CDATA[General interest content about food: the garden cafe serves italian in uptown]]></description>
+      <link>https://example.com/noise-heavy-general/d81d3427-a79c-40a6-8b55-6a2d3c792ab2</link>
+      <pubDate>Sat, 02 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Entertainment Reporter</author>
+      <guid>https://example.com/noise-heavy-general/d81d3427-a79c-40a6-8b55-6a2d3c792ab2</guid>
+    </item>
+    <item>
+      <title><![CDATA[Recipe: How to make perfect grilled salmon with local vegetables]]></title>
+      <description><![CDATA[General interest content about recipe: how to make perfect grilled salmon with local vegetables]]></description>
+      <link>https://example.com/noise-heavy-general/74bdcb58-be78-4815-ad28-a28d0ae09ab5</link>
+      <pubDate>Wed, 06 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Entertainment Reporter</author>
+      <guid>https://example.com/noise-heavy-general/74bdcb58-be78-4815-ad28-a28d0ae09ab5</guid>
+    </item>
+    <item>
+      <title><![CDATA[Pet care tips for new dog owners]]></title>
+      <description><![CDATA[General interest content about pet care tips for new dog owners]]></description>
+      <link>https://example.com/noise-heavy-general/44e6334e-912f-425a-a76d-c02676741abd</link>
+      <pubDate>Mon, 21 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Lifestyle Writer</author>
+      <guid>https://example.com/noise-heavy-general/44e6334e-912f-425a-a76d-c02676741abd</guid>
+    </item>
+    <item>
+      <title><![CDATA[Food: Bistro 21 serves Asian in midtown]]></title>
+      <description><![CDATA[General interest content about food: bistro 21 serves asian in midtown]]></description>
+      <link>https://example.com/noise-heavy-general/ec1a8736-4f67-4400-b962-f978fdd01f02</link>
+      <pubDate>Fri, 08 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Lifestyle Writer</author>
+      <guid>https://example.com/noise-heavy-general/ec1a8736-4f67-4400-b962-f978fdd01f02</guid>
+    </item>
+    <item>
+      <title><![CDATA[Health: physical fitness of running for seniors]]></title>
+      <description><![CDATA[General interest content about health: physical fitness of running for seniors]]></description>
+      <link>https://example.com/noise-heavy-general/c87f7600-22b6-4e48-91ba-aac49f524a08</link>
+      <pubDate>Wed, 16 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Entertainment Reporter</author>
+      <guid>https://example.com/noise-heavy-general/c87f7600-22b6-4e48-91ba-aac49f524a08</guid>
+    </item>
+    <item>
+      <title><![CDATA[Sports: LeBron James announces retirement in basketball competition]]></title>
+      <description><![CDATA[General interest content about sports: lebron james announces retirement in basketball competition]]></description>
+      <link>https://example.com/noise-heavy-general/87dad5d1-2ea3-4131-a9c0-0e232a841673</link>
+      <pubDate>Sat, 19 Jul 2025 20:20:37 GMT</pubDate>
+      <author>General Interest</author>
+      <guid>https://example.com/noise-heavy-general/87dad5d1-2ea3-4131-a9c0-0e232a841673</guid>
+    </item>
+    <item>
+      <title><![CDATA[Entertainment: Art Exhibition features theater group this month]]></title>
+      <description><![CDATA[General interest content about entertainment: art exhibition features theater group this month]]></description>
+      <link>https://example.com/noise-heavy-general/9724da08-65cb-457c-8ffd-4ddf911fc4a9</link>
+      <pubDate>Wed, 23 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Entertainment Reporter</author>
+      <guid>https://example.com/noise-heavy-general/9724da08-65cb-457c-8ffd-4ddf911fc4a9</guid>
+    </item>
+    <item>
+      <title><![CDATA[Fashion: vintage style is the new must-have for summer]]></title>
+      <description><![CDATA[General interest content about fashion: vintage style is the new must-have for summer]]></description>
+      <link>https://example.com/noise-heavy-general/1cf8c4d2-fb6c-47f1-b606-9a9085148fdd</link>
+      <pubDate>Mon, 11 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Entertainment Reporter</author>
+      <guid>https://example.com/noise-heavy-general/1cf8c4d2-fb6c-47f1-b606-9a9085148fdd</guid>
+    </item>
+    <item>
+      <title><![CDATA[Entertainment: Cultural Celebration features local band this weekend]]></title>
+      <description><![CDATA[General interest content about entertainment: cultural celebration features local band this weekend]]></description>
+      <link>https://example.com/noise-heavy-general/52e93617-4837-4bee-b69c-7f27c5ae46ff</link>
+      <pubDate>Sat, 26 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Popular Culture</author>
+      <guid>https://example.com/noise-heavy-general/52e93617-4837-4bee-b69c-7f27c5ae46ff</guid>
+    </item>
+    <item>
+      <title><![CDATA[Recipe: How to make perfect chocolate chip cookies with fresh herbs]]></title>
+      <description><![CDATA[General interest content about recipe: how to make perfect chocolate chip cookies with fresh herbs]]></description>
+      <link>https://example.com/noise-heavy-general/85826c8e-6eba-4c82-a233-11b2ee3a9b2b</link>
+      <pubDate>Tue, 05 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Popular Culture</author>
+      <guid>https://example.com/noise-heavy-general/85826c8e-6eba-4c82-a233-11b2ee3a9b2b</guid>
+    </item>
+    <item>
+      <title><![CDATA[Recipe: How to make perfect banana bread with local vegetables]]></title>
+      <description><![CDATA[General interest content about recipe: how to make perfect banana bread with local vegetables]]></description>
+      <link>https://example.com/noise-heavy-general/815cf056-74a5-41ce-a975-8ca583963706</link>
+      <pubDate>Fri, 08 Aug 2025 20:20:37 GMT</pubDate>
+      <author>General Interest</author>
+      <guid>https://example.com/noise-heavy-general/815cf056-74a5-41ce-a975-8ca583963706</guid>
+    </item>
+    <item>
+      <title><![CDATA[Gaming: Call of Duty releases patch with new multiplayer mode]]></title>
+      <description><![CDATA[General interest content about gaming: call of duty releases patch with new multiplayer mode]]></description>
+      <link>https://example.com/noise-heavy-general/1f25b3b1-eb57-485f-8b66-550d917fa697</link>
+      <pubDate>Sat, 26 Jul 2025 20:20:37 GMT</pubDate>
+      <author>General Interest</author>
+      <guid>https://example.com/noise-heavy-general/1f25b3b1-eb57-485f-8b66-550d917fa697</guid>
+    </item>
+    <item>
+      <title><![CDATA[Health: health benefits of yoga for seniors]]></title>
+      <description><![CDATA[General interest content about health: health benefits of yoga for seniors]]></description>
+      <link>https://example.com/noise-heavy-general/f11c9dae-e1aa-4d0b-a4f2-153b78f56a99</link>
+      <pubDate>Sun, 20 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Lifestyle Writer</author>
+      <guid>https://example.com/noise-heavy-general/f11c9dae-e1aa-4d0b-a4f2-153b78f56a99</guid>
+    </item>
+    <item>
+      <title><![CDATA[Celebrity: Taylor Swift announces engagement on social media]]></title>
+      <description><![CDATA[General interest content about celebrity: taylor swift announces engagement on social media]]></description>
+      <link>https://example.com/noise-heavy-general/c56eed9c-473c-4caa-b5db-c607880ac784</link>
+      <pubDate>Thu, 17 Jul 2025 20:20:37 GMT</pubDate>
+      <author>General Interest</author>
+      <guid>https://example.com/noise-heavy-general/c56eed9c-473c-4caa-b5db-c607880ac784</guid>
+    </item>
+    <item>
+      <title><![CDATA[Music: Taylor Swift drops greatest hits featuring guest vocals]]></title>
+      <description><![CDATA[General interest content about music: taylor swift drops greatest hits featuring guest vocals]]></description>
+      <link>https://example.com/noise-heavy-general/e9bc9e54-1aeb-45a1-8fe1-95d91a6f430c</link>
+      <pubDate>Wed, 23 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Entertainment Reporter</author>
+      <guid>https://example.com/noise-heavy-general/e9bc9e54-1aeb-45a1-8fe1-95d91a6f430c</guid>
+    </item>
+    <item>
+      <title><![CDATA[Horoscope predictions for Virgo this season]]></title>
+      <description><![CDATA[General interest content about horoscope predictions for virgo this season]]></description>
+      <link>https://example.com/noise-heavy-general/f4dda18f-5ae6-4849-a8f8-cb3a81acf47b</link>
+      <pubDate>Tue, 05 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Entertainment Reporter</author>
+      <guid>https://example.com/noise-heavy-general/f4dda18f-5ae6-4849-a8f8-cb3a81acf47b</guid>
+    </item>
+    <item>
+      <title><![CDATA[Celebrity: Taylor Swift announces engagement on social media]]></title>
+      <description><![CDATA[General interest content about celebrity: taylor swift announces engagement on social media]]></description>
+      <link>https://example.com/noise-heavy-general/296c6bb7-ff1d-4af8-9c4d-ea6c1729ee13</link>
+      <pubDate>Fri, 08 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Lifestyle Writer</author>
+      <guid>https://example.com/noise-heavy-general/296c6bb7-ff1d-4af8-9c4d-ea6c1729ee13</guid>
+    </item>
+    <item>
+      <title><![CDATA[Music: Drake drops new album featuring duet]]></title>
+      <description><![CDATA[General interest content about music: drake drops new album featuring duet]]></description>
+      <link>https://example.com/noise-heavy-general/f84b813e-1f89-4cee-8ee0-324f045b9c55</link>
+      <pubDate>Mon, 21 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Lifestyle Writer</author>
+      <guid>https://example.com/noise-heavy-general/f84b813e-1f89-4cee-8ee0-324f045b9c55</guid>
+    </item>
+    <item>
+      <title><![CDATA[Sports: Cristiano Ronaldo breaks record in football competition]]></title>
+      <description><![CDATA[General interest content about sports: cristiano ronaldo breaks record in football competition]]></description>
+      <link>https://example.com/noise-heavy-general/c1cef9a3-13ee-40a3-a7ff-2c9751d93146</link>
+      <pubDate>Sun, 27 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Popular Culture</author>
+      <guid>https://example.com/noise-heavy-general/c1cef9a3-13ee-40a3-a7ff-2c9751d93146</guid>
+    </item>
+    <item>
+      <title><![CDATA[Gaming: FIFA releases expansion with new multiplayer mode]]></title>
+      <description><![CDATA[General interest content about gaming: fifa releases expansion with new multiplayer mode]]></description>
+      <link>https://example.com/noise-heavy-general/70fe851b-5587-4af0-a5c3-f7f0ef4a346b</link>
+      <pubDate>Thu, 31 Jul 2025 20:20:37 GMT</pubDate>
+      <author>General Interest</author>
+      <guid>https://example.com/noise-heavy-general/70fe851b-5587-4af0-a5c3-f7f0ef4a346b</guid>
+    </item>
+    <item>
+      <title><![CDATA[Celebrity: Chris Evans announces business venture on social media]]></title>
+      <description><![CDATA[General interest content about celebrity: chris evans announces business venture on social media]]></description>
+      <link>https://example.com/noise-heavy-general/3b67bdf2-9a34-4de5-a348-865ff8e5e6ad</link>
+      <pubDate>Sun, 10 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Entertainment Reporter</author>
+      <guid>https://example.com/noise-heavy-general/3b67bdf2-9a34-4de5-a348-865ff8e5e6ad</guid>
+    </item>
+    <item>
+      <title><![CDATA[Sports: LeBron James announces retirement in tennis competition]]></title>
+      <description><![CDATA[General interest content about sports: lebron james announces retirement in tennis competition]]></description>
+      <link>https://example.com/noise-heavy-general/65ad1b70-edf9-4379-8b0d-8bbaa96e5254</link>
+      <pubDate>Mon, 11 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Entertainment Reporter</author>
+      <guid>https://example.com/noise-heavy-general/65ad1b70-edf9-4379-8b0d-8bbaa96e5254</guid>
+    </item>
+    <item>
+      <title><![CDATA[Sports: Serena Williams wins championship in tennis competition]]></title>
+      <description><![CDATA[General interest content about sports: serena williams wins championship in tennis competition]]></description>
+      <link>https://example.com/noise-heavy-general/7a940aa0-cf50-4e97-b508-17d1ce320606</link>
+      <pubDate>Thu, 24 Jul 2025 20:20:37 GMT</pubDate>
+      <author>General Interest</author>
+      <guid>https://example.com/noise-heavy-general/7a940aa0-cf50-4e97-b508-17d1ce320606</guid>
+    </item>
+    <item>
+      <title><![CDATA[Horoscope predictions for Taurus this week]]></title>
+      <description><![CDATA[General interest content about horoscope predictions for taurus this week]]></description>
+      <link>https://example.com/noise-heavy-general/6cdbaa9c-ec63-4143-8712-9549bc01ddf4</link>
+      <pubDate>Wed, 23 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Lifestyle Writer</author>
+      <guid>https://example.com/noise-heavy-general/6cdbaa9c-ec63-4143-8712-9549bc01ddf4</guid>
+    </item>
+  </channel>
+</rss>
