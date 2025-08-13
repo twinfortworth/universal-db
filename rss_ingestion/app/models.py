@@ -205,3 +205,12 @@ class FeedUpdateResult(BaseModel):
     articles_filtered: int
     error_message: Optional[str] = None
     update_time: datetime = Field(default_factory=datetime.utcnow)
+
+
+class ManualFilterRequest(BaseModel):
+    prompt_description: str = Field(..., description="Description of what the filter should do")
+    include_keywords: List[str] = Field(default_factory=list, description="Keywords that articles must contain")
+    exclude_keywords: List[str] = Field(default_factory=list, description="Keywords that articles must not contain")
+    min_include_score: float = Field(default=0.3, ge=0.0, le=1.0, description="Minimum ratio of include keywords that must match")
+    tenant_id: str = Field(default="default", description="Tenant identifier")
+    limit: int = Field(default=20, description="Maximum number of results per category")

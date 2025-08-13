@@ -94,7 +94,7 @@ function App() {
   const [searchResults, setSearchResults] = useState<SearchResult[]>([])
   const [loading, setLoading] = useState(false)
   const [searching, setSearching] = useState(false)
-  const [searchMode, setSearchMode] = useState<string>('hybrid')
+  const [searchMode, setSearchMode] = useState<string>('manual')
   const [selectedDomainForSearch, setSelectedDomainForSearch] = useState<string>('')
   const [message, setMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null)
   const [activeTab, setActiveTab] = useState<'ingest' | 'domain' | 'browse' | 'search' | 'manage' | 'domains'>('ingest')
@@ -118,6 +118,15 @@ function App() {
   const [currentPage, setCurrentPage] = useState(1)
   const [totalPages, setTotalPages] = useState(1)
   const [updatingFeeds, setUpdatingFeeds] = useState<Set<string>>(new Set())
+  const [manualFilterPrompt, setManualFilterPrompt] = useState('')
+  const [includeKeywords, setIncludeKeywords] = useState('app, AI, startup, video, platform')
+  const [excludeKeywords, setExcludeKeywords] = useState('')
+  const [minIncludeScore, setMinIncludeScore] = useState(0.2)
+  const [includedArticles, setIncludedArticles] = useState<SearchResult[]>([])
+  const [excludedArticles, setExcludedArticles] = useState<SearchResult[]>([])
+  const [totalIncluded, setTotalIncluded] = useState(0)
+  const [totalExcluded, setTotalExcluded] = useState(0)
+  const [showCreateDomainFromFilter, setShowCreateDomainFromFilter] = useState(false)
   const [newFeed, setNewFeed] = useState({
     name: '',
     url: '',
@@ -335,6 +344,16 @@ function App() {
           use_reranking: true,
           domain_id: selectedDomainForSearch
         }
+      } else if (searchMode === 'manual') {
+        endpoint = '/search/manual-filter'
+        requestBody = {
+          prompt_description: manualFilterPrompt,
+          include_keywords: includeKeywords.split(',').map(k => k.trim()).filter(k => k),
+          exclude_keywords: excludeKeywords.split(',').map(k => k.trim()).filter(k => k),
+          min_include_score: minIncludeScore,
+          tenant_id: tenantId,
+          limit: 20
+        }
       }
 
       const response = await fetch(`${API_URL}${endpoint}`, {
@@ -348,13 +367,21 @@ function App() {
       const result = await response.json()
       
       if (response.ok) {
-        setSearchResults(result.results || [])
-        if (!result.results || result.results.length === 0) {
-          showMessage('error', 'No results found for your search query')
+        if (searchMode === 'manual') {
+          setIncludedArticles(result.included_articles || [])
+          setExcludedArticles(result.excluded_articles || [])
+          setTotalIncluded(result.total_included || 0)
+          setTotalExcluded(result.total_excluded || 0)
+          showMessage('success', `Filter applied: ${result.total_included} included, ${result.total_excluded} excluded`)
         } else {
-          showMessage('success', `Found ${result.results.length} results`)
+          setSearchResults(result.results || [])
+          if (!result.results || result.results.length === 0) {
+            showMessage('error', 'No results found for your search query')
+          } else {
+            showMessage('success', `Found ${result.results.length} results`)
+          }
         }
-      } else {
+      }else {
         showMessage('error', result.detail || 'Search failed')
       }
     } catch (error) {
@@ -1151,6 +1178,21 @@ function App() {
                           </div>
                         </div>
                       </div>
+                      
+                      <div className={`p-4 border rounded-lg cursor-pointer transition-all ${searchMode === 'manual' ? 'border-blue-500 bg-blue-50' : 'border-gray-200 hover:border-gray-300'}`}
+                           onClick={() => setSearchMode('manual')}>
+                        <div className="flex items-center gap-3">
+                          <input type="radio" checked={searchMode === 'manual'} onChange={() => setSearchMode('manual')} className="text-blue-600" />
+                          <div className="flex-1">
+                            <div className="font-medium text-gray-900">Manual Prompt Filter Testing</div>
+                            <div className="text-sm text-gray-600">Test custom prompts with include/exclude keywords to filter articles before creating domains.</div>
+                          </div>
+                          <div className="flex gap-1">
+                            <Badge variant="outline" className="text-xs">Manual</Badge>
+                            <Badge variant="outline" className="text-xs">Test</Badge>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                   
@@ -1169,6 +1211,63 @@ function App() {
                           </option>
                         ))}
                       </select>
+                    </div>
+                  )}
+                  
+                  {searchMode === 'manual' && (
+                    <div className="p-4 bg-gray-50 rounded-lg space-y-4">
+                      <div>
+                        <label className="text-sm font-medium text-gray-700 mb-2 block">Filter Description</label>
+                        <Textarea
+                          value={manualFilterPrompt}
+                          onChange={(e) => setManualFilterPrompt(e.target.value)}
+                          placeholder="Describe what this filter should include/exclude (e.g., 'Technology articles about AI and machine learning, excluding entertainment')"
+                          className="w-full"
+                          rows={2}
+                        />
+                      </div>
+                      
+                      <div className="grid grid-cols-2 gap-4">
+                        <div>
+                          <label className="text-sm font-medium text-gray-700 mb-2 block">Include Keywords (comma-separated)</label>
+                          <Textarea
+                            value={includeKeywords}
+                            onChange={(e) => setIncludeKeywords(e.target.value)}
+                            placeholder="technology, AI, machine learning, innovation"
+                            className="w-full"
+                            rows={2}
+                          />
+                        </div>
+                        
+                        <div>
+                          <label className="text-sm font-medium text-gray-700 mb-2 block">Exclude Keywords (comma-separated)</label>
+                          <Textarea
+                            value={excludeKeywords}
+                            onChange={(e) => setExcludeKeywords(e.target.value)}
+                            placeholder="entertainment, sports, celebrity"
+                            className="w-full"
+                            rows={2}
+                          />
+                        </div>
+                      </div>
+                      
+                      <div>
+                        <label className="text-sm font-medium text-gray-700 mb-2 block">
+                          Minimum Include Score: {minIncludeScore.toFixed(1)}
+                        </label>
+                        <input
+                          type="range"
+                          min="0"
+                          max="1"
+                          step="0.1"
+                          value={minIncludeScore}
+                          onChange={(e) => setMinIncludeScore(parseFloat(e.target.value))}
+                          className="w-full"
+                        />
+                        <div className="text-xs text-gray-500 mt-1">
+                          Minimum ratio of include keywords that must match (0.0 = any match, 1.0 = all keywords required)
+                        </div>
+                      </div>
                     </div>
                   )}
                 </div>
@@ -1194,8 +1293,103 @@ function App() {
               </CardContent>
             </Card>
 
+            {/* Manual Filter Results */}
+            {searchMode === 'manual' && (includedArticles.length > 0 || excludedArticles.length > 0) && (
+              <div className="space-y-6">
+                {/* Filter Summary */}
+                <Card className="bg-gradient-to-r from-green-50 to-blue-50 border-green-200">
+                  <CardContent className="pt-4">
+                    <div className="flex justify-between items-center">
+                      <div>
+                        <h3 className="text-xl font-semibold text-gray-900">Filter Results</h3>
+                        <p className="text-sm text-gray-600 mt-1">{manualFilterPrompt}</p>
+                      </div>
+                      <div className="flex gap-4">
+                        <div className="text-center">
+                          <div className="text-2xl font-bold text-green-600">{totalIncluded}</div>
+                          <div className="text-xs text-gray-500">Included</div>
+                        </div>
+                        <div className="text-center">
+                          <div className="text-2xl font-bold text-red-600">{totalExcluded}</div>
+                          <div className="text-xs text-gray-500">Excluded</div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {totalIncluded > 0 && (
+                      <div className="mt-4">
+                        <Button 
+                          onClick={() => setShowCreateDomainFromFilter(true)}
+                          className="bg-green-600 hover:bg-green-700"
+                        >
+                          Create Domain from This Filter
+                        </Button>
+                      </div>
+                    )}
+                  </CardContent>
+                </Card>
+                
+                {/* Included Articles */}
+                {includedArticles.length > 0 && (
+                  <div>
+                    <h4 className="text-lg font-semibold text-green-700 mb-3">✅ Included Articles ({totalIncluded})</h4>
+                    <div className="grid gap-3">
+                      {includedArticles.map((article) => (
+                        <Card key={article.uuid} className="border-l-4 border-l-green-500">
+                          <CardContent className="pt-4">
+                            <div className="flex justify-between items-start">
+                              <div className="flex-1">
+                                <h5 className="font-medium text-gray-900">{article.title}</h5>
+                                {article.description && (
+                                  <p className="text-sm text-gray-600 mt-1">{article.description}</p>
+                                )}
+                              </div>
+                              <a href={article.link} target="_blank" rel="noopener noreferrer" className="text-green-600 hover:text-green-800">
+                                <ExternalLink size={16} />
+                              </a>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                
+                {/* Excluded Articles */}
+                {excludedArticles.length > 0 && (
+                  <div>
+                    <h4 className="text-lg font-semibold text-red-700 mb-3">❌ Excluded Articles ({totalExcluded})</h4>
+                    <div className="grid gap-3">
+                      {excludedArticles.slice(0, 5).map((article) => (
+                        <Card key={article.uuid} className="border-l-4 border-l-red-500 opacity-75">
+                          <CardContent className="pt-4">
+                            <div className="flex justify-between items-start">
+                              <div className="flex-1">
+                                <h5 className="font-medium text-gray-700">{article.title}</h5>
+                                {article.description && (
+                                  <p className="text-sm text-gray-500 mt-1">{article.description}</p>
+                                )}
+                              </div>
+                              <a href={article.link} target="_blank" rel="noopener noreferrer" className="text-red-600 hover:text-red-800">
+                                <ExternalLink size={16} />
+                              </a>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      ))}
+                      {totalExcluded > 5 && (
+                        <div className="text-center text-sm text-gray-500">
+                          ... and {totalExcluded - 5} more excluded articles
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+
             {/* Search Results */}
-            {searchResults.length > 0 && (
+            {searchMode !== 'manual' && searchResults.length > 0 && (
               <div className="space-y-4">
                 <Card className="bg-gradient-to-r from-blue-50 to-indigo-50 border-blue-200">
                   <CardContent className="pt-4">
@@ -1592,6 +1786,91 @@ function App() {
             </Dialog>
           </div>
         )}
+
+        {/* Create Domain from Filter Dialog */}
+        <Dialog open={showCreateDomainFromFilter} onOpenChange={setShowCreateDomainFromFilter}>
+          <DialogContent className="max-w-2xl">
+            <DialogHeader>
+              <DialogTitle>Create Domain from Filter</DialogTitle>
+              <DialogDescription>
+                Convert your successful filter into a reusable domain template.
+              </DialogDescription>
+            </DialogHeader>
+            <div className="space-y-4">
+              <div>
+                <Label htmlFor="filter-domain-name">Domain Name</Label>
+                <Input
+                  id="filter-domain-name"
+                  placeholder="e.g., Technology Innovation News"
+                  value={newDomain.name}
+                  onChange={(e) => setNewDomain({...newDomain, name: e.target.value})}
+                />
+              </div>
+              <div>
+                <Label htmlFor="filter-domain-description">Description</Label>
+                <Input
+                  id="filter-domain-description"
+                  placeholder="e.g., Articles about technology innovation and AI developments"
+                  value={newDomain.description}
+                  onChange={(e) => setNewDomain({...newDomain, description: e.target.value})}
+                />
+              </div>
+              <div>
+                <Label htmlFor="filter-domain-ai-prompt">AI Prompt</Label>
+                <Textarea
+                  id="filter-domain-ai-prompt"
+                  value={manualFilterPrompt}
+                  onChange={(e) => setNewDomain({...newDomain, ai_prompt: e.target.value})}
+                  rows={3}
+                />
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <Label htmlFor="filter-domain-keywords">Include Keywords</Label>
+                  <Textarea
+                    id="filter-domain-keywords"
+                    value={includeKeywords}
+                    onChange={(e) => setNewDomain({...newDomain, keywords: e.target.value})}
+                    rows={2}
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="filter-domain-exclude">Exclude Keywords</Label>
+                  <Textarea
+                    id="filter-domain-exclude"
+                    value={excludeKeywords}
+                    onChange={(e) => setNewDomain({...newDomain, exclude_keywords: e.target.value})}
+                    rows={2}
+                  />
+                </div>
+              </div>
+              <div>
+                <Label htmlFor="filter-domain-min-score">Minimum Relevance Score: {minIncludeScore.toFixed(1)}</Label>
+                <input
+                  type="range"
+                  min="0"
+                  max="1"
+                  step="0.1"
+                  value={minIncludeScore}
+                  onChange={(e) => setNewDomain({...newDomain, min_relevance_score: parseFloat(e.target.value)})}
+                  className="w-full"
+                />
+              </div>
+            </div>
+            <div className="flex justify-end gap-2 mt-6">
+              <Button variant="outline" onClick={() => setShowCreateDomainFromFilter(false)}>
+                Cancel
+              </Button>
+              <Button onClick={async () => {
+                await handleCreateDomain()
+                setShowCreateDomainFromFilter(false)
+                showMessage('success', 'Domain created successfully from filter!')
+              }}>
+                Create Domain
+              </Button>
+            </div>
+          </DialogContent>
+        </Dialog>
 
         {/* Domain Management Tab */}
         {activeTab === 'domains' && (

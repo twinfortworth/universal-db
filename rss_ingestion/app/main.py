@@ -5,7 +5,8 @@ import logging
 from .models import (
     IngestRSSRequest, SearchRequest, SearchResult, CreateDomainRequest, 
     DomainIngestRequest, DomainAnalytics, DomainEntity, EntityType,
-    CreateRSSFeedRequest, UpdateRSSFeedRequest, RSSFeedListResponse, FeedUpdateResult, RSSFeed
+    CreateRSSFeedRequest, UpdateRSSFeedRequest, RSSFeedListResponse, FeedUpdateResult, RSSFeed,
+    ManualFilterRequest
 )
 from .services import DatabaseService, VectorService, RSSService, DomainService, RSSFeedService
 
@@ -470,4 +471,58 @@ async def get_feeds_due_for_update():
         return {"feeds": feeds, "count": len(feeds)}
     except Exception as e:
         logger.error(f"Failed to get feeds due for update: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/search/manual-filter")
+async def manual_filter_search(request: ManualFilterRequest):
+    """Manual prompt filtering for testing before creating domains"""
+    try:
+        all_records = await db_service.get_records(request.tenant_id, limit=1000)
+        
+        included_articles = []
+        excluded_articles = []
+        
+        for record in all_records:
+            title = record.get("data", {}).get("title", "")
+            description = record.get("data", {}).get("description", "")
+            text_content = f"{title} {description}".lower()
+            
+            include_score = 0
+            if request.include_keywords:
+                include_matches = sum(1 for keyword in request.include_keywords if keyword.lower() in text_content)
+                include_score = include_matches / len(request.include_keywords) if request.include_keywords else 0
+            
+            exclude_penalty = sum(1 for keyword in request.exclude_keywords if keyword.lower() in text_content)
+            
+            is_included = (include_score >= request.min_include_score) and (exclude_penalty == 0)
+            
+            article_result = SearchResult(
+                uuid=record["uuid"],
+                title=title,
+                description=description,
+                link=record.get("data", {}).get("link", ""),
+                score=include_score,
+                published=record.get("data", {}).get("published")
+            )
+            
+            if is_included:
+                included_articles.append(article_result)
+            else:
+                excluded_articles.append(article_result)
+        
+        return {
+            "query": request.prompt_description,
+            "included_articles": included_articles[:request.limit],
+            "excluded_articles": excluded_articles[:request.limit],
+            "total_included": len(included_articles),
+            "total_excluded": len(excluded_articles),
+            "filter_settings": {
+                "include_keywords": request.include_keywords,
+                "exclude_keywords": request.exclude_keywords,
+                "min_include_score": request.min_include_score
+            }
+        }
+    except Exception as e:
+        logger.error(f"Manual filter search failed: {e}")
         raise HTTPException(status_code=500, detail=str(e))
