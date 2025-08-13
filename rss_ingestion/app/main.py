@@ -291,6 +291,37 @@ async def ingest_rss_with_domain(request: DomainIngestRequest):
         raise HTTPException(status_code=500, detail=str(e))
 
 
+@app.put("/domains/{domain_id}")
+async def update_domain(domain_id: str, request: CreateDomainRequest):
+    """Update domain"""
+    try:
+        updates = request.model_dump(exclude_unset=True)
+        domain = await domain_service.update_domain(domain_id, updates)
+        if not domain:
+            raise HTTPException(status_code=404, detail="Domain not found")
+        return domain
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Failed to update domain: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.delete("/domains/{domain_id}")
+async def delete_domain(domain_id: str):
+    """Delete domain"""
+    try:
+        success = await domain_service.delete_domain(domain_id)
+        if not success:
+            raise HTTPException(status_code=404, detail="Domain not found")
+        return {"message": "Domain deleted successfully"}
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Failed to delete domain: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 @app.get("/analytics/domain/{domain_id}")
 async def get_domain_analytics(domain_id: str, tenant_id: str = "default"):
     try:

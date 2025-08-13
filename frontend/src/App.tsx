@@ -50,11 +50,14 @@ interface Domain {
   domain_id: string
   name: string
   description: string
+  ai_prompt: string
   keywords: string[]
   entities: string[]
   locations: string[]
   exclude_keywords: string[]
   min_relevance_score: number
+  created_at?: string
+  updated_at?: string
 }
 
 interface UpdateSchedule {
@@ -94,13 +97,14 @@ function App() {
   const [searchMode, setSearchMode] = useState<string>('hybrid')
   const [selectedDomainForSearch, setSelectedDomainForSearch] = useState<string>('')
   const [message, setMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null)
-  const [activeTab, setActiveTab] = useState<'ingest' | 'domain' | 'browse' | 'search' | 'manage'>('ingest')
+  const [activeTab, setActiveTab] = useState<'ingest' | 'domain' | 'browse' | 'search' | 'manage' | 'domains'>('ingest')
   const [domains, setDomains] = useState<Domain[]>([])
   const [selectedDomain, setSelectedDomain] = useState('fort_worth_political')
   const [showCreateDomain, setShowCreateDomain] = useState(false)
   const [newDomain, setNewDomain] = useState({
     name: '',
     description: '',
+    ai_prompt: '',
     keywords: '',
     entities: '',
     locations: '',
@@ -122,6 +126,19 @@ function App() {
       frequency: 'daily' as const,
       time_of_day: '09:00'
     }
+  })
+  const [showCreateDomainManagement, setShowCreateDomainManagement] = useState(false)
+  const [showEditDomain, setShowEditDomain] = useState(false)
+  const [editingDomain, setEditingDomain] = useState<Domain | null>(null)
+  const [newDomainManagement, setNewDomainManagement] = useState({
+    name: '',
+    description: '',
+    ai_prompt: '',
+    keywords: '',
+    entities: '',
+    locations: '',
+    exclude_keywords: '',
+    min_relevance_score: 0.3
   })
 
   const showMessage = (type: 'success' | 'error', text: string) => {
@@ -149,6 +166,7 @@ function App() {
       const domainData = {
         name: newDomain.name,
         description: newDomain.description,
+        ai_prompt: newDomain.ai_prompt,
         keywords: newDomain.keywords.split(',').map(k => k.trim()).filter(k => k),
         entities: newDomain.entities.split(',').map(e => e.trim()).filter(e => e),
         locations: newDomain.locations.split(',').map(l => l.trim()).filter(l => l),
@@ -173,6 +191,7 @@ function App() {
         setNewDomain({
           name: '',
           description: '',
+          ai_prompt: '',
           keywords: '',
           entities: '',
           locations: '',
@@ -551,6 +570,91 @@ function App() {
     }
   }
 
+  const handleCreateDomainManagement = async () => {
+    try {
+      const domainData = {
+        name: newDomainManagement.name,
+        description: newDomainManagement.description,
+        ai_prompt: newDomainManagement.ai_prompt,
+        keywords: newDomainManagement.keywords.split(',').map(k => k.trim()).filter(k => k),
+        entities: newDomainManagement.entities.split(',').map(e => e.trim()).filter(e => e),
+        locations: newDomainManagement.locations.split(',').map(l => l.trim()).filter(l => l),
+        exclude_keywords: newDomainManagement.exclude_keywords.split(',').map(k => k.trim()).filter(k => k),
+        min_relevance_score: newDomainManagement.min_relevance_score
+      }
+      
+      const response = await fetch(`${API_URL}/domains`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(domainData)
+      })
+      
+      if (response.ok) {
+        showMessage('success', 'Domain created successfully!')
+        setShowCreateDomainManagement(false)
+        setNewDomainManagement({
+          name: '', description: '', ai_prompt: '', keywords: '', entities: '', 
+          locations: '', exclude_keywords: '', min_relevance_score: 0.3
+        })
+        loadDomains()
+      } else {
+        showMessage('error', 'Failed to create domain')
+      }
+    } catch (error) {
+      showMessage('error', 'Failed to create domain')
+    }
+  }
+
+  const handleEditDomain = async () => {
+    if (!editingDomain) return
+    try {
+      const domainData = {
+        name: editingDomain.name,
+        description: editingDomain.description,
+        ai_prompt: editingDomain.ai_prompt,
+        keywords: editingDomain.keywords,
+        entities: editingDomain.entities,
+        locations: editingDomain.locations,
+        exclude_keywords: editingDomain.exclude_keywords,
+        min_relevance_score: editingDomain.min_relevance_score
+      }
+      
+      const response = await fetch(`${API_URL}/domains/${editingDomain.domain_id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(domainData)
+      })
+      
+      if (response.ok) {
+        showMessage('success', 'Domain updated successfully!')
+        setShowEditDomain(false)
+        setEditingDomain(null)
+        loadDomains()
+      } else {
+        showMessage('error', 'Failed to update domain')
+      }
+    } catch (error) {
+      showMessage('error', 'Failed to update domain')
+    }
+  }
+
+  const handleDeleteDomain = async (domainId: string) => {
+    try {
+      const response = await fetch(`${API_URL}/domains/${domainId}`, {
+        method: 'DELETE'
+      })
+      
+      if (response.ok) {
+        showMessage('success', 'Domain deleted successfully!')
+        loadDomains()
+      } else {
+        showMessage('error', 'Failed to delete domain')
+      }
+    } catch (error) {
+      showMessage('error', 'Failed to delete domain')
+    }
+  }
+
   const getDomainName = (domainId?: string) => {
     if (!domainId) return 'None'
     const domain = domains.find(d => d.domain_id === domainId)
@@ -630,6 +734,14 @@ function App() {
           >
             <Database size={16} />
             RSS Management
+          </Button>
+          <Button
+            variant={activeTab === 'domains' ? 'default' : 'outline'}
+            onClick={() => setActiveTab('domains')}
+            className="flex items-center gap-2"
+          >
+            <Settings size={16} />
+            Domain Management
           </Button>
         </div>
 
@@ -773,6 +885,15 @@ function App() {
                           placeholder="e.g., Technology startup and venture capital news"
                           value={newDomain.description}
                           onChange={(e) => setNewDomain({...newDomain, description: e.target.value})}
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="domain-ai-prompt">AI Prompt (Working Part)</Label>
+                        <Textarea
+                          id="domain-ai-prompt"
+                          placeholder="e.g., Filter articles about technology startups, venture capital, and innovation. Keep articles about funding rounds, product launches, and industry trends. Exclude entertainment and sports content."
+                          value={newDomain.ai_prompt}
+                          onChange={(e) => setNewDomain({...newDomain, ai_prompt: e.target.value})}
                         />
                       </div>
                       <div>
@@ -1461,6 +1582,162 @@ function App() {
                     <Button onClick={handleEditFeed} className="w-full" disabled={loading}>
                       {loading ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : null}
                       Update RSS Feed
+                    </Button>
+                  </div>
+                )}
+              </DialogContent>
+            </Dialog>
+          </div>
+        )}
+
+        {/* Domain Management Tab */}
+        {activeTab === 'domains' && (
+          <div className="space-y-4">
+            <div className="flex justify-between items-center">
+              <h2 className="text-2xl font-bold">Domain Management</h2>
+              <Dialog open={showCreateDomainManagement} onOpenChange={setShowCreateDomainManagement}>
+                <DialogTrigger asChild>
+                  <Button>
+                    <Plus className="w-4 h-4 mr-2" />
+                    Add Domain
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="max-w-2xl">
+                  <DialogHeader>
+                    <DialogTitle>Create New Domain</DialogTitle>
+                    <DialogDescription>
+                      Define a new domain template for content filtering and entity recognition.
+                    </DialogDescription>
+                  </DialogHeader>
+                  <div className="space-y-4">
+                    <div>
+                      <Label htmlFor="domain-name">Domain Name *</Label>
+                      <Input
+                        id="domain-name"
+                        placeholder="e.g., Tech Startup News"
+                        value={newDomainManagement.name}
+                        onChange={(e) => setNewDomainManagement({...newDomainManagement, name: e.target.value})}
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="domain-description">Description</Label>
+                      <Input
+                        id="domain-description"
+                        placeholder="e.g., Technology startup and venture capital news"
+                        value={newDomainManagement.description}
+                        onChange={(e) => setNewDomainManagement({...newDomainManagement, description: e.target.value})}
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="domain-ai-prompt">AI Prompt (Working Part) *</Label>
+                      <Textarea
+                        id="domain-ai-prompt"
+                        placeholder="e.g., Filter articles about technology startups, venture capital, and innovation. Keep articles about funding rounds, product launches, and industry trends. Exclude entertainment and sports content."
+                        value={newDomainManagement.ai_prompt}
+                        onChange={(e) => setNewDomainManagement({...newDomainManagement, ai_prompt: e.target.value})}
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="domain-keywords">Keywords (comma-separated)</Label>
+                      <Textarea
+                        id="domain-keywords"
+                        placeholder="e.g., startup, venture capital, tech, funding, IPO"
+                        value={newDomainManagement.keywords}
+                        onChange={(e) => setNewDomainManagement({...newDomainManagement, keywords: e.target.value})}
+                      />
+                    </div>
+                    <Button onClick={handleCreateDomainManagement} className="w-full">
+                      Create Domain
+                    </Button>
+                  </div>
+                </DialogContent>
+              </Dialog>
+            </div>
+
+            <Card>
+              <CardContent className="p-0">
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Domain Name</TableHead>
+                      <TableHead>Description</TableHead>
+                      <TableHead>AI Prompt</TableHead>
+                      <TableHead>Last Updated</TableHead>
+                      <TableHead>Actions</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {domains.map((domain) => (
+                      <TableRow key={domain.domain_id}>
+                        <TableCell className="font-medium">{domain.name}</TableCell>
+                        <TableCell>{domain.description}</TableCell>
+                        <TableCell className="max-w-xs truncate">{domain.ai_prompt || 'No AI prompt set'}</TableCell>
+                        <TableCell>{formatDate(domain.updated_at || domain.created_at)}</TableCell>
+                        <TableCell>
+                          <div className="flex gap-2">
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              onClick={() => {
+                                setEditingDomain(domain)
+                                setShowEditDomain(true)
+                              }}
+                            >
+                              <Edit className="w-4 h-4" />
+                            </Button>
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              onClick={() => handleDeleteDomain(domain.domain_id)}
+                            >
+                              <Trash2 className="w-4 h-4" />
+                            </Button>
+                          </div>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </CardContent>
+            </Card>
+
+            {/* Edit Domain Dialog */}
+            <Dialog open={showEditDomain} onOpenChange={setShowEditDomain}>
+              <DialogContent className="max-w-2xl">
+                <DialogHeader>
+                  <DialogTitle>Edit Domain</DialogTitle>
+                  <DialogDescription>
+                    Update the domain template for content filtering and entity recognition.
+                  </DialogDescription>
+                </DialogHeader>
+                {editingDomain && (
+                  <div className="space-y-4">
+                    <div>
+                      <Label htmlFor="edit-domain-name">Domain Name *</Label>
+                      <Input
+                        id="edit-domain-name"
+                        value={editingDomain.name}
+                        onChange={(e) => setEditingDomain({...editingDomain, name: e.target.value})}
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="edit-domain-description">Description</Label>
+                      <Input
+                        id="edit-domain-description"
+                        value={editingDomain.description}
+                        onChange={(e) => setEditingDomain({...editingDomain, description: e.target.value})}
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="edit-domain-ai-prompt">AI Prompt (Working Part) *</Label>
+                      <Textarea
+                        id="edit-domain-ai-prompt"
+                        value={editingDomain.ai_prompt}
+                        onChange={(e) => setEditingDomain({...editingDomain, ai_prompt: e.target.value})}
+                      />
+                    </div>
+                    <Button onClick={handleEditDomain} className="w-full">
+                      Update Domain
                     </Button>
                   </div>
                 )}

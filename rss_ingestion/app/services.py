@@ -340,6 +340,7 @@ class DomainService:
             domain_id="fort_worth_political",
             name="Fort Worth Political",
             description="Fort Worth city politics, government, and civic affairs",
+            ai_prompt="Filter articles about Fort Worth city politics, government decisions, municipal affairs, and civic activities. Keep articles about city council meetings, mayoral announcements, budget discussions, zoning changes, and local government initiatives. Exclude entertainment, sports, and non-governmental content.",
             keywords=[
                 "fort worth", "tarrant county", "city council", "mayor", "city manager",
                 "municipal", "ordinance", "zoning", "budget", "tax", "bond", "election",
@@ -369,6 +370,7 @@ class DomainService:
             domain_id=domain_id,
             name=request.name,
             description=request.description,
+            ai_prompt=request.ai_prompt,
             keywords=request.keywords,
             entities=request.entities,
             locations=request.locations,
@@ -394,6 +396,14 @@ class DomainService:
                 setattr(domain, key, value)
         domain.updated_at = datetime.utcnow()
         return domain
+    
+    async def delete_domain(self, domain_id: str) -> bool:
+        if domain_id in self.domains:
+            domain = self.domains[domain_id]
+            del self.domains[domain_id]
+            logger.info(f"Deleted domain: {domain.name} ({domain_id})")
+            return True
+        return False
     
     def extract_entities(self, text: str, domain: DomainTemplate) -> List[DomainEntity]:
         entities = []

@@ -77,6 +77,7 @@ class DomainTemplate(BaseModel):
     domain_id: str = Field(..., description="Unique identifier for the domain")
     name: str = Field(..., description="Human-readable domain name")
     description: str = Field(..., description="Description of the domain")
+    ai_prompt: str = Field(default="", description="AI prompt for filtering and defining data objects")
     keywords: List[str] = Field(default_factory=list, description="Keywords to match for domain relevance")
     entities: List[str] = Field(default_factory=list, description="Known entities to track")
     locations: List[str] = Field(default_factory=list, description="Geographic locations of interest")
@@ -90,6 +91,7 @@ class DomainTemplate(BaseModel):
 class CreateDomainRequest(BaseModel):
     name: str = Field(..., description="Human-readable domain name")
     description: str = Field(..., description="Description of the domain")
+    ai_prompt: str = Field(default="", description="AI prompt for filtering and defining data objects")
     keywords: List[str] = Field(default_factory=list)
     entities: List[str] = Field(default_factory=list)
     locations: List[str] = Field(default_factory=list)
