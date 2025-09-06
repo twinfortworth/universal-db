@@ -1,0 +1,268 @@
+{
+  "domain_filtering": {
+    "fort_worth_political": {
+      "category": "fort_worth_political",
+      "total_articles": 100,
+      "expected_signal_ratio": 0.85,
+      "confusion_matrix": {
+        "true_positives": 0,
+        "false_positives": 0,
+        "true_negatives": 15,
+        "false_negatives": 85
+      },
+      "metrics": {
+        "precision": 0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "accuracy": 0.15,
+        "avg_relevance_score": 0.09054700854700855
+      },
+      "threshold": 0.3,
+      "domain_config": {
+        "keywords_count": 26,
+        "entities_count": 8,
+        "locations_count": 9,
+        "exclude_keywords_count": 0
+      }
+    },
+    "tech_startups": {
+      "category": "tech_startups",
+      "total_articles": 100,
+      "expected_signal_ratio": 0.6,
+      "confusion_matrix": {
+        "true_positives": 0,
+        "false_positives": 0,
+        "true_negatives": 40,
+        "false_negatives": 60
+      },
+      "metrics": {
+        "precision": 0,
+        "recall": 0.0,
+        "f1_score": 0,
+        "accuracy": 0.4,
+        "avg_relevance_score": 0.12859920634920635
+      },
+      "threshold": 0.4,
+      "domain_config": {
+        "keywords_count": 16,
+        "entities_count": 7,
+        "locations_count": 9,
+        "exclude_keywords_count": 10
+      }
+    },
+    "mixed_content": {
+      "category": "mixed_content",
+      "total_articles": 100,
+      "expected_signal_ratio": 0.25,
+      "confusion_matrix": {
+        "true_positives": 17,
+        "false_positives": 0,
+        "true_negatives": 75,
+        "false_negatives": 8
+      },
+      "metrics": {
+        "precision": 1.0,
+        "recall": 0.68,
+        "f1_score": 0.8095238095238095,
+        "accuracy": 0.92,
+        "avg_relevance_score": 0.0794
+      },
+      "threshold": 0.3,
+      "domain_config": {
+        "keywords_count": 10,
+        "entities_count": 5,
+        "locations_count": 8,
+        "exclude_keywords_count": 10
+      }
+    }
+  },
+  "manual_filtering": {
+    "fort_worth_government": {
+      "prompt_name": "fort_worth_government",
+      "total_articles": 100,
+      "confusion_matrix": {
+        "true_positives": 85,
+        "false_positives": 0,
+        "true_negatives": 15,
+        "false_negatives": 0
+      },
+      "metrics": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0,
+        "accuracy": 1.0
+      },
+      "config": {
+        "include_keywords": [
+          "fort worth",
+          "city council",
+          "mayor",
+          "government",
+          "municipal"
+        ],
+        "exclude_keywords": [
+          "sports",
+          "entertainment",
+          "weather",
+          "restaurant"
+        ],
+        "min_score": 0.3
+      }
+    },
+    "tech_startup_funding": {
+      "prompt_name": "tech_startup_funding",
+      "total_articles": 100,
+      "confusion_matrix": {
+        "true_positives": 59,
+        "false_positives": 31,
+        "true_negatives": 9,
+        "false_negatives": 1
+      },
+      "metrics": {
+        "precision": 0.6555555555555556,
+        "recall": 0.9833333333333333,
+        "f1_score": 0.7866666666666666,
+        "accuracy": 0.68
+      },
+      "config": {
+        "include_keywords": [
+          "startup",
+          "venture capital",
+          "funding",
+          "entrepreneur",
+          "innovation"
+        ],
+        "exclude_keywords": [
+          "consumer",
+          "retail",
+          "gaming",
+          "entertainment"
+        ],
+        "min_score": 0.4
+      }
+    },
+    "business_innovation": {
+      "prompt_name": "business_innovation",
+      "total_articles": 100,
+      "confusion_matrix": {
+        "true_positives": 25,
+        "false_positives": 0,
+        "true_negatives": 75,
+        "false_negatives": 0
+      },
+      "metrics": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0,
+        "accuracy": 1.0
+      },
+      "config": {
+        "include_keywords": [
+          "business",
+          "innovation",
+          "entrepreneur",
+          "economic",
+          "development"
+        ],
+        "exclude_keywords": [
+          "entertainment",
+          "celebrity",
+          "sports",
+          "fashion",
+          "travel"
+        ],
+        "min_score": 0.25
+      }
+    }
+  },
+  "promotion_logic": {
+    "threshold_0.2": {
+      "threshold": 0.2,
+      "total_articles": 400,
+      "promoted": 233,
+      "discarded": 167,
+      "correct_promotions": 175,
+      "correct_discards": 167,
+      "metrics": {
+        "promotion_accuracy": 0.7510729613733905,
+        "discard_accuracy": 1.0,
+        "overall_accuracy": 0.855,
+        "promotion_rate": 0.5825,
+        "discard_rate": 0.4175
+      }
+    },
+    "threshold_0.3": {
+      "threshold": 0.3,
+      "total_articles": 400,
+      "promoted": 187,
+      "discarded": 213,
+      "correct_promotions": 175,
+      "correct_discards": 213,
+      "metrics": {
+        "promotion_accuracy": 0.9358288770053476,
+        "discard_accuracy": 1.0,
+        "overall_accuracy": 0.97,
+        "promotion_rate": 0.4675,
+        "discard_rate": 0.5325
+      }
+    },
+    "threshold_0.4": {
+      "threshold": 0.4,
+      "total_articles": 400,
+      "promoted": 175,
+      "discarded": 225,
+      "correct_promotions": 175,
+      "correct_discards": 225,
+      "metrics": {
+        "promotion_accuracy": 1.0,
+        "discard_accuracy": 1.0,
+        "overall_accuracy": 1.0,
+        "promotion_rate": 0.4375,
+        "discard_rate": 0.5625
+      }
+    },
+    "threshold_0.5": {
+      "threshold": 0.5,
+      "total_articles": 400,
+      "promoted": 168,
+      "discarded": 232,
+      "correct_promotions": 168,
+      "correct_discards": 225,
+      "metrics": {
+        "promotion_accuracy": 1.0,
+        "discard_accuracy": 0.9698275862068966,
+        "overall_accuracy": 0.9825,
+        "promotion_rate": 0.42,
+        "discard_rate": 0.58
+      }
+    }
+  },
+  "overall_metrics": {
+    "domain_filtering": {
+      "avg_precision": 0.3333333333333333,
+      "avg_recall": 0.22666666666666668,
+      "avg_f1_score": 0.2698412698412698
+    },
+    "manual_filtering": {
+      "avg_precision": 0.8851851851851852,
+      "avg_recall": 0.9944444444444445,
+      "avg_f1_score": 0.9288888888888889
+    },
+    "promotion_logic": {
+      "best_threshold": 0.4,
+      "best_accuracy": 1.0
+    },
+    "recommendations": [
+      "Improve fort_worth_political domain precision by refining keywords and exclude terms",
+      "Improve fort_worth_political domain recall by adding more relevant keywords",
+      "Improve tech_startups domain precision by refining keywords and exclude terms",
+      "Improve tech_startups domain recall by adding more relevant keywords",
+      "Refine manual filter 'tech_startup_funding' to reduce false positives"
+    ]
+  },
+  "test_metadata": {
+    "timestamp": "2025-08-13T20:22:09.671650",
+    "test_version": "1.0",
+    "total_articles_tested": 300
+  }
+}

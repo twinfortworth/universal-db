@@ -1,0 +1,810 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Fort Worth Political News</title>
+    <description>Test RSS feed for fort_worth_political articles</description>
+    <link>https://example.com/fort_worth_political</link>
+    <lastBuildDate>Wed, 13 Aug 2025 20:20:37 GMT</lastBuildDate>
+
+    <item>
+      <title><![CDATA[Trinity Metro expands transit hubs in West 7th district]]></title>
+      <description><![CDATA[Local government news about trinity metro expands transit hubs in west 7th district]]></description>
+      <link>https://example.com/fort-worth-political/a58ae173-881c-47ca-82ad-476830a01db3</link>
+      <pubDate>Wed, 16 Jul 2025 20:20:37 GMT</pubDate>
+      <author>City Reporter</author>
+      <guid>https://example.com/fort-worth-political/a58ae173-881c-47ca-82ad-476830a01db3</guid>
+    </item>
+    <item>
+      <title><![CDATA[Fort Worth City Council approves $$2.1B budget for 2025]]></title>
+      <description><![CDATA[Local government news about fort worth city council approves $$2.1b budget for 2025]]></description>
+      <link>https://example.com/fort-worth-political/c076d979-866a-437d-9ab5-7b0079b098fa</link>
+      <pubDate>Mon, 14 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Municipal News</author>
+      <guid>https://example.com/fort-worth-political/c076d979-866a-437d-9ab5-7b0079b098fa</guid>
+    </item>
+    <item>
+      <title><![CDATA[Fort Worth ISD board meeting discusses school funding]]></title>
+      <description><![CDATA[Local government news about fort worth isd board meeting discusses school funding]]></description>
+      <link>https://example.com/fort-worth-political/9105fec3-bad2-4f22-8625-0b45ddb6b99d</link>
+      <pubDate>Sun, 10 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Local Politics</author>
+      <guid>https://example.com/fort-worth-political/9105fec3-bad2-4f22-8625-0b45ddb6b99d</guid>
+    </item>
+    <item>
+      <title><![CDATA[Local government addresses neighborhood development in community meeting]]></title>
+      <description><![CDATA[Local government news about local government addresses neighborhood development in community meeting]]></description>
+      <link>https://example.com/fort-worth-political/1c7a9cd0-09a2-495e-8d2c-b6caed17e0ab</link>
+      <pubDate>Wed, 13 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Municipal News</author>
+      <guid>https://example.com/fort-worth-political/1c7a9cd0-09a2-495e-8d2c-b6caed17e0ab</guid>
+    </item>
+    <item>
+      <title><![CDATA[Tarrant County commissioners vote on transportation bond proposal]]></title>
+      <description><![CDATA[Local government news about tarrant county commissioners vote on transportation bond proposal]]></description>
+      <link>https://example.com/fort-worth-political/30d44585-4406-4dd7-9817-0fc62325bdc9</link>
+      <pubDate>Mon, 28 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Municipal News</author>
+      <guid>https://example.com/fort-worth-political/30d44585-4406-4dd7-9817-0fc62325bdc9</guid>
+    </item>
+    <item>
+      <title><![CDATA[Tarrant County commissioners vote on tax increment proposal]]></title>
+      <description><![CDATA[Local government news about tarrant county commissioners vote on tax increment proposal]]></description>
+      <link>https://example.com/fort-worth-political/c6516ec2-4be5-4878-ba37-b8b4f067547c</link>
+      <pubDate>Mon, 21 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Local Politics</author>
+      <guid>https://example.com/fort-worth-political/c6516ec2-4be5-4878-ba37-b8b4f067547c</guid>
+    </item>
+    <item>
+      <title><![CDATA[Tarrant County commissioners vote on budget amendment proposal]]></title>
+      <description><![CDATA[Local government news about tarrant county commissioners vote on budget amendment proposal]]></description>
+      <link>https://example.com/fort-worth-political/c9e83447-9187-4103-a521-e7956f573dd8</link>
+      <pubDate>Sat, 09 Aug 2025 20:20:37 GMT</pubDate>
+      <author>City Reporter</author>
+      <guid>https://example.com/fort-worth-political/c9e83447-9187-4103-a521-e7956f573dd8</guid>
+    </item>
+    <item>
+      <title><![CDATA[Fort Worth municipal Parks & Recreation receives funding increase]]></title>
+      <description><![CDATA[Local government news about fort worth municipal parks & recreation receives funding increase]]></description>
+      <link>https://example.com/fort-worth-political/af2d4ad2-6871-4597-b275-8a49afa7b4d0</link>
+      <pubDate>Tue, 22 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Municipal News</author>
+      <guid>https://example.com/fort-worth-political/af2d4ad2-6871-4597-b275-8a49afa7b4d0</guid>
+    </item>
+    <item>
+      <title><![CDATA[Fort Worth municipal Fire Department receives funding increase]]></title>
+      <description><![CDATA[Local government news about fort worth municipal fire department receives funding increase]]></description>
+      <link>https://example.com/fort-worth-political/c43755cc-3645-4ec7-ac4b-330cdcb426ef</link>
+      <pubDate>Tue, 05 Aug 2025 20:20:37 GMT</pubDate>
+      <author>City Reporter</author>
+      <guid>https://example.com/fort-worth-political/c43755cc-3645-4ec7-ac4b-330cdcb426ef</guid>
+    </item>
+    <item>
+      <title><![CDATA[Local government addresses environmental issues in community meeting]]></title>
+      <description><![CDATA[Local government news about local government addresses environmental issues in community meeting]]></description>
+      <link>https://example.com/fort-worth-political/fc4c2caa-bc6a-4ef7-b685-0f7420d0875f</link>
+      <pubDate>Wed, 16 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Government Affairs</author>
+      <guid>https://example.com/fort-worth-political/fc4c2caa-bc6a-4ef7-b685-0f7420d0875f</guid>
+    </item>
+    <item>
+      <title><![CDATA[Fort Worth zoning committee reviews residential project]]></title>
+      <description><![CDATA[Local government news about fort worth zoning committee reviews residential project]]></description>
+      <link>https://example.com/fort-worth-political/fe79c021-d6da-4273-a14e-ab43a1c8c969</link>
+      <pubDate>Sun, 03 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Municipal News</author>
+      <guid>https://example.com/fort-worth-political/fe79c021-d6da-4273-a14e-ab43a1c8c969</guid>
+    </item>
+    <item>
+      <title><![CDATA[Fort Worth ISD board meeting discusses school funding]]></title>
+      <description><![CDATA[Local government news about fort worth isd board meeting discusses school funding]]></description>
+      <link>https://example.com/fort-worth-political/055a693d-6ce0-447a-b662-e6e5022bc75d</link>
+      <pubDate>Sun, 03 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Municipal News</author>
+      <guid>https://example.com/fort-worth-political/055a693d-6ce0-447a-b662-e6e5022bc75d</guid>
+    </item>
+    <item>
+      <title><![CDATA[Trinity Metro expands rail service in Alliance district]]></title>
+      <description><![CDATA[Local government news about trinity metro expands rail service in alliance district]]></description>
+      <link>https://example.com/fort-worth-political/8df9ba31-357f-42ac-812f-282b23069a45</link>
+      <pubDate>Wed, 06 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Municipal News</author>
+      <guid>https://example.com/fort-worth-political/8df9ba31-357f-42ac-812f-282b23069a45</guid>
+    </item>
+    <item>
+      <title><![CDATA[Fort Worth zoning committee reviews industrial project]]></title>
+      <description><![CDATA[Local government news about fort worth zoning committee reviews industrial project]]></description>
+      <link>https://example.com/fort-worth-political/6735104f-3b0c-46c7-b5e8-724e85d121a4</link>
+      <pubDate>Sat, 19 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Municipal News</author>
+      <guid>https://example.com/fort-worth-political/6735104f-3b0c-46c7-b5e8-724e85d121a4</guid>
+    </item>
+    <item>
+      <title><![CDATA[Fort Worth City Council approves $$2.1B budget for 2024]]></title>
+      <description><![CDATA[Local government news about fort worth city council approves $$2.1b budget for 2024]]></description>
+      <link>https://example.com/fort-worth-political/29aaf425-46e3-4ec4-9d96-7b9de4d5bfe1</link>
+      <pubDate>Tue, 12 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Local Politics</author>
+      <guid>https://example.com/fort-worth-political/29aaf425-46e3-4ec4-9d96-7b9de4d5bfe1</guid>
+    </item>
+    <item>
+      <title><![CDATA[Tarrant County commissioners vote on zoning change proposal]]></title>
+      <description><![CDATA[Local government news about tarrant county commissioners vote on zoning change proposal]]></description>
+      <link>https://example.com/fort-worth-political/e68e5675-7514-4161-a54a-e688ea5eb057</link>
+      <pubDate>Tue, 29 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Municipal News</author>
+      <guid>https://example.com/fort-worth-political/e68e5675-7514-4161-a54a-e688ea5eb057</guid>
+    </item>
+    <item>
+      <title><![CDATA[City of Fort Worth launches small business support for residents]]></title>
+      <description><![CDATA[Local government news about city of fort worth launches small business support for residents]]></description>
+      <link>https://example.com/fort-worth-political/9f734a7a-b49f-4b8b-bd77-e99dbe9d86dc</link>
+      <pubDate>Tue, 22 Jul 2025 20:20:37 GMT</pubDate>
+      <author>City Reporter</author>
+      <guid>https://example.com/fort-worth-political/9f734a7a-b49f-4b8b-bd77-e99dbe9d86dc</guid>
+    </item>
+    <item>
+      <title><![CDATA[Fort Worth City Council approves $$750M budget for 2025]]></title>
+      <description><![CDATA[Local government news about fort worth city council approves $$750m budget for 2025]]></description>
+      <link>https://example.com/fort-worth-political/5fd7f488-135c-4923-8882-49dbdec2dd18</link>
+      <pubDate>Sat, 19 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Government Affairs</author>
+      <guid>https://example.com/fort-worth-political/5fd7f488-135c-4923-8882-49dbdec2dd18</guid>
+    </item>
+    <item>
+      <title><![CDATA[Local government addresses traffic safety in community meeting]]></title>
+      <description><![CDATA[Local government news about local government addresses traffic safety in community meeting]]></description>
+      <link>https://example.com/fort-worth-political/eea91660-1ce5-466b-abe8-ffe7360feecb</link>
+      <pubDate>Fri, 08 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Local Politics</author>
+      <guid>https://example.com/fort-worth-political/eea91660-1ce5-466b-abe8-ffe7360feecb</guid>
+    </item>
+    <item>
+      <title><![CDATA[City of Fort Worth launches small business support for residents]]></title>
+      <description><![CDATA[Local government news about city of fort worth launches small business support for residents]]></description>
+      <link>https://example.com/fort-worth-political/a3cb723c-1c0f-45fe-a9c5-c155295a1d46</link>
+      <pubDate>Fri, 25 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Government Affairs</author>
+      <guid>https://example.com/fort-worth-political/a3cb723c-1c0f-45fe-a9c5-c155295a1d46</guid>
+    </item>
+    <item>
+      <title><![CDATA[Local government addresses public safety in community meeting]]></title>
+      <description><![CDATA[Local government news about local government addresses public safety in community meeting]]></description>
+      <link>https://example.com/fort-worth-political/05e90a4e-9630-4195-9b36-ffc98f7d2aee</link>
+      <pubDate>Wed, 13 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Government Affairs</author>
+      <guid>https://example.com/fort-worth-political/05e90a4e-9630-4195-9b36-ffc98f7d2aee</guid>
+    </item>
+    <item>
+      <title><![CDATA[Fort Worth zoning committee reviews mixed-use project]]></title>
+      <description><![CDATA[Local government news about fort worth zoning committee reviews mixed-use project]]></description>
+      <link>https://example.com/fort-worth-political/79b3dbcf-be71-44bc-8cf8-fc722cb85120</link>
+      <pubDate>Thu, 07 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Local Politics</author>
+      <guid>https://example.com/fort-worth-political/79b3dbcf-be71-44bc-8cf8-fc722cb85120</guid>
+    </item>
+    <item>
+      <title><![CDATA[Tarrant County commissioners vote on zoning change proposal]]></title>
+      <description><![CDATA[Local government news about tarrant county commissioners vote on zoning change proposal]]></description>
+      <link>https://example.com/fort-worth-political/fd165ccd-dac7-4ee8-a946-780ed81658a3</link>
+      <pubDate>Tue, 05 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Municipal News</author>
+      <guid>https://example.com/fort-worth-political/fd165ccd-dac7-4ee8-a946-780ed81658a3</guid>
+    </item>
+    <item>
+      <title><![CDATA[Fort Worth ISD board meeting discusses teacher pay raises]]></title>
+      <description><![CDATA[Local government news about fort worth isd board meeting discusses teacher pay raises]]></description>
+      <link>https://example.com/fort-worth-political/2e935895-a832-43da-886b-d5950203b95e</link>
+      <pubDate>Fri, 08 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Municipal News</author>
+      <guid>https://example.com/fort-worth-political/2e935895-a832-43da-886b-d5950203b95e</guid>
+    </item>
+    <item>
+      <title><![CDATA[Local government addresses neighborhood development in community meeting]]></title>
+      <description><![CDATA[Local government news about local government addresses neighborhood development in community meeting]]></description>
+      <link>https://example.com/fort-worth-political/5d6afde6-1574-4fcf-a5ba-0964ffd61e67</link>
+      <pubDate>Thu, 31 Jul 2025 20:20:37 GMT</pubDate>
+      <author>City Reporter</author>
+      <guid>https://example.com/fort-worth-political/5d6afde6-1574-4fcf-a5ba-0964ffd61e67</guid>
+    </item>
+    <item>
+      <title><![CDATA[Tarrant County commissioners vote on transportation bond proposal]]></title>
+      <description><![CDATA[Local government news about tarrant county commissioners vote on transportation bond proposal]]></description>
+      <link>https://example.com/fort-worth-political/0e6ec7f3-c47e-4a75-8250-372c2d018489</link>
+      <pubDate>Fri, 01 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Government Affairs</author>
+      <guid>https://example.com/fort-worth-political/0e6ec7f3-c47e-4a75-8250-372c2d018489</guid>
+    </item>
+    <item>
+      <title><![CDATA[Tarrant County budget allocates funds for broadband expansion]]></title>
+      <description><![CDATA[Local government news about tarrant county budget allocates funds for broadband expansion]]></description>
+      <link>https://example.com/fort-worth-political/e84e6709-0d52-431e-979b-edb5e1b84bf1</link>
+      <pubDate>Mon, 14 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Government Affairs</author>
+      <guid>https://example.com/fort-worth-political/e84e6709-0d52-431e-979b-edb5e1b84bf1</guid>
+    </item>
+    <item>
+      <title><![CDATA[City of Fort Worth launches infrastructure repair for residents]]></title>
+      <description><![CDATA[Local government news about city of fort worth launches infrastructure repair for residents]]></description>
+      <link>https://example.com/fort-worth-political/c619bb06-6f78-4aee-811d-dbf140d51efb</link>
+      <pubDate>Sun, 27 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Municipal News</author>
+      <guid>https://example.com/fort-worth-political/c619bb06-6f78-4aee-811d-dbf140d51efb</guid>
+    </item>
+    <item>
+      <title><![CDATA[Tarrant County commissioners vote on tax increment proposal]]></title>
+      <description><![CDATA[Local government news about tarrant county commissioners vote on tax increment proposal]]></description>
+      <link>https://example.com/fort-worth-political/43dcce1b-9ac2-4e84-b56e-05b2cb26c65a</link>
+      <pubDate>Fri, 08 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Government Affairs</author>
+      <guid>https://example.com/fort-worth-political/43dcce1b-9ac2-4e84-b56e-05b2cb26c65a</guid>
+    </item>
+    <item>
+      <title><![CDATA[Fort Worth ISD board meeting discusses school funding]]></title>
+      <description><![CDATA[Local government news about fort worth isd board meeting discusses school funding]]></description>
+      <link>https://example.com/fort-worth-political/b3c74437-0248-4a19-a49d-7a9cfbe351f6</link>
+      <pubDate>Mon, 11 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Government Affairs</author>
+      <guid>https://example.com/fort-worth-political/b3c74437-0248-4a19-a49d-7a9cfbe351f6</guid>
+    </item>
+    <item>
+      <title><![CDATA[Tarrant County commissioners vote on budget amendment proposal]]></title>
+      <description><![CDATA[Local government news about tarrant county commissioners vote on budget amendment proposal]]></description>
+      <link>https://example.com/fort-worth-political/2e5b7849-60d6-4e50-b951-184be02caeb5</link>
+      <pubDate>Sat, 09 Aug 2025 20:20:37 GMT</pubDate>
+      <author>City Reporter</author>
+      <guid>https://example.com/fort-worth-political/2e5b7849-60d6-4e50-b951-184be02caeb5</guid>
+    </item>
+    <item>
+      <title><![CDATA[Fort Worth ISD board meeting discusses school funding]]></title>
+      <description><![CDATA[Local government news about fort worth isd board meeting discusses school funding]]></description>
+      <link>https://example.com/fort-worth-political/4d80255d-3534-4881-9f80-9ba2913eefd0</link>
+      <pubDate>Tue, 29 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Government Affairs</author>
+      <guid>https://example.com/fort-worth-political/4d80255d-3534-4881-9f80-9ba2913eefd0</guid>
+    </item>
+    <item>
+      <title><![CDATA[Fort Worth City Council approves $$500M budget for 2025]]></title>
+      <description><![CDATA[Local government news about fort worth city council approves $$500m budget for 2025]]></description>
+      <link>https://example.com/fort-worth-political/8138f05d-050c-41aa-8508-697bce6be3cf</link>
+      <pubDate>Thu, 07 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Government Affairs</author>
+      <guid>https://example.com/fort-worth-political/8138f05d-050c-41aa-8508-697bce6be3cf</guid>
+    </item>
+    <item>
+      <title><![CDATA[Fort Worth City Council approves $$1.8B budget for 2025]]></title>
+      <description><![CDATA[Local government news about fort worth city council approves $$1.8b budget for 2025]]></description>
+      <link>https://example.com/fort-worth-political/9c954e62-fa3c-4bb5-bab0-80cccccd9fd0</link>
+      <pubDate>Thu, 07 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Government Affairs</author>
+      <guid>https://example.com/fort-worth-political/9c954e62-fa3c-4bb5-bab0-80cccccd9fd0</guid>
+    </item>
+    <item>
+      <title><![CDATA[Fort Worth City Council approves $$2.1B budget for 2025]]></title>
+      <description><![CDATA[Local government news about fort worth city council approves $$2.1b budget for 2025]]></description>
+      <link>https://example.com/fort-worth-political/efd80e31-10c6-44d2-8d8f-81dd412eb0eb</link>
+      <pubDate>Sun, 03 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Municipal News</author>
+      <guid>https://example.com/fort-worth-political/efd80e31-10c6-44d2-8d8f-81dd412eb0eb</guid>
+    </item>
+    <item>
+      <title><![CDATA[Fort Worth zoning committee reviews residential project]]></title>
+      <description><![CDATA[Local government news about fort worth zoning committee reviews residential project]]></description>
+      <link>https://example.com/fort-worth-political/78ac7b31-b1c1-432c-bf68-b0ebfabce4e2</link>
+      <pubDate>Sun, 10 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Government Affairs</author>
+      <guid>https://example.com/fort-worth-political/78ac7b31-b1c1-432c-bf68-b0ebfabce4e2</guid>
+    </item>
+    <item>
+      <title><![CDATA[Trinity Metro expands rail service in Alliance district]]></title>
+      <description><![CDATA[Local government news about trinity metro expands rail service in alliance district]]></description>
+      <link>https://example.com/fort-worth-political/0b6d7f41-6ff8-4a2d-ad84-5dd4ce804970</link>
+      <pubDate>Fri, 08 Aug 2025 20:20:37 GMT</pubDate>
+      <author>City Reporter</author>
+      <guid>https://example.com/fort-worth-political/0b6d7f41-6ff8-4a2d-ad84-5dd4ce804970</guid>
+    </item>
+    <item>
+      <title><![CDATA[Tarrant County commissioners vote on tax increment proposal]]></title>
+      <description><![CDATA[Local government news about tarrant county commissioners vote on tax increment proposal]]></description>
+      <link>https://example.com/fort-worth-political/c5b300e5-1046-428b-a836-51201010494f</link>
+      <pubDate>Mon, 28 Jul 2025 20:20:37 GMT</pubDate>
+      <author>City Reporter</author>
+      <guid>https://example.com/fort-worth-political/c5b300e5-1046-428b-a836-51201010494f</guid>
+    </item>
+    <item>
+      <title><![CDATA[Mayor Parker announces new transportation initiative in Cultural District]]></title>
+      <description><![CDATA[Local government news about mayor parker announces new transportation initiative in cultural district]]></description>
+      <link>https://example.com/fort-worth-political/21b22045-2373-48f4-ba98-882e752ee037</link>
+      <pubDate>Fri, 08 Aug 2025 20:20:37 GMT</pubDate>
+      <author>City Reporter</author>
+      <guid>https://example.com/fort-worth-political/21b22045-2373-48f4-ba98-882e752ee037</guid>
+    </item>
+    <item>
+      <title><![CDATA[Tarrant County budget allocates funds for broadband expansion]]></title>
+      <description><![CDATA[Local government news about tarrant county budget allocates funds for broadband expansion]]></description>
+      <link>https://example.com/fort-worth-political/345965b9-b37a-4be8-9f94-08158ded2942</link>
+      <pubDate>Sat, 02 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Municipal News</author>
+      <guid>https://example.com/fort-worth-political/345965b9-b37a-4be8-9f94-08158ded2942</guid>
+    </item>
+    <item>
+      <title><![CDATA[Fort Worth ISD board meeting discusses facility improvements]]></title>
+      <description><![CDATA[Local government news about fort worth isd board meeting discusses facility improvements]]></description>
+      <link>https://example.com/fort-worth-political/115372c6-73c0-4b10-8f8f-c8c2d1330c78</link>
+      <pubDate>Tue, 15 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Municipal News</author>
+      <guid>https://example.com/fort-worth-political/115372c6-73c0-4b10-8f8f-c8c2d1330c78</guid>
+    </item>
+    <item>
+      <title><![CDATA[Tarrant County budget allocates funds for road improvements]]></title>
+      <description><![CDATA[Local government news about tarrant county budget allocates funds for road improvements]]></description>
+      <link>https://example.com/fort-worth-political/95227c60-5ad7-4669-b6e3-5bff577068c5</link>
+      <pubDate>Thu, 31 Jul 2025 20:20:37 GMT</pubDate>
+      <author>City Reporter</author>
+      <guid>https://example.com/fort-worth-political/95227c60-5ad7-4669-b6e3-5bff577068c5</guid>
+    </item>
+    <item>
+      <title><![CDATA[Local government addresses public safety in community meeting]]></title>
+      <description><![CDATA[Local government news about local government addresses public safety in community meeting]]></description>
+      <link>https://example.com/fort-worth-political/6f75fca1-b77a-4669-9395-735f691d3b7b</link>
+      <pubDate>Mon, 11 Aug 2025 20:20:37 GMT</pubDate>
+      <author>City Reporter</author>
+      <guid>https://example.com/fort-worth-political/6f75fca1-b77a-4669-9395-735f691d3b7b</guid>
+    </item>
+    <item>
+      <title><![CDATA[Trinity Metro expands rail service in Medical District district]]></title>
+      <description><![CDATA[Local government news about trinity metro expands rail service in medical district district]]></description>
+      <link>https://example.com/fort-worth-political/51c96058-c785-4698-9fa9-96f49fca2768</link>
+      <pubDate>Thu, 31 Jul 2025 20:20:37 GMT</pubDate>
+      <author>City Reporter</author>
+      <guid>https://example.com/fort-worth-political/51c96058-c785-4698-9fa9-96f49fca2768</guid>
+    </item>
+    <item>
+      <title><![CDATA[Tarrant County commissioners vote on transportation bond proposal]]></title>
+      <description><![CDATA[Local government news about tarrant county commissioners vote on transportation bond proposal]]></description>
+      <link>https://example.com/fort-worth-political/59f7dc38-694f-4137-adbc-85d2cbd06b00</link>
+      <pubDate>Tue, 29 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Municipal News</author>
+      <guid>https://example.com/fort-worth-political/59f7dc38-694f-4137-adbc-85d2cbd06b00</guid>
+    </item>
+    <item>
+      <title><![CDATA[Mayor Parker announces new housing initiative in Downtown]]></title>
+      <description><![CDATA[Local government news about mayor parker announces new housing initiative in downtown]]></description>
+      <link>https://example.com/fort-worth-political/73a4e895-426a-44ef-8e53-958a03f618b7</link>
+      <pubDate>Wed, 06 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Government Affairs</author>
+      <guid>https://example.com/fort-worth-political/73a4e895-426a-44ef-8e53-958a03f618b7</guid>
+    </item>
+    <item>
+      <title><![CDATA[Fort Worth zoning committee reviews commercial project]]></title>
+      <description><![CDATA[Local government news about fort worth zoning committee reviews commercial project]]></description>
+      <link>https://example.com/fort-worth-political/c637a95a-5673-400c-a14e-6eff492a44e0</link>
+      <pubDate>Fri, 08 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Government Affairs</author>
+      <guid>https://example.com/fort-worth-political/c637a95a-5673-400c-a14e-6eff492a44e0</guid>
+    </item>
+    <item>
+      <title><![CDATA[Mayor Parker announces new transportation initiative in Southside]]></title>
+      <description><![CDATA[Local government news about mayor parker announces new transportation initiative in southside]]></description>
+      <link>https://example.com/fort-worth-political/d0d1f676-424d-4729-aa69-0497ddc6ba60</link>
+      <pubDate>Mon, 11 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Municipal News</author>
+      <guid>https://example.com/fort-worth-political/d0d1f676-424d-4729-aa69-0497ddc6ba60</guid>
+    </item>
+    <item>
+      <title><![CDATA[Fort Worth City Council approves $$750M budget for 2024]]></title>
+      <description><![CDATA[Local government news about fort worth city council approves $$750m budget for 2024]]></description>
+      <link>https://example.com/fort-worth-political/0d3ad1e8-af44-49fd-8efd-61b920f8131b</link>
+      <pubDate>Mon, 28 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Government Affairs</author>
+      <guid>https://example.com/fort-worth-political/0d3ad1e8-af44-49fd-8efd-61b920f8131b</guid>
+    </item>
+    <item>
+      <title><![CDATA[Fort Worth ISD board meeting discusses technology upgrades]]></title>
+      <description><![CDATA[Local government news about fort worth isd board meeting discusses technology upgrades]]></description>
+      <link>https://example.com/fort-worth-political/5dc2d336-718b-4a3b-b4d5-054759b42f4d</link>
+      <pubDate>Thu, 31 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Local Politics</author>
+      <guid>https://example.com/fort-worth-political/5dc2d336-718b-4a3b-b4d5-054759b42f4d</guid>
+    </item>
+    <item>
+      <title><![CDATA[City of Fort Worth launches affordable housing for residents]]></title>
+      <description><![CDATA[Local government news about city of fort worth launches affordable housing for residents]]></description>
+      <link>https://example.com/fort-worth-political/a2ced71b-e904-4aed-9ca3-9ecc05a78971</link>
+      <pubDate>Wed, 06 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Government Affairs</author>
+      <guid>https://example.com/fort-worth-political/a2ced71b-e904-4aed-9ca3-9ecc05a78971</guid>
+    </item>
+    <item>
+      <title><![CDATA[City of Fort Worth launches infrastructure repair for residents]]></title>
+      <description><![CDATA[Local government news about city of fort worth launches infrastructure repair for residents]]></description>
+      <link>https://example.com/fort-worth-political/fa91ff0b-da1d-4111-b7e0-8e45f03b8579</link>
+      <pubDate>Mon, 28 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Municipal News</author>
+      <guid>https://example.com/fort-worth-political/fa91ff0b-da1d-4111-b7e0-8e45f03b8579</guid>
+    </item>
+    <item>
+      <title><![CDATA[Tarrant County budget allocates funds for broadband expansion]]></title>
+      <description><![CDATA[Local government news about tarrant county budget allocates funds for broadband expansion]]></description>
+      <link>https://example.com/fort-worth-political/634ff659-3641-4b20-9641-54a5b006ceb8</link>
+      <pubDate>Sat, 02 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Local Politics</author>
+      <guid>https://example.com/fort-worth-political/634ff659-3641-4b20-9641-54a5b006ceb8</guid>
+    </item>
+    <item>
+      <title><![CDATA[Fort Worth ISD board meeting discusses facility improvements]]></title>
+      <description><![CDATA[Local government news about fort worth isd board meeting discusses facility improvements]]></description>
+      <link>https://example.com/fort-worth-political/1579a90d-3be9-4557-8d86-d0e096ce7aa7</link>
+      <pubDate>Wed, 06 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Government Affairs</author>
+      <guid>https://example.com/fort-worth-political/1579a90d-3be9-4557-8d86-d0e096ce7aa7</guid>
+    </item>
+    <item>
+      <title><![CDATA[Local government addresses public safety in community meeting]]></title>
+      <description><![CDATA[Local government news about local government addresses public safety in community meeting]]></description>
+      <link>https://example.com/fort-worth-political/a89a9287-42f7-47cb-ae4c-7104073c605b</link>
+      <pubDate>Wed, 13 Aug 2025 20:20:37 GMT</pubDate>
+      <author>City Reporter</author>
+      <guid>https://example.com/fort-worth-political/a89a9287-42f7-47cb-ae4c-7104073c605b</guid>
+    </item>
+    <item>
+      <title><![CDATA[City of Fort Worth launches affordable housing for residents]]></title>
+      <description><![CDATA[Local government news about city of fort worth launches affordable housing for residents]]></description>
+      <link>https://example.com/fort-worth-political/2b054cbb-301e-4c40-98aa-c18b51005bc8</link>
+      <pubDate>Tue, 22 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Local Politics</author>
+      <guid>https://example.com/fort-worth-political/2b054cbb-301e-4c40-98aa-c18b51005bc8</guid>
+    </item>
+    <item>
+      <title><![CDATA[Tarrant County commissioners vote on zoning change proposal]]></title>
+      <description><![CDATA[Local government news about tarrant county commissioners vote on zoning change proposal]]></description>
+      <link>https://example.com/fort-worth-political/f22c3bb4-cccc-4161-9152-970367a4f727</link>
+      <pubDate>Mon, 21 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Municipal News</author>
+      <guid>https://example.com/fort-worth-political/f22c3bb4-cccc-4161-9152-970367a4f727</guid>
+    </item>
+    <item>
+      <title><![CDATA[Tarrant County budget allocates funds for water systems]]></title>
+      <description><![CDATA[Local government news about tarrant county budget allocates funds for water systems]]></description>
+      <link>https://example.com/fort-worth-political/ef9ef049-63c2-4769-8cee-6f2de3e753a8</link>
+      <pubDate>Thu, 17 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Local Politics</author>
+      <guid>https://example.com/fort-worth-political/ef9ef049-63c2-4769-8cee-6f2de3e753a8</guid>
+    </item>
+    <item>
+      <title><![CDATA[Mayor Parker announces new housing initiative in Cultural District]]></title>
+      <description><![CDATA[Local government news about mayor parker announces new housing initiative in cultural district]]></description>
+      <link>https://example.com/fort-worth-political/ede82892-3f50-456c-b078-203307d4bacf</link>
+      <pubDate>Sun, 20 Jul 2025 20:20:37 GMT</pubDate>
+      <author>City Reporter</author>
+      <guid>https://example.com/fort-worth-political/ede82892-3f50-456c-b078-203307d4bacf</guid>
+    </item>
+    <item>
+      <title><![CDATA[Fort Worth ISD board meeting discusses school funding]]></title>
+      <description><![CDATA[Local government news about fort worth isd board meeting discusses school funding]]></description>
+      <link>https://example.com/fort-worth-political/0a76b8f7-0b51-459f-aef9-1b3de0193bb8</link>
+      <pubDate>Wed, 13 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Local Politics</author>
+      <guid>https://example.com/fort-worth-political/0a76b8f7-0b51-459f-aef9-1b3de0193bb8</guid>
+    </item>
+    <item>
+      <title><![CDATA[City of Fort Worth launches small business support for residents]]></title>
+      <description><![CDATA[Local government news about city of fort worth launches small business support for residents]]></description>
+      <link>https://example.com/fort-worth-political/f28590d6-bb96-4388-aa06-06b11b097cec</link>
+      <pubDate>Sat, 09 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Government Affairs</author>
+      <guid>https://example.com/fort-worth-political/f28590d6-bb96-4388-aa06-06b11b097cec</guid>
+    </item>
+    <item>
+      <title><![CDATA[Tarrant County commissioners vote on budget amendment proposal]]></title>
+      <description><![CDATA[Local government news about tarrant county commissioners vote on budget amendment proposal]]></description>
+      <link>https://example.com/fort-worth-political/b91bb558-898e-4577-8719-321f923da8af</link>
+      <pubDate>Mon, 14 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Local Politics</author>
+      <guid>https://example.com/fort-worth-political/b91bb558-898e-4577-8719-321f923da8af</guid>
+    </item>
+    <item>
+      <title><![CDATA[Fort Worth ISD board meeting discusses teacher pay raises]]></title>
+      <description><![CDATA[Local government news about fort worth isd board meeting discusses teacher pay raises]]></description>
+      <link>https://example.com/fort-worth-political/e45cf7ea-7025-4072-a4a4-008c2a9e69a4</link>
+      <pubDate>Tue, 12 Aug 2025 20:20:37 GMT</pubDate>
+      <author>City Reporter</author>
+      <guid>https://example.com/fort-worth-political/e45cf7ea-7025-4072-a4a4-008c2a9e69a4</guid>
+    </item>
+    <item>
+      <title><![CDATA[Tarrant County commissioners vote on tax increment proposal]]></title>
+      <description><![CDATA[Local government news about tarrant county commissioners vote on tax increment proposal]]></description>
+      <link>https://example.com/fort-worth-political/b176e60d-691b-4df4-b6c3-0a59b3008a18</link>
+      <pubDate>Mon, 28 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Local Politics</author>
+      <guid>https://example.com/fort-worth-political/b176e60d-691b-4df4-b6c3-0a59b3008a18</guid>
+    </item>
+    <item>
+      <title><![CDATA[Fort Worth ISD board meeting discusses school funding]]></title>
+      <description><![CDATA[Local government news about fort worth isd board meeting discusses school funding]]></description>
+      <link>https://example.com/fort-worth-political/3ea0f447-3eb5-475a-b2d3-a8ad8f7f03cd</link>
+      <pubDate>Fri, 18 Jul 2025 20:20:37 GMT</pubDate>
+      <author>City Reporter</author>
+      <guid>https://example.com/fort-worth-political/3ea0f447-3eb5-475a-b2d3-a8ad8f7f03cd</guid>
+    </item>
+    <item>
+      <title><![CDATA[Trinity Metro expands transit hubs in Medical District district]]></title>
+      <description><![CDATA[Local government news about trinity metro expands transit hubs in medical district district]]></description>
+      <link>https://example.com/fort-worth-political/b216acc1-677b-4c3c-bd6b-bfc407d101df</link>
+      <pubDate>Sat, 26 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Local Politics</author>
+      <guid>https://example.com/fort-worth-political/b216acc1-677b-4c3c-bd6b-bfc407d101df</guid>
+    </item>
+    <item>
+      <title><![CDATA[Local government addresses environmental issues in community meeting]]></title>
+      <description><![CDATA[Local government news about local government addresses environmental issues in community meeting]]></description>
+      <link>https://example.com/fort-worth-political/9f5108f4-ec08-4ba3-9115-82b9eb77eef9</link>
+      <pubDate>Tue, 12 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Government Affairs</author>
+      <guid>https://example.com/fort-worth-political/9f5108f4-ec08-4ba3-9115-82b9eb77eef9</guid>
+    </item>
+    <item>
+      <title><![CDATA[Trinity Metro expands bike sharing in West 7th district]]></title>
+      <description><![CDATA[Local government news about trinity metro expands bike sharing in west 7th district]]></description>
+      <link>https://example.com/fort-worth-political/de9ae462-03ac-4ba0-ac22-ec25a5913df7</link>
+      <pubDate>Fri, 08 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Municipal News</author>
+      <guid>https://example.com/fort-worth-political/de9ae462-03ac-4ba0-ac22-ec25a5913df7</guid>
+    </item>
+    <item>
+      <title><![CDATA[Fort Worth ISD board meeting discusses facility improvements]]></title>
+      <description><![CDATA[Local government news about fort worth isd board meeting discusses facility improvements]]></description>
+      <link>https://example.com/fort-worth-political/d78330ac-af30-461e-9c79-e95814fc7a3c</link>
+      <pubDate>Sun, 20 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Local Politics</author>
+      <guid>https://example.com/fort-worth-political/d78330ac-af30-461e-9c79-e95814fc7a3c</guid>
+    </item>
+    <item>
+      <title><![CDATA[Fort Worth City Council approves $$500M budget for 2024]]></title>
+      <description><![CDATA[Local government news about fort worth city council approves $$500m budget for 2024]]></description>
+      <link>https://example.com/fort-worth-political/672f066c-637b-4e3e-9415-f48b9eaafd0a</link>
+      <pubDate>Fri, 08 Aug 2025 20:20:37 GMT</pubDate>
+      <author>City Reporter</author>
+      <guid>https://example.com/fort-worth-political/672f066c-637b-4e3e-9415-f48b9eaafd0a</guid>
+    </item>
+    <item>
+      <title><![CDATA[Tarrant County budget allocates funds for public transit]]></title>
+      <description><![CDATA[Local government news about tarrant county budget allocates funds for public transit]]></description>
+      <link>https://example.com/fort-worth-political/3cfacc6a-dd1c-4448-ab33-fe11253a3933</link>
+      <pubDate>Tue, 05 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Local Politics</author>
+      <guid>https://example.com/fort-worth-political/3cfacc6a-dd1c-4448-ab33-fe11253a3933</guid>
+    </item>
+    <item>
+      <title><![CDATA[Fort Worth zoning committee reviews industrial project]]></title>
+      <description><![CDATA[Local government news about fort worth zoning committee reviews industrial project]]></description>
+      <link>https://example.com/fort-worth-political/490ebd77-8b39-400b-90fd-410802bbcb3e</link>
+      <pubDate>Tue, 22 Jul 2025 20:20:37 GMT</pubDate>
+      <author>City Reporter</author>
+      <guid>https://example.com/fort-worth-political/490ebd77-8b39-400b-90fd-410802bbcb3e</guid>
+    </item>
+    <item>
+      <title><![CDATA[Tarrant County budget allocates funds for broadband expansion]]></title>
+      <description><![CDATA[Local government news about tarrant county budget allocates funds for broadband expansion]]></description>
+      <link>https://example.com/fort-worth-political/b2b6f895-1010-4efb-bf67-c402ad3daa1b</link>
+      <pubDate>Thu, 17 Jul 2025 20:20:37 GMT</pubDate>
+      <author>City Reporter</author>
+      <guid>https://example.com/fort-worth-political/b2b6f895-1010-4efb-bf67-c402ad3daa1b</guid>
+    </item>
+    <item>
+      <title><![CDATA[Tarrant County budget allocates funds for water systems]]></title>
+      <description><![CDATA[Local government news about tarrant county budget allocates funds for water systems]]></description>
+      <link>https://example.com/fort-worth-political/dd866ee1-1a9f-44aa-ac6a-6fb9be375e95</link>
+      <pubDate>Mon, 21 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Government Affairs</author>
+      <guid>https://example.com/fort-worth-political/dd866ee1-1a9f-44aa-ac6a-6fb9be375e95</guid>
+    </item>
+    <item>
+      <title><![CDATA[City of Fort Worth launches small business support for residents]]></title>
+      <description><![CDATA[Local government news about city of fort worth launches small business support for residents]]></description>
+      <link>https://example.com/fort-worth-political/b430384c-6bd1-4b41-81c3-1d1824035d1b</link>
+      <pubDate>Fri, 01 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Local Politics</author>
+      <guid>https://example.com/fort-worth-political/b430384c-6bd1-4b41-81c3-1d1824035d1b</guid>
+    </item>
+    <item>
+      <title><![CDATA[Fort Worth municipal Police Department receives funding increase]]></title>
+      <description><![CDATA[Local government news about fort worth municipal police department receives funding increase]]></description>
+      <link>https://example.com/fort-worth-political/5d783887-b93c-4b54-b851-e0366d40c600</link>
+      <pubDate>Tue, 05 Aug 2025 20:20:37 GMT</pubDate>
+      <author>City Reporter</author>
+      <guid>https://example.com/fort-worth-political/5d783887-b93c-4b54-b851-e0366d40c600</guid>
+    </item>
+    <item>
+      <title><![CDATA[Fort Worth municipal Parks & Recreation receives funding increase]]></title>
+      <description><![CDATA[Local government news about fort worth municipal parks & recreation receives funding increase]]></description>
+      <link>https://example.com/fort-worth-political/a5c3e2e1-8435-4879-860f-d18631a08864</link>
+      <pubDate>Mon, 11 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Local Politics</author>
+      <guid>https://example.com/fort-worth-political/a5c3e2e1-8435-4879-860f-d18631a08864</guid>
+    </item>
+    <item>
+      <title><![CDATA[Trinity Metro expands bus routes in Alliance district]]></title>
+      <description><![CDATA[Local government news about trinity metro expands bus routes in alliance district]]></description>
+      <link>https://example.com/fort-worth-political/3430d829-11d2-4fa5-a0a4-49105ac6c7af</link>
+      <pubDate>Wed, 23 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Government Affairs</author>
+      <guid>https://example.com/fort-worth-political/3430d829-11d2-4fa5-a0a4-49105ac6c7af</guid>
+    </item>
+    <item>
+      <title><![CDATA[Tarrant County budget allocates funds for road improvements]]></title>
+      <description><![CDATA[Local government news about tarrant county budget allocates funds for road improvements]]></description>
+      <link>https://example.com/fort-worth-political/7d567635-cb49-42f6-a693-f90b11a66773</link>
+      <pubDate>Thu, 24 Jul 2025 20:20:37 GMT</pubDate>
+      <author>City Reporter</author>
+      <guid>https://example.com/fort-worth-political/7d567635-cb49-42f6-a693-f90b11a66773</guid>
+    </item>
+    <item>
+      <title><![CDATA[City of Fort Worth launches infrastructure repair for residents]]></title>
+      <description><![CDATA[Local government news about city of fort worth launches infrastructure repair for residents]]></description>
+      <link>https://example.com/fort-worth-political/9c26f8cb-2ebc-431a-a87c-ec7fe8a684d4</link>
+      <pubDate>Fri, 01 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Local Politics</author>
+      <guid>https://example.com/fort-worth-political/9c26f8cb-2ebc-431a-a87c-ec7fe8a684d4</guid>
+    </item>
+    <item>
+      <title><![CDATA[Fort Worth ISD board meeting discusses school funding]]></title>
+      <description><![CDATA[Local government news about fort worth isd board meeting discusses school funding]]></description>
+      <link>https://example.com/fort-worth-political/d0c8dea1-f9e9-4f66-9d2d-d6dcf97cb7ed</link>
+      <pubDate>Fri, 18 Jul 2025 20:20:37 GMT</pubDate>
+      <author>City Reporter</author>
+      <guid>https://example.com/fort-worth-political/d0c8dea1-f9e9-4f66-9d2d-d6dcf97cb7ed</guid>
+    </item>
+    <item>
+      <title><![CDATA[Tarrant County commissioners vote on tax increment proposal]]></title>
+      <description><![CDATA[Local government news about tarrant county commissioners vote on tax increment proposal]]></description>
+      <link>https://example.com/fort-worth-political/93a2aca9-fe76-4691-be32-bb04169c1db6</link>
+      <pubDate>Fri, 01 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Municipal News</author>
+      <guid>https://example.com/fort-worth-political/93a2aca9-fe76-4691-be32-bb04169c1db6</guid>
+    </item>
+    <item>
+      <title><![CDATA[Mayor Parker announces new transportation initiative in Downtown]]></title>
+      <description><![CDATA[Local government news about mayor parker announces new transportation initiative in downtown]]></description>
+      <link>https://example.com/fort-worth-political/7b077d50-93b3-4199-a663-d116193c1190</link>
+      <pubDate>Sat, 02 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Local Politics</author>
+      <guid>https://example.com/fort-worth-political/7b077d50-93b3-4199-a663-d116193c1190</guid>
+    </item>
+    <item>
+      <title><![CDATA[Fort Worth municipal Public Works receives funding increase]]></title>
+      <description><![CDATA[Local government news about fort worth municipal public works receives funding increase]]></description>
+      <link>https://example.com/fort-worth-political/a9d87787-d7a5-4c8e-a559-f5e990ed0313</link>
+      <pubDate>Tue, 22 Jul 2025 20:20:37 GMT</pubDate>
+      <author>City Reporter</author>
+      <guid>https://example.com/fort-worth-political/a9d87787-d7a5-4c8e-a559-f5e990ed0313</guid>
+    </item>
+    <item>
+      <title><![CDATA[Fort Worth municipal Parks & Recreation receives funding increase]]></title>
+      <description><![CDATA[Local government news about fort worth municipal parks & recreation receives funding increase]]></description>
+      <link>https://example.com/fort-worth-political/03538bc6-a567-42d4-9e3e-d287c3dcb9b7</link>
+      <pubDate>Sat, 09 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Municipal News</author>
+      <guid>https://example.com/fort-worth-political/03538bc6-a567-42d4-9e3e-d287c3dcb9b7</guid>
+    </item>
+    <item>
+      <title><![CDATA[Fort Worth Zoo welcomes new tiger exhibit]]></title>
+      <description><![CDATA[Entertainment and lifestyle news about fort worth zoo welcomes new tiger exhibit]]></description>
+      <link>https://example.com/fort-worth-entertainment/2bb24b85-833d-40c7-8a1a-c6197f29e142</link>
+      <pubDate>Tue, 15 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Entertainment Reporter</author>
+      <guid>https://example.com/fort-worth-entertainment/2bb24b85-833d-40c7-8a1a-c6197f29e142</guid>
+    </item>
+    <item>
+      <title><![CDATA[Dallas Cowboys announce schedule at AT&T Stadium in Arlington]]></title>
+      <description><![CDATA[Entertainment and lifestyle news about dallas cowboys announce schedule at at&t stadium in arlington]]></description>
+      <link>https://example.com/fort-worth-entertainment/780c0a8d-60a7-41ce-b877-8dc5025b9fc1</link>
+      <pubDate>Mon, 04 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Entertainment Reporter</author>
+      <guid>https://example.com/fort-worth-entertainment/780c0a8d-60a7-41ce-b877-8dc5025b9fc1</guid>
+    </item>
+    <item>
+      <title><![CDATA[TCU Horned Frogs baseball team sets new record in conference play]]></title>
+      <description><![CDATA[Entertainment and lifestyle news about tcu horned frogs baseball team sets new record in conference play]]></description>
+      <link>https://example.com/fort-worth-entertainment/574aad6e-82a5-4c96-b34b-230b6922c130</link>
+      <pubDate>Mon, 14 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Entertainment Reporter</author>
+      <guid>https://example.com/fort-worth-entertainment/574aad6e-82a5-4c96-b34b-230b6922c130</guid>
+    </item>
+    <item>
+      <title><![CDATA[Dallas Cowboys win playoff game at AT&T Stadium in Arlington]]></title>
+      <description><![CDATA[Entertainment and lifestyle news about dallas cowboys win playoff game at at&t stadium in arlington]]></description>
+      <link>https://example.com/fort-worth-entertainment/3afcefb8-e955-4328-82f2-df3dfe90a474</link>
+      <pubDate>Thu, 07 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Sports Writer</author>
+      <guid>https://example.com/fort-worth-entertainment/3afcefb8-e955-4328-82f2-df3dfe90a474</guid>
+    </item>
+    <item>
+      <title><![CDATA[Shopping guide: Walmart opens new location in Fort Worth]]></title>
+      <description><![CDATA[Entertainment and lifestyle news about shopping guide: walmart opens new location in fort worth]]></description>
+      <link>https://example.com/fort-worth-entertainment/672425e7-1635-4213-8a94-7fdfbf4d8650</link>
+      <pubDate>Thu, 07 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Entertainment Reporter</author>
+      <guid>https://example.com/fort-worth-entertainment/672425e7-1635-4213-8a94-7fdfbf4d8650</guid>
+    </item>
+    <item>
+      <title><![CDATA[Fort Worth Zoo welcomes new penguin exhibit]]></title>
+      <description><![CDATA[Entertainment and lifestyle news about fort worth zoo welcomes new penguin exhibit]]></description>
+      <link>https://example.com/fort-worth-entertainment/6eaed8be-3533-482b-bea1-488c81303317</link>
+      <pubDate>Tue, 05 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Food Critic</author>
+      <guid>https://example.com/fort-worth-entertainment/6eaed8be-3533-482b-bea1-488c81303317</guid>
+    </item>
+    <item>
+      <title><![CDATA[Shopping guide: Home Depot opens new location in Fort Worth]]></title>
+      <description><![CDATA[Entertainment and lifestyle news about shopping guide: home depot opens new location in fort worth]]></description>
+      <link>https://example.com/fort-worth-entertainment/9a013692-c0f9-491c-93fb-8e41f3321f46</link>
+      <pubDate>Tue, 12 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Lifestyle Editor</author>
+      <guid>https://example.com/fort-worth-entertainment/9a013692-c0f9-491c-93fb-8e41f3321f46</guid>
+    </item>
+    <item>
+      <title><![CDATA[Shopping guide: Home Depot opens new location in Fort Worth]]></title>
+      <description><![CDATA[Entertainment and lifestyle news about shopping guide: home depot opens new location in fort worth]]></description>
+      <link>https://example.com/fort-worth-entertainment/e5b960cb-1dbd-454c-98e7-b127864d0aea</link>
+      <pubDate>Sat, 09 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Sports Writer</author>
+      <guid>https://example.com/fort-worth-entertainment/e5b960cb-1dbd-454c-98e7-b127864d0aea</guid>
+    </item>
+    <item>
+      <title><![CDATA[Concert review: Rock Band performs at Fort Worth Stockyards]]></title>
+      <description><![CDATA[Entertainment and lifestyle news about concert review: rock band performs at fort worth stockyards]]></description>
+      <link>https://example.com/fort-worth-entertainment/3b71af68-b821-44c0-9a96-c742908bc922</link>
+      <pubDate>Thu, 31 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Entertainment Reporter</author>
+      <guid>https://example.com/fort-worth-entertainment/3b71af68-b821-44c0-9a96-c742908bc922</guid>
+    </item>
+    <item>
+      <title><![CDATA[TCU Horned Frogs basketball team advances to playoffs in conference play]]></title>
+      <description><![CDATA[Entertainment and lifestyle news about tcu horned frogs basketball team advances to playoffs in conference play]]></description>
+      <link>https://example.com/fort-worth-entertainment/e9614c60-bc66-43d4-9de4-b90f78c212c0</link>
+      <pubDate>Sat, 02 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Lifestyle Editor</author>
+      <guid>https://example.com/fort-worth-entertainment/e9614c60-bc66-43d4-9de4-b90f78c212c0</guid>
+    </item>
+    <item>
+      <title><![CDATA[Entertainment: Art festival coming to downtown]]></title>
+      <description><![CDATA[Entertainment and lifestyle news about entertainment: art festival coming to downtown]]></description>
+      <link>https://example.com/fort-worth-entertainment/c915973c-acbb-4ee2-9121-820fbb43b2eb</link>
+      <pubDate>Tue, 29 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Sports Writer</author>
+      <guid>https://example.com/fort-worth-entertainment/c915973c-acbb-4ee2-9121-820fbb43b2eb</guid>
+    </item>
+    <item>
+      <title><![CDATA[Concert review: Pop Artist performs at Fort Worth Stockyards]]></title>
+      <description><![CDATA[Entertainment and lifestyle news about concert review: pop artist performs at fort worth stockyards]]></description>
+      <link>https://example.com/fort-worth-entertainment/d72ec73b-7663-4d4b-9829-ec8f6c082895</link>
+      <pubDate>Mon, 11 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Sports Writer</author>
+      <guid>https://example.com/fort-worth-entertainment/d72ec73b-7663-4d4b-9829-ec8f6c082895</guid>
+    </item>
+    <item>
+      <title><![CDATA[Weather forecast: Snow expected in DFW area]]></title>
+      <description><![CDATA[Entertainment and lifestyle news about weather forecast: snow expected in dfw area]]></description>
+      <link>https://example.com/fort-worth-entertainment/d33030f0-926a-44f6-a93c-d76ffacd0593</link>
+      <pubDate>Sun, 03 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Sports Writer</author>
+      <guid>https://example.com/fort-worth-entertainment/d33030f0-926a-44f6-a93c-d76ffacd0593</guid>
+    </item>
+    <item>
+      <title><![CDATA[Fort Worth restaurant review: Best Italian in Texas]]></title>
+      <description><![CDATA[Entertainment and lifestyle news about fort worth restaurant review: best italian in texas]]></description>
+      <link>https://example.com/fort-worth-entertainment/aea38c60-167b-4a1b-ab66-93301b103bfd</link>
+      <pubDate>Sat, 26 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Sports Writer</author>
+      <guid>https://example.com/fort-worth-entertainment/aea38c60-167b-4a1b-ab66-93301b103bfd</guid>
+    </item>
+    <item>
+      <title><![CDATA[TCU Horned Frogs basketball team advances to playoffs in conference play]]></title>
+      <description><![CDATA[Entertainment and lifestyle news about tcu horned frogs basketball team advances to playoffs in conference play]]></description>
+      <link>https://example.com/fort-worth-entertainment/cee76bed-7930-4589-ad9b-88cab36befec</link>
+      <pubDate>Mon, 21 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Sports Writer</author>
+      <guid>https://example.com/fort-worth-entertainment/cee76bed-7930-4589-ad9b-88cab36befec</guid>
+    </item>
+  </channel>
+</rss>

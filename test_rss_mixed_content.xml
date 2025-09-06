@@ -1,0 +1,810 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Mixed Content News</title>
+    <description>Test RSS feed for mixed_content articles</description>
+    <link>https://example.com/mixed_content</link>
+    <lastBuildDate>Wed, 13 Aug 2025 20:20:37 GMT</lastBuildDate>
+
+    <item>
+      <title><![CDATA[Entrepreneur spotlight: Building sustainable solutions for manufacturing]]></title>
+      <description><![CDATA[Business and innovation news about entrepreneur spotlight: building sustainable solutions for manufacturing]]></description>
+      <link>https://example.com/mixed-business/f4ec4118-4abd-49da-b587-96ccc6ae836d</link>
+      <pubDate>Thu, 07 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Local Business</author>
+      <guid>https://example.com/mixed-business/f4ec4118-4abd-49da-b587-96ccc6ae836d</guid>
+    </item>
+    <item>
+      <title><![CDATA[Small business grant program launches to support local innovators]]></title>
+      <description><![CDATA[Business and innovation news about small business grant program launches to support local innovators]]></description>
+      <link>https://example.com/mixed-business/50b39a4e-89cb-44a8-8a1d-8ef670934dae</link>
+      <pubDate>Fri, 08 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Business Reporter</author>
+      <guid>https://example.com/mixed-business/50b39a4e-89cb-44a8-8a1d-8ef670934dae</guid>
+    </item>
+    <item>
+      <title><![CDATA[Innovation hub opens in innovation quarter to foster technology development]]></title>
+      <description><![CDATA[Business and innovation news about innovation hub opens in innovation quarter to foster technology development]]></description>
+      <link>https://example.com/mixed-business/e794603e-ad8c-4430-b8f9-5e67c31bda5c</link>
+      <pubDate>Thu, 24 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Business Reporter</author>
+      <guid>https://example.com/mixed-business/e794603e-ad8c-4430-b8f9-5e67c31bda5c</guid>
+    </item>
+    <item>
+      <title><![CDATA[Innovation hub opens in tech district to foster social impact development]]></title>
+      <description><![CDATA[Business and innovation news about innovation hub opens in tech district to foster social impact development]]></description>
+      <link>https://example.com/mixed-business/c9709f55-0c4c-43de-a29e-2c5d74add362</link>
+      <pubDate>Wed, 13 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Local Business</author>
+      <guid>https://example.com/mixed-business/c9709f55-0c4c-43de-a29e-2c5d74add362</guid>
+    </item>
+    <item>
+      <title><![CDATA[Entrepreneur spotlight: Building sustainable solutions for technology]]></title>
+      <description><![CDATA[Business and innovation news about entrepreneur spotlight: building sustainable solutions for technology]]></description>
+      <link>https://example.com/mixed-business/2d622e75-16ad-4302-b2f9-6f2d98d02f29</link>
+      <pubDate>Wed, 13 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Business Reporter</author>
+      <guid>https://example.com/mixed-business/2d622e75-16ad-4302-b2f9-6f2d98d02f29</guid>
+    </item>
+    <item>
+      <title><![CDATA[Local healthcare companies collaborate on economic growth initiative]]></title>
+      <description><![CDATA[Business and innovation news about local healthcare companies collaborate on economic growth initiative]]></description>
+      <link>https://example.com/mixed-business/16b06415-8438-4d9b-83ec-a331b4553ede</link>
+      <pubDate>Wed, 23 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Innovation News</author>
+      <guid>https://example.com/mixed-business/16b06415-8438-4d9b-83ec-a331b4553ede</guid>
+    </item>
+    <item>
+      <title><![CDATA[Local business innovation drives economic growth in Dallas]]></title>
+      <description><![CDATA[Business and innovation news about local business innovation drives economic growth in dallas]]></description>
+      <link>https://example.com/mixed-business/b60a0cea-f469-4c23-a44a-12f6ad0d5747</link>
+      <pubDate>Sat, 09 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Local Business</author>
+      <guid>https://example.com/mixed-business/b60a0cea-f469-4c23-a44a-12f6ad0d5747</guid>
+    </item>
+    <item>
+      <title><![CDATA[Entrepreneur spotlight: Building sustainable solutions for technology]]></title>
+      <description><![CDATA[Business and innovation news about entrepreneur spotlight: building sustainable solutions for technology]]></description>
+      <link>https://example.com/mixed-business/c3d744c0-367d-45f9-8aa0-3463f346518e</link>
+      <pubDate>Tue, 22 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Economic Development</author>
+      <guid>https://example.com/mixed-business/c3d744c0-367d-45f9-8aa0-3463f346518e</guid>
+    </item>
+    <item>
+      <title><![CDATA[Local business innovation drives economic growth in Houston]]></title>
+      <description><![CDATA[Business and innovation news about local business innovation drives economic growth in houston]]></description>
+      <link>https://example.com/mixed-business/c443ec99-a553-4576-a082-84decdadefd2</link>
+      <pubDate>Sun, 10 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Business Reporter</author>
+      <guid>https://example.com/mixed-business/c443ec99-a553-4576-a082-84decdadefd2</guid>
+    </item>
+    <item>
+      <title><![CDATA[Innovation hub opens in innovation quarter to foster economic development]]></title>
+      <description><![CDATA[Business and innovation news about innovation hub opens in innovation quarter to foster economic development]]></description>
+      <link>https://example.com/mixed-business/4fe0cdbf-4b0e-470d-a082-484d92da5bc6</link>
+      <pubDate>Wed, 23 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Local Business</author>
+      <guid>https://example.com/mixed-business/4fe0cdbf-4b0e-470d-a082-484d92da5bc6</guid>
+    </item>
+    <item>
+      <title><![CDATA[Entrepreneur spotlight: Building sustainable solutions for technology]]></title>
+      <description><![CDATA[Business and innovation news about entrepreneur spotlight: building sustainable solutions for technology]]></description>
+      <link>https://example.com/mixed-business/262028e3-aa55-4a30-a92e-b56017e98ce2</link>
+      <pubDate>Tue, 12 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Economic Development</author>
+      <guid>https://example.com/mixed-business/262028e3-aa55-4a30-a92e-b56017e98ce2</guid>
+    </item>
+    <item>
+      <title><![CDATA[Innovation hub opens in innovation quarter to foster social impact development]]></title>
+      <description><![CDATA[Business and innovation news about innovation hub opens in innovation quarter to foster social impact development]]></description>
+      <link>https://example.com/mixed-business/6ef6c82a-76b4-4d61-b9a1-1d7c6a0794c4</link>
+      <pubDate>Sun, 20 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Business Reporter</author>
+      <guid>https://example.com/mixed-business/6ef6c82a-76b4-4d61-b9a1-1d7c6a0794c4</guid>
+    </item>
+    <item>
+      <title><![CDATA[Local manufacturing companies collaborate on economic growth initiative]]></title>
+      <description><![CDATA[Business and innovation news about local manufacturing companies collaborate on economic growth initiative]]></description>
+      <link>https://example.com/mixed-business/d512811f-4f13-4ba3-a238-d700b075403e</link>
+      <pubDate>Sun, 10 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Local Business</author>
+      <guid>https://example.com/mixed-business/d512811f-4f13-4ba3-a238-d700b075403e</guid>
+    </item>
+    <item>
+      <title><![CDATA[Small business funding opportunity launches to support women-owned businesses]]></title>
+      <description><![CDATA[Business and innovation news about small business funding opportunity launches to support women-owned businesses]]></description>
+      <link>https://example.com/mixed-business/7141a8d0-34f8-407d-8f53-b074a0f6b647</link>
+      <pubDate>Sun, 20 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Local Business</author>
+      <guid>https://example.com/mixed-business/7141a8d0-34f8-407d-8f53-b074a0f6b647</guid>
+    </item>
+    <item>
+      <title><![CDATA[Entrepreneur spotlight: Building sustainable solutions for manufacturing]]></title>
+      <description><![CDATA[Business and innovation news about entrepreneur spotlight: building sustainable solutions for manufacturing]]></description>
+      <link>https://example.com/mixed-business/3ea17b4d-12c1-4b00-b00c-fd5505cedae3</link>
+      <pubDate>Mon, 11 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Innovation News</author>
+      <guid>https://example.com/mixed-business/3ea17b4d-12c1-4b00-b00c-fd5505cedae3</guid>
+    </item>
+    <item>
+      <title><![CDATA[Entrepreneur spotlight: Building sustainable solutions for healthcare]]></title>
+      <description><![CDATA[Business and innovation news about entrepreneur spotlight: building sustainable solutions for healthcare]]></description>
+      <link>https://example.com/mixed-business/2b270565-dc0b-4a34-a918-7bda238f2d71</link>
+      <pubDate>Sun, 10 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Innovation News</author>
+      <guid>https://example.com/mixed-business/2b270565-dc0b-4a34-a918-7bda238f2d71</guid>
+    </item>
+    <item>
+      <title><![CDATA[Local business innovation drives economic growth in Austin]]></title>
+      <description><![CDATA[Business and innovation news about local business innovation drives economic growth in austin]]></description>
+      <link>https://example.com/mixed-business/e7305df9-93f1-4c7c-b7e4-b8abf9eecf46</link>
+      <pubDate>Thu, 07 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Business Reporter</author>
+      <guid>https://example.com/mixed-business/e7305df9-93f1-4c7c-b7e4-b8abf9eecf46</guid>
+    </item>
+    <item>
+      <title><![CDATA[Entrepreneur spotlight: Building sustainable solutions for technology]]></title>
+      <description><![CDATA[Business and innovation news about entrepreneur spotlight: building sustainable solutions for technology]]></description>
+      <link>https://example.com/mixed-business/47e06282-c93c-423c-b6df-397beb929afc</link>
+      <pubDate>Sun, 10 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Business Reporter</author>
+      <guid>https://example.com/mixed-business/47e06282-c93c-423c-b6df-397beb929afc</guid>
+    </item>
+    <item>
+      <title><![CDATA[Local service companies collaborate on innovation initiative]]></title>
+      <description><![CDATA[Business and innovation news about local service companies collaborate on innovation initiative]]></description>
+      <link>https://example.com/mixed-business/f2253e33-5e59-4787-93d3-4db7a8ea17a4</link>
+      <pubDate>Mon, 21 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Business Reporter</author>
+      <guid>https://example.com/mixed-business/f2253e33-5e59-4787-93d3-4db7a8ea17a4</guid>
+    </item>
+    <item>
+      <title><![CDATA[Small business grant program launches to support women-owned businesses]]></title>
+      <description><![CDATA[Business and innovation news about small business grant program launches to support women-owned businesses]]></description>
+      <link>https://example.com/mixed-business/ec0efc97-5126-4752-a818-abeaa5a9b39e</link>
+      <pubDate>Sat, 02 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Local Business</author>
+      <guid>https://example.com/mixed-business/ec0efc97-5126-4752-a818-abeaa5a9b39e</guid>
+    </item>
+    <item>
+      <title><![CDATA[Innovation hub opens in tech district to foster social impact development]]></title>
+      <description><![CDATA[Business and innovation news about innovation hub opens in tech district to foster social impact development]]></description>
+      <link>https://example.com/mixed-business/24e56a6c-204d-49f1-9b0b-d79e282c9228</link>
+      <pubDate>Fri, 01 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Business Reporter</author>
+      <guid>https://example.com/mixed-business/24e56a6c-204d-49f1-9b0b-d79e282c9228</guid>
+    </item>
+    <item>
+      <title><![CDATA[Local healthcare companies collaborate on innovation initiative]]></title>
+      <description><![CDATA[Business and innovation news about local healthcare companies collaborate on innovation initiative]]></description>
+      <link>https://example.com/mixed-business/a3e61249-e201-4766-b37a-277a4ef808da</link>
+      <pubDate>Mon, 14 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Economic Development</author>
+      <guid>https://example.com/mixed-business/a3e61249-e201-4766-b37a-277a4ef808da</guid>
+    </item>
+    <item>
+      <title><![CDATA[Innovation hub opens in innovation quarter to foster technology development]]></title>
+      <description><![CDATA[Business and innovation news about innovation hub opens in innovation quarter to foster technology development]]></description>
+      <link>https://example.com/mixed-business/a488e54d-eada-4a11-8470-4eb70c437781</link>
+      <pubDate>Wed, 13 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Local Business</author>
+      <guid>https://example.com/mixed-business/a488e54d-eada-4a11-8470-4eb70c437781</guid>
+    </item>
+    <item>
+      <title><![CDATA[Entrepreneur spotlight: Building sustainable solutions for retail]]></title>
+      <description><![CDATA[Business and innovation news about entrepreneur spotlight: building sustainable solutions for retail]]></description>
+      <link>https://example.com/mixed-business/2c7aa0a3-c0ba-4f56-8a41-aff4aec5f939</link>
+      <pubDate>Mon, 14 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Local Business</author>
+      <guid>https://example.com/mixed-business/2c7aa0a3-c0ba-4f56-8a41-aff4aec5f939</guid>
+    </item>
+    <item>
+      <title><![CDATA[Local business innovation drives economic growth in Dallas]]></title>
+      <description><![CDATA[Business and innovation news about local business innovation drives economic growth in dallas]]></description>
+      <link>https://example.com/mixed-business/8576fa92-e436-49d7-934b-05873f19986e</link>
+      <pubDate>Wed, 23 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Business Reporter</author>
+      <guid>https://example.com/mixed-business/8576fa92-e436-49d7-934b-05873f19986e</guid>
+    </item>
+    <item>
+      <title><![CDATA[Sports: Lakers advances in soccer championship]]></title>
+      <description><![CDATA[General interest news about sports: lakers advances in soccer championship]]></description>
+      <link>https://example.com/mixed-general/c36e360d-308c-4df5-88f3-066dcfeb3252</link>
+      <pubDate>Mon, 28 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Feature Writer</author>
+      <guid>https://example.com/mixed-general/c36e360d-308c-4df5-88f3-066dcfeb3252</guid>
+    </item>
+    <item>
+      <title><![CDATA[Sports: Cowboys wins in basketball championship]]></title>
+      <description><![CDATA[General interest news about sports: cowboys wins in basketball championship]]></description>
+      <link>https://example.com/mixed-general/a773c662-db7c-40ac-8887-7b3c86246c9a</link>
+      <pubDate>Tue, 12 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Feature Writer</author>
+      <guid>https://example.com/mixed-general/a773c662-db7c-40ac-8887-7b3c86246c9a</guid>
+    </item>
+    <item>
+      <title><![CDATA[Weather update: snow expected this season]]></title>
+      <description><![CDATA[General interest news about weather update: snow expected this season]]></description>
+      <link>https://example.com/mixed-general/8f400973-7c34-4007-904b-bc54d5fe75b6</link>
+      <pubDate>Thu, 31 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Feature Writer</author>
+      <guid>https://example.com/mixed-general/8f400973-7c34-4007-904b-bc54d5fe75b6</guid>
+    </item>
+    <item>
+      <title><![CDATA[Entertainment: Drama Series premieres on Amazon Prime tonight]]></title>
+      <description><![CDATA[General interest news about entertainment: drama series premieres on amazon prime tonight]]></description>
+      <link>https://example.com/mixed-general/72bf96c4-d45f-467b-8597-ffd3b4de27ed</link>
+      <pubDate>Sun, 20 Jul 2025 20:20:37 GMT</pubDate>
+      <author>General Reporter</author>
+      <guid>https://example.com/mixed-general/72bf96c4-d45f-467b-8597-ffd3b4de27ed</guid>
+    </item>
+    <item>
+      <title><![CDATA[Fashion trends for summer season include minimalist designs]]></title>
+      <description><![CDATA[General interest news about fashion trends for summer season include minimalist designs]]></description>
+      <link>https://example.com/mixed-general/949d58ee-c2cc-4dc0-b2bb-9194b6097af6</link>
+      <pubDate>Mon, 04 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Entertainment Writer</author>
+      <guid>https://example.com/mixed-general/949d58ee-c2cc-4dc0-b2bb-9194b6097af6</guid>
+    </item>
+    <item>
+      <title><![CDATA[Fashion trends for summer season include vintage looks]]></title>
+      <description><![CDATA[General interest news about fashion trends for summer season include vintage looks]]></description>
+      <link>https://example.com/mixed-general/beac4349-25d7-4c66-b006-0d156e7356b1</link>
+      <pubDate>Thu, 17 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Feature Writer</author>
+      <guid>https://example.com/mixed-general/beac4349-25d7-4c66-b006-0d156e7356b1</guid>
+    </item>
+    <item>
+      <title><![CDATA[Weather update: storms expected this week]]></title>
+      <description><![CDATA[General interest news about weather update: storms expected this week]]></description>
+      <link>https://example.com/mixed-general/930d3aae-5a84-4328-9d13-529a869e3549</link>
+      <pubDate>Sat, 26 Jul 2025 20:20:37 GMT</pubDate>
+      <author>General Reporter</author>
+      <guid>https://example.com/mixed-general/930d3aae-5a84-4328-9d13-529a869e3549</guid>
+    </item>
+    <item>
+      <title><![CDATA[Home improvement: DIY bedroom refresh for bedroom]]></title>
+      <description><![CDATA[General interest news about home improvement: diy bedroom refresh for bedroom]]></description>
+      <link>https://example.com/mixed-general/15410b37-3dfd-43d7-a49c-baba5b9e0922</link>
+      <pubDate>Mon, 28 Jul 2025 20:20:37 GMT</pubDate>
+      <author>General Reporter</author>
+      <guid>https://example.com/mixed-general/15410b37-3dfd-43d7-a49c-baba5b9e0922</guid>
+    </item>
+    <item>
+      <title><![CDATA[Recipe: How to make perfect grilled chicken at home]]></title>
+      <description><![CDATA[General interest news about recipe: how to make perfect grilled chicken at home]]></description>
+      <link>https://example.com/mixed-general/b5265671-5695-4624-8ee3-c8bb0ceda96d</link>
+      <pubDate>Thu, 31 Jul 2025 20:20:37 GMT</pubDate>
+      <author>General Reporter</author>
+      <guid>https://example.com/mixed-general/b5265671-5695-4624-8ee3-c8bb0ceda96d</guid>
+    </item>
+    <item>
+      <title><![CDATA[Movie review: Action Hero 3 disappoints critics with mixed reactions]]></title>
+      <description><![CDATA[General interest news about movie review: action hero 3 disappoints critics with mixed reactions]]></description>
+      <link>https://example.com/mixed-general/7980dd13-e75e-4f4b-b3c8-dbb923468c2f</link>
+      <pubDate>Mon, 28 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Feature Writer</author>
+      <guid>https://example.com/mixed-general/7980dd13-e75e-4f4b-b3c8-dbb923468c2f</guid>
+    </item>
+    <item>
+      <title><![CDATA[Weather update: storms expected this month]]></title>
+      <description><![CDATA[General interest news about weather update: storms expected this month]]></description>
+      <link>https://example.com/mixed-general/916aee2f-2b93-4ac4-b5c7-48fbd73ece55</link>
+      <pubDate>Sun, 10 Aug 2025 20:20:37 GMT</pubDate>
+      <author>General Reporter</author>
+      <guid>https://example.com/mixed-general/916aee2f-2b93-4ac4-b5c7-48fbd73ece55</guid>
+    </item>
+    <item>
+      <title><![CDATA[Travel destinations: Top 5 places to visit in Europe]]></title>
+      <description><![CDATA[General interest news about travel destinations: top 5 places to visit in europe]]></description>
+      <link>https://example.com/mixed-general/a87f205e-0926-4db7-8508-cb6e7b1eef2d</link>
+      <pubDate>Sat, 09 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Lifestyle Editor</author>
+      <guid>https://example.com/mixed-general/a87f205e-0926-4db7-8508-cb6e7b1eef2d</guid>
+    </item>
+    <item>
+      <title><![CDATA[Entertainment: Drama Series premieres on Disney+ tonight]]></title>
+      <description><![CDATA[General interest news about entertainment: drama series premieres on disney+ tonight]]></description>
+      <link>https://example.com/mixed-general/9fce021b-5f22-4195-ac8f-cd01cdb61ffa</link>
+      <pubDate>Sun, 27 Jul 2025 20:20:37 GMT</pubDate>
+      <author>General Reporter</author>
+      <guid>https://example.com/mixed-general/9fce021b-5f22-4195-ac8f-cd01cdb61ffa</guid>
+    </item>
+    <item>
+      <title><![CDATA[Health tips: reduce stress for better fitness]]></title>
+      <description><![CDATA[General interest news about health tips: reduce stress for better fitness]]></description>
+      <link>https://example.com/mixed-general/0b8c9b85-9e89-4e35-b48d-6f38fd2def4c</link>
+      <pubDate>Mon, 14 Jul 2025 20:20:37 GMT</pubDate>
+      <author>General Reporter</author>
+      <guid>https://example.com/mixed-general/0b8c9b85-9e89-4e35-b48d-6f38fd2def4c</guid>
+    </item>
+    <item>
+      <title><![CDATA[Recipe: How to make perfect banana bread at home]]></title>
+      <description><![CDATA[General interest news about recipe: how to make perfect banana bread at home]]></description>
+      <link>https://example.com/mixed-general/5a866911-51d6-4d07-bda8-a042b022a099</link>
+      <pubDate>Fri, 01 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Lifestyle Editor</author>
+      <guid>https://example.com/mixed-general/5a866911-51d6-4d07-bda8-a042b022a099</guid>
+    </item>
+    <item>
+      <title><![CDATA[Home improvement: DIY garden makeover for bedroom]]></title>
+      <description><![CDATA[General interest news about home improvement: diy garden makeover for bedroom]]></description>
+      <link>https://example.com/mixed-general/73305c18-2701-40a1-995c-747dbd1750b7</link>
+      <pubDate>Wed, 30 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Entertainment Writer</author>
+      <guid>https://example.com/mixed-general/73305c18-2701-40a1-995c-747dbd1750b7</guid>
+    </item>
+    <item>
+      <title><![CDATA[Fashion trends for winter season include vintage looks]]></title>
+      <description><![CDATA[General interest news about fashion trends for winter season include vintage looks]]></description>
+      <link>https://example.com/mixed-general/887cbc86-b877-44d2-8f4c-0f400a2e578f</link>
+      <pubDate>Mon, 21 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Entertainment Writer</author>
+      <guid>https://example.com/mixed-general/887cbc86-b877-44d2-8f4c-0f400a2e578f</guid>
+    </item>
+    <item>
+      <title><![CDATA[Recipe: How to make perfect grilled chicken at home]]></title>
+      <description><![CDATA[General interest news about recipe: how to make perfect grilled chicken at home]]></description>
+      <link>https://example.com/mixed-general/9bb1a662-e1df-43fa-aa59-25cb50f554c1</link>
+      <pubDate>Fri, 18 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Entertainment Writer</author>
+      <guid>https://example.com/mixed-general/9bb1a662-e1df-43fa-aa59-25cb50f554c1</guid>
+    </item>
+    <item>
+      <title><![CDATA[Movie review: Sci-Fi Adventure disappoints critics with low scores]]></title>
+      <description><![CDATA[General interest news about movie review: sci-fi adventure disappoints critics with low scores]]></description>
+      <link>https://example.com/mixed-general/6ae06901-2ec6-4bc8-809b-b83f86c4f106</link>
+      <pubDate>Thu, 31 Jul 2025 20:20:37 GMT</pubDate>
+      <author>General Reporter</author>
+      <guid>https://example.com/mixed-general/6ae06901-2ec6-4bc8-809b-b83f86c4f106</guid>
+    </item>
+    <item>
+      <title><![CDATA[Sports: Cowboys loses in baseball championship]]></title>
+      <description><![CDATA[General interest news about sports: cowboys loses in baseball championship]]></description>
+      <link>https://example.com/mixed-general/270f4f1a-845e-4dc4-ab79-472a3f3f9724</link>
+      <pubDate>Sat, 19 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Entertainment Writer</author>
+      <guid>https://example.com/mixed-general/270f4f1a-845e-4dc4-ab79-472a3f3f9724</guid>
+    </item>
+    <item>
+      <title><![CDATA[Weather update: rain expected this weekend]]></title>
+      <description><![CDATA[General interest news about weather update: rain expected this weekend]]></description>
+      <link>https://example.com/mixed-general/befda9b0-4bf6-4c04-9914-6d7012c8cbb5</link>
+      <pubDate>Sat, 09 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Lifestyle Editor</author>
+      <guid>https://example.com/mixed-general/befda9b0-4bf6-4c04-9914-6d7012c8cbb5</guid>
+    </item>
+    <item>
+      <title><![CDATA[Entertainment: Drama Series premieres on HBO tonight]]></title>
+      <description><![CDATA[General interest news about entertainment: drama series premieres on hbo tonight]]></description>
+      <link>https://example.com/mixed-general/98b4ad60-e27c-4a85-846b-7058ffb355f9</link>
+      <pubDate>Fri, 01 Aug 2025 20:20:37 GMT</pubDate>
+      <author>General Reporter</author>
+      <guid>https://example.com/mixed-general/98b4ad60-e27c-4a85-846b-7058ffb355f9</guid>
+    </item>
+    <item>
+      <title><![CDATA[Recipe: How to make perfect pasta sauce at home]]></title>
+      <description><![CDATA[General interest news about recipe: how to make perfect pasta sauce at home]]></description>
+      <link>https://example.com/mixed-general/d19f465a-e403-4ac2-8d29-47cb9b513758</link>
+      <pubDate>Wed, 16 Jul 2025 20:20:37 GMT</pubDate>
+      <author>General Reporter</author>
+      <guid>https://example.com/mixed-general/d19f465a-e403-4ac2-8d29-47cb9b513758</guid>
+    </item>
+    <item>
+      <title><![CDATA[Health tips: get enough sleep for better sleep]]></title>
+      <description><![CDATA[General interest news about health tips: get enough sleep for better sleep]]></description>
+      <link>https://example.com/mixed-general/c2c19dd5-3a47-4e44-90ce-93076e7e784c</link>
+      <pubDate>Fri, 01 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Lifestyle Editor</author>
+      <guid>https://example.com/mixed-general/c2c19dd5-3a47-4e44-90ce-93076e7e784c</guid>
+    </item>
+    <item>
+      <title><![CDATA[Travel destinations: Top 15 places to visit in Caribbean]]></title>
+      <description><![CDATA[General interest news about travel destinations: top 15 places to visit in caribbean]]></description>
+      <link>https://example.com/mixed-general/fd74c30a-9a17-49fc-b7b2-c29ccb00b847</link>
+      <pubDate>Fri, 25 Jul 2025 20:20:37 GMT</pubDate>
+      <author>General Reporter</author>
+      <guid>https://example.com/mixed-general/fd74c30a-9a17-49fc-b7b2-c29ccb00b847</guid>
+    </item>
+    <item>
+      <title><![CDATA[Home improvement: DIY garden makeover for kitchen]]></title>
+      <description><![CDATA[General interest news about home improvement: diy garden makeover for kitchen]]></description>
+      <link>https://example.com/mixed-general/0debc511-3afe-4314-a6af-ab7ed9cb5182</link>
+      <pubDate>Sun, 10 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Entertainment Writer</author>
+      <guid>https://example.com/mixed-general/0debc511-3afe-4314-a6af-ab7ed9cb5182</guid>
+    </item>
+    <item>
+      <title><![CDATA[Celebrity Brad Pitt spotted at popular restaurant]]></title>
+      <description><![CDATA[General interest news about celebrity brad pitt spotted at popular restaurant]]></description>
+      <link>https://example.com/mixed-general/da851719-6003-4905-b15b-9320977f152f</link>
+      <pubDate>Tue, 22 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Lifestyle Editor</author>
+      <guid>https://example.com/mixed-general/da851719-6003-4905-b15b-9320977f152f</guid>
+    </item>
+    <item>
+      <title><![CDATA[Recipe: How to make perfect grilled chicken at home]]></title>
+      <description><![CDATA[General interest news about recipe: how to make perfect grilled chicken at home]]></description>
+      <link>https://example.com/mixed-general/05922ae2-4024-4ead-be98-dfc80f02e509</link>
+      <pubDate>Sat, 26 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Lifestyle Editor</author>
+      <guid>https://example.com/mixed-general/05922ae2-4024-4ead-be98-dfc80f02e509</guid>
+    </item>
+    <item>
+      <title><![CDATA[Entertainment: Comedy Show premieres on Disney+ tonight]]></title>
+      <description><![CDATA[General interest news about entertainment: comedy show premieres on disney+ tonight]]></description>
+      <link>https://example.com/mixed-general/08e4e8f0-1d29-4732-b5e4-4515d455af1e</link>
+      <pubDate>Wed, 23 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Feature Writer</author>
+      <guid>https://example.com/mixed-general/08e4e8f0-1d29-4732-b5e4-4515d455af1e</guid>
+    </item>
+    <item>
+      <title><![CDATA[Home improvement: DIY kitchen renovation for bedroom]]></title>
+      <description><![CDATA[General interest news about home improvement: diy kitchen renovation for bedroom]]></description>
+      <link>https://example.com/mixed-general/5dd2761c-9d2a-4b73-88e6-a3b76a135292</link>
+      <pubDate>Tue, 22 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Lifestyle Editor</author>
+      <guid>https://example.com/mixed-general/5dd2761c-9d2a-4b73-88e6-a3b76a135292</guid>
+    </item>
+    <item>
+      <title><![CDATA[Celebrity Jennifer Lopez spotted at popular restaurant]]></title>
+      <description><![CDATA[General interest news about celebrity jennifer lopez spotted at popular restaurant]]></description>
+      <link>https://example.com/mixed-general/5e6e3e7b-3c70-4854-bf19-c57d20429b27</link>
+      <pubDate>Wed, 23 Jul 2025 20:20:37 GMT</pubDate>
+      <author>General Reporter</author>
+      <guid>https://example.com/mixed-general/5e6e3e7b-3c70-4854-bf19-c57d20429b27</guid>
+    </item>
+    <item>
+      <title><![CDATA[Movie review: Comedy Central disappoints critics with poor reviews]]></title>
+      <description><![CDATA[General interest news about movie review: comedy central disappoints critics with poor reviews]]></description>
+      <link>https://example.com/mixed-general/7615d415-af37-471d-93e6-8fc307fefce3</link>
+      <pubDate>Wed, 23 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Entertainment Writer</author>
+      <guid>https://example.com/mixed-general/7615d415-af37-471d-93e6-8fc307fefce3</guid>
+    </item>
+    <item>
+      <title><![CDATA[Travel destinations: Top 5 places to visit in South America]]></title>
+      <description><![CDATA[General interest news about travel destinations: top 5 places to visit in south america]]></description>
+      <link>https://example.com/mixed-general/de0cc650-ad31-4a9d-a9c5-7bd42836c9c2</link>
+      <pubDate>Fri, 25 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Entertainment Writer</author>
+      <guid>https://example.com/mixed-general/de0cc650-ad31-4a9d-a9c5-7bd42836c9c2</guid>
+    </item>
+    <item>
+      <title><![CDATA[Movie review: Romance Story disappoints critics with low scores]]></title>
+      <description><![CDATA[General interest news about movie review: romance story disappoints critics with low scores]]></description>
+      <link>https://example.com/mixed-general/2a528dc8-b7fc-4052-9018-c6541a14d598</link>
+      <pubDate>Tue, 12 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Entertainment Writer</author>
+      <guid>https://example.com/mixed-general/2a528dc8-b7fc-4052-9018-c6541a14d598</guid>
+    </item>
+    <item>
+      <title><![CDATA[Celebrity Brad Pitt spotted at popular restaurant]]></title>
+      <description><![CDATA[General interest news about celebrity brad pitt spotted at popular restaurant]]></description>
+      <link>https://example.com/mixed-general/efac0dcb-ffc8-47fb-8176-0df72490b66b</link>
+      <pubDate>Sat, 19 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Feature Writer</author>
+      <guid>https://example.com/mixed-general/efac0dcb-ffc8-47fb-8176-0df72490b66b</guid>
+    </item>
+    <item>
+      <title><![CDATA[Home improvement: DIY bathroom update for living room]]></title>
+      <description><![CDATA[General interest news about home improvement: diy bathroom update for living room]]></description>
+      <link>https://example.com/mixed-general/3da978a4-5850-44ce-9296-dcf956985781</link>
+      <pubDate>Thu, 24 Jul 2025 20:20:37 GMT</pubDate>
+      <author>General Reporter</author>
+      <guid>https://example.com/mixed-general/3da978a4-5850-44ce-9296-dcf956985781</guid>
+    </item>
+    <item>
+      <title><![CDATA[Recipe: How to make perfect grilled chicken at home]]></title>
+      <description><![CDATA[General interest news about recipe: how to make perfect grilled chicken at home]]></description>
+      <link>https://example.com/mixed-general/62cf7f14-8ba8-4651-b7eb-7c439bdfe476</link>
+      <pubDate>Mon, 11 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Entertainment Writer</author>
+      <guid>https://example.com/mixed-general/62cf7f14-8ba8-4651-b7eb-7c439bdfe476</guid>
+    </item>
+    <item>
+      <title><![CDATA[Sports: Yankees loses in football championship]]></title>
+      <description><![CDATA[General interest news about sports: yankees loses in football championship]]></description>
+      <link>https://example.com/mixed-general/87f0fcdd-ffd3-465c-9437-b730a77c6a83</link>
+      <pubDate>Thu, 24 Jul 2025 20:20:37 GMT</pubDate>
+      <author>General Reporter</author>
+      <guid>https://example.com/mixed-general/87f0fcdd-ffd3-465c-9437-b730a77c6a83</guid>
+    </item>
+    <item>
+      <title><![CDATA[Travel destinations: Top 20 places to visit in Europe]]></title>
+      <description><![CDATA[General interest news about travel destinations: top 20 places to visit in europe]]></description>
+      <link>https://example.com/mixed-general/635775ec-6a64-4fc1-81ac-85890c7dbca5</link>
+      <pubDate>Wed, 13 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Entertainment Writer</author>
+      <guid>https://example.com/mixed-general/635775ec-6a64-4fc1-81ac-85890c7dbca5</guid>
+    </item>
+    <item>
+      <title><![CDATA[Fashion trends for winter season include bold colors]]></title>
+      <description><![CDATA[General interest news about fashion trends for winter season include bold colors]]></description>
+      <link>https://example.com/mixed-general/99ac5507-c19e-4206-bf79-03d665abd8d4</link>
+      <pubDate>Sat, 02 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Feature Writer</author>
+      <guid>https://example.com/mixed-general/99ac5507-c19e-4206-bf79-03d665abd8d4</guid>
+    </item>
+    <item>
+      <title><![CDATA[Recipe: How to make perfect grilled chicken at home]]></title>
+      <description><![CDATA[General interest news about recipe: how to make perfect grilled chicken at home]]></description>
+      <link>https://example.com/mixed-general/6ddcfa5a-f748-4e05-afeb-fcc10a53c5e4</link>
+      <pubDate>Mon, 04 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Entertainment Writer</author>
+      <guid>https://example.com/mixed-general/6ddcfa5a-f748-4e05-afeb-fcc10a53c5e4</guid>
+    </item>
+    <item>
+      <title><![CDATA[Weather update: rain expected this weekend]]></title>
+      <description><![CDATA[General interest news about weather update: rain expected this weekend]]></description>
+      <link>https://example.com/mixed-general/d6d83dae-eed7-47d2-bdf7-39e753e44874</link>
+      <pubDate>Sat, 09 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Feature Writer</author>
+      <guid>https://example.com/mixed-general/d6d83dae-eed7-47d2-bdf7-39e753e44874</guid>
+    </item>
+    <item>
+      <title><![CDATA[Home improvement: DIY kitchen renovation for living room]]></title>
+      <description><![CDATA[General interest news about home improvement: diy kitchen renovation for living room]]></description>
+      <link>https://example.com/mixed-general/6f7a85be-cdc9-4992-8f53-af32ad9f1bda</link>
+      <pubDate>Fri, 18 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Feature Writer</author>
+      <guid>https://example.com/mixed-general/6f7a85be-cdc9-4992-8f53-af32ad9f1bda</guid>
+    </item>
+    <item>
+      <title><![CDATA[Recipe: How to make perfect chocolate chip cookies at home]]></title>
+      <description><![CDATA[General interest news about recipe: how to make perfect chocolate chip cookies at home]]></description>
+      <link>https://example.com/mixed-general/b36a0421-ed70-4ac7-8fca-b40c6ac82ef5</link>
+      <pubDate>Tue, 22 Jul 2025 20:20:37 GMT</pubDate>
+      <author>General Reporter</author>
+      <guid>https://example.com/mixed-general/b36a0421-ed70-4ac7-8fca-b40c6ac82ef5</guid>
+    </item>
+    <item>
+      <title><![CDATA[Entertainment: Drama Series premieres on Disney+ tonight]]></title>
+      <description><![CDATA[General interest news about entertainment: drama series premieres on disney+ tonight]]></description>
+      <link>https://example.com/mixed-general/0074e26c-f48c-4118-8fe9-965af0caa261</link>
+      <pubDate>Sat, 02 Aug 2025 20:20:37 GMT</pubDate>
+      <author>General Reporter</author>
+      <guid>https://example.com/mixed-general/0074e26c-f48c-4118-8fe9-965af0caa261</guid>
+    </item>
+    <item>
+      <title><![CDATA[Recipe: How to make perfect pasta sauce at home]]></title>
+      <description><![CDATA[General interest news about recipe: how to make perfect pasta sauce at home]]></description>
+      <link>https://example.com/mixed-general/423057ea-ddcb-4715-87dd-b5c0516e9587</link>
+      <pubDate>Mon, 21 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Entertainment Writer</author>
+      <guid>https://example.com/mixed-general/423057ea-ddcb-4715-87dd-b5c0516e9587</guid>
+    </item>
+    <item>
+      <title><![CDATA[Fashion trends for winter season include minimalist designs]]></title>
+      <description><![CDATA[General interest news about fashion trends for winter season include minimalist designs]]></description>
+      <link>https://example.com/mixed-general/a82b04c7-56ef-40ab-b672-e868e37e5bd3</link>
+      <pubDate>Wed, 13 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Entertainment Writer</author>
+      <guid>https://example.com/mixed-general/a82b04c7-56ef-40ab-b672-e868e37e5bd3</guid>
+    </item>
+    <item>
+      <title><![CDATA[Home improvement: DIY garden makeover for living room]]></title>
+      <description><![CDATA[General interest news about home improvement: diy garden makeover for living room]]></description>
+      <link>https://example.com/mixed-general/c970a677-331c-49e8-8c8c-c6971d17dae6</link>
+      <pubDate>Sat, 19 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Feature Writer</author>
+      <guid>https://example.com/mixed-general/c970a677-331c-49e8-8c8c-c6971d17dae6</guid>
+    </item>
+    <item>
+      <title><![CDATA[Fashion trends for winter season include casual wear]]></title>
+      <description><![CDATA[General interest news about fashion trends for winter season include casual wear]]></description>
+      <link>https://example.com/mixed-general/6244f562-10e1-4fa9-989b-a0762e060ab0</link>
+      <pubDate>Mon, 11 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Feature Writer</author>
+      <guid>https://example.com/mixed-general/6244f562-10e1-4fa9-989b-a0762e060ab0</guid>
+    </item>
+    <item>
+      <title><![CDATA[Sports: Lakers advances in baseball championship]]></title>
+      <description><![CDATA[General interest news about sports: lakers advances in baseball championship]]></description>
+      <link>https://example.com/mixed-general/9d046cf0-035b-42a0-b033-a18751783908</link>
+      <pubDate>Tue, 22 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Lifestyle Editor</author>
+      <guid>https://example.com/mixed-general/9d046cf0-035b-42a0-b033-a18751783908</guid>
+    </item>
+    <item>
+      <title><![CDATA[Fashion trends for winter season include bold colors]]></title>
+      <description><![CDATA[General interest news about fashion trends for winter season include bold colors]]></description>
+      <link>https://example.com/mixed-general/b8dc112a-3807-4426-ad05-96ce93d0eab8</link>
+      <pubDate>Fri, 08 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Entertainment Writer</author>
+      <guid>https://example.com/mixed-general/b8dc112a-3807-4426-ad05-96ce93d0eab8</guid>
+    </item>
+    <item>
+      <title><![CDATA[Entertainment: Drama Series premieres on Disney+ tonight]]></title>
+      <description><![CDATA[General interest news about entertainment: drama series premieres on disney+ tonight]]></description>
+      <link>https://example.com/mixed-general/a225a9d9-dfd6-4083-8d5b-df96dd9090a7</link>
+      <pubDate>Sun, 10 Aug 2025 20:20:37 GMT</pubDate>
+      <author>General Reporter</author>
+      <guid>https://example.com/mixed-general/a225a9d9-dfd6-4083-8d5b-df96dd9090a7</guid>
+    </item>
+    <item>
+      <title><![CDATA[Home improvement: DIY garden makeover for living room]]></title>
+      <description><![CDATA[General interest news about home improvement: diy garden makeover for living room]]></description>
+      <link>https://example.com/mixed-general/f4d6e1ad-0c75-4074-a9b4-fbd35564f451</link>
+      <pubDate>Thu, 24 Jul 2025 20:20:37 GMT</pubDate>
+      <author>General Reporter</author>
+      <guid>https://example.com/mixed-general/f4d6e1ad-0c75-4074-a9b4-fbd35564f451</guid>
+    </item>
+    <item>
+      <title><![CDATA[Movie review: Romance Story disappoints critics with mixed reactions]]></title>
+      <description><![CDATA[General interest news about movie review: romance story disappoints critics with mixed reactions]]></description>
+      <link>https://example.com/mixed-general/701c023e-eb8a-4db3-a773-f0abb393a360</link>
+      <pubDate>Sat, 26 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Lifestyle Editor</author>
+      <guid>https://example.com/mixed-general/701c023e-eb8a-4db3-a773-f0abb393a360</guid>
+    </item>
+    <item>
+      <title><![CDATA[Sports: Warriors advances in baseball championship]]></title>
+      <description><![CDATA[General interest news about sports: warriors advances in baseball championship]]></description>
+      <link>https://example.com/mixed-general/7104e3de-5746-4690-b7ac-42c1e123afe8</link>
+      <pubDate>Mon, 21 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Lifestyle Editor</author>
+      <guid>https://example.com/mixed-general/7104e3de-5746-4690-b7ac-42c1e123afe8</guid>
+    </item>
+    <item>
+      <title><![CDATA[Fashion trends for winter season include bold colors]]></title>
+      <description><![CDATA[General interest news about fashion trends for winter season include bold colors]]></description>
+      <link>https://example.com/mixed-general/aaddd04e-84bd-4471-813f-cfb95680fa82</link>
+      <pubDate>Fri, 25 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Entertainment Writer</author>
+      <guid>https://example.com/mixed-general/aaddd04e-84bd-4471-813f-cfb95680fa82</guid>
+    </item>
+    <item>
+      <title><![CDATA[Celebrity Jennifer Lopez spotted at trendy restaurant]]></title>
+      <description><![CDATA[General interest news about celebrity jennifer lopez spotted at trendy restaurant]]></description>
+      <link>https://example.com/mixed-general/7e5b83e2-dcdf-4e3b-a2e0-e4f76592ebed</link>
+      <pubDate>Fri, 08 Aug 2025 20:20:37 GMT</pubDate>
+      <author>General Reporter</author>
+      <guid>https://example.com/mixed-general/7e5b83e2-dcdf-4e3b-a2e0-e4f76592ebed</guid>
+    </item>
+    <item>
+      <title><![CDATA[Health tips: get enough sleep for better mental health]]></title>
+      <description><![CDATA[General interest news about health tips: get enough sleep for better mental health]]></description>
+      <link>https://example.com/mixed-general/3f2ec44a-9660-47d6-91d9-031986d1dc53</link>
+      <pubDate>Sun, 27 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Feature Writer</author>
+      <guid>https://example.com/mixed-general/3f2ec44a-9660-47d6-91d9-031986d1dc53</guid>
+    </item>
+    <item>
+      <title><![CDATA[Home improvement: DIY kitchen renovation for kitchen]]></title>
+      <description><![CDATA[General interest news about home improvement: diy kitchen renovation for kitchen]]></description>
+      <link>https://example.com/mixed-general/a28060ec-9634-4ddd-bac8-4857fb274886</link>
+      <pubDate>Sat, 26 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Entertainment Writer</author>
+      <guid>https://example.com/mixed-general/a28060ec-9634-4ddd-bac8-4857fb274886</guid>
+    </item>
+    <item>
+      <title><![CDATA[Travel destinations: Top 10 places to visit in Asia]]></title>
+      <description><![CDATA[General interest news about travel destinations: top 10 places to visit in asia]]></description>
+      <link>https://example.com/mixed-general/ca471ba4-719b-459f-813d-5db78113c2f0</link>
+      <pubDate>Tue, 12 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Entertainment Writer</author>
+      <guid>https://example.com/mixed-general/ca471ba4-719b-459f-813d-5db78113c2f0</guid>
+    </item>
+    <item>
+      <title><![CDATA[Health tips: eat healthy for better sleep]]></title>
+      <description><![CDATA[General interest news about health tips: eat healthy for better sleep]]></description>
+      <link>https://example.com/mixed-general/7ee50655-46da-4fed-8f10-a39189e60be2</link>
+      <pubDate>Wed, 23 Jul 2025 20:20:37 GMT</pubDate>
+      <author>General Reporter</author>
+      <guid>https://example.com/mixed-general/7ee50655-46da-4fed-8f10-a39189e60be2</guid>
+    </item>
+    <item>
+      <title><![CDATA[Weather update: sunshine expected this month]]></title>
+      <description><![CDATA[General interest news about weather update: sunshine expected this month]]></description>
+      <link>https://example.com/mixed-general/184b36ea-5d46-47bf-84cf-ef450619d181</link>
+      <pubDate>Tue, 22 Jul 2025 20:20:37 GMT</pubDate>
+      <author>General Reporter</author>
+      <guid>https://example.com/mixed-general/184b36ea-5d46-47bf-84cf-ef450619d181</guid>
+    </item>
+    <item>
+      <title><![CDATA[Travel destinations: Top 10 places to visit in Asia]]></title>
+      <description><![CDATA[General interest news about travel destinations: top 10 places to visit in asia]]></description>
+      <link>https://example.com/mixed-general/faf6de07-550c-486a-860a-478c07a73c76</link>
+      <pubDate>Sun, 03 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Entertainment Writer</author>
+      <guid>https://example.com/mixed-general/faf6de07-550c-486a-860a-478c07a73c76</guid>
+    </item>
+    <item>
+      <title><![CDATA[Fashion trends for spring season include vintage looks]]></title>
+      <description><![CDATA[General interest news about fashion trends for spring season include vintage looks]]></description>
+      <link>https://example.com/mixed-general/ce29cd1c-ad32-4740-b19b-ba4eef336fdd</link>
+      <pubDate>Sun, 27 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Feature Writer</author>
+      <guid>https://example.com/mixed-general/ce29cd1c-ad32-4740-b19b-ba4eef336fdd</guid>
+    </item>
+    <item>
+      <title><![CDATA[Weather update: sunshine expected this weekend]]></title>
+      <description><![CDATA[General interest news about weather update: sunshine expected this weekend]]></description>
+      <link>https://example.com/mixed-general/d6f9fa41-d9a6-457c-b25a-a47bd1b9dc56</link>
+      <pubDate>Sun, 27 Jul 2025 20:20:37 GMT</pubDate>
+      <author>General Reporter</author>
+      <guid>https://example.com/mixed-general/d6f9fa41-d9a6-457c-b25a-a47bd1b9dc56</guid>
+    </item>
+    <item>
+      <title><![CDATA[Home improvement: DIY bedroom refresh for kitchen]]></title>
+      <description><![CDATA[General interest news about home improvement: diy bedroom refresh for kitchen]]></description>
+      <link>https://example.com/mixed-general/d9cad837-ea64-4dd0-b70d-260d28003e63</link>
+      <pubDate>Wed, 06 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Lifestyle Editor</author>
+      <guid>https://example.com/mixed-general/d9cad837-ea64-4dd0-b70d-260d28003e63</guid>
+    </item>
+    <item>
+      <title><![CDATA[Weather update: snow expected this week]]></title>
+      <description><![CDATA[General interest news about weather update: snow expected this week]]></description>
+      <link>https://example.com/mixed-general/29f0080b-d3c6-4956-800c-1b0814551503</link>
+      <pubDate>Mon, 28 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Entertainment Writer</author>
+      <guid>https://example.com/mixed-general/29f0080b-d3c6-4956-800c-1b0814551503</guid>
+    </item>
+    <item>
+      <title><![CDATA[Home improvement: DIY kitchen renovation for kitchen]]></title>
+      <description><![CDATA[General interest news about home improvement: diy kitchen renovation for kitchen]]></description>
+      <link>https://example.com/mixed-general/016b739c-e2f2-42d2-8e3d-e6196fb3972a</link>
+      <pubDate>Tue, 29 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Entertainment Writer</author>
+      <guid>https://example.com/mixed-general/016b739c-e2f2-42d2-8e3d-e6196fb3972a</guid>
+    </item>
+    <item>
+      <title><![CDATA[Health tips: eat healthy for better mental health]]></title>
+      <description><![CDATA[General interest news about health tips: eat healthy for better mental health]]></description>
+      <link>https://example.com/mixed-general/f3028ff4-ad35-4844-8d47-779e72c8176b</link>
+      <pubDate>Sat, 26 Jul 2025 20:20:37 GMT</pubDate>
+      <author>Entertainment Writer</author>
+      <guid>https://example.com/mixed-general/f3028ff4-ad35-4844-8d47-779e72c8176b</guid>
+    </item>
+    <item>
+      <title><![CDATA[Celebrity Ryan Reynolds spotted at trendy restaurant]]></title>
+      <description><![CDATA[General interest news about celebrity ryan reynolds spotted at trendy restaurant]]></description>
+      <link>https://example.com/mixed-general/f439ab56-d8a1-4bb1-982c-dc90a7883f2b</link>
+      <pubDate>Wed, 13 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Lifestyle Editor</author>
+      <guid>https://example.com/mixed-general/f439ab56-d8a1-4bb1-982c-dc90a7883f2b</guid>
+    </item>
+    <item>
+      <title><![CDATA[Entertainment: Reality TV premieres on Disney+ tonight]]></title>
+      <description><![CDATA[General interest news about entertainment: reality tv premieres on disney+ tonight]]></description>
+      <link>https://example.com/mixed-general/6bce07f6-4bc2-4232-9b6e-3448acdd1664</link>
+      <pubDate>Wed, 16 Jul 2025 20:20:37 GMT</pubDate>
+      <author>General Reporter</author>
+      <guid>https://example.com/mixed-general/6bce07f6-4bc2-4232-9b6e-3448acdd1664</guid>
+    </item>
+    <item>
+      <title><![CDATA[Health tips: exercise regularly for better nutrition]]></title>
+      <description><![CDATA[General interest news about health tips: exercise regularly for better nutrition]]></description>
+      <link>https://example.com/mixed-general/a9b0e82a-73e1-498a-bd96-b61ad9fa92f0</link>
+      <pubDate>Wed, 06 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Lifestyle Editor</author>
+      <guid>https://example.com/mixed-general/a9b0e82a-73e1-498a-bd96-b61ad9fa92f0</guid>
+    </item>
+    <item>
+      <title><![CDATA[Fashion trends for winter season include bold colors]]></title>
+      <description><![CDATA[General interest news about fashion trends for winter season include bold colors]]></description>
+      <link>https://example.com/mixed-general/f9e900aa-6a9c-409d-b4bc-48331551a01c</link>
+      <pubDate>Wed, 16 Jul 2025 20:20:37 GMT</pubDate>
+      <author>General Reporter</author>
+      <guid>https://example.com/mixed-general/f9e900aa-6a9c-409d-b4bc-48331551a01c</guid>
+    </item>
+    <item>
+      <title><![CDATA[Fashion trends for winter season include casual wear]]></title>
+      <description><![CDATA[General interest news about fashion trends for winter season include casual wear]]></description>
+      <link>https://example.com/mixed-general/0ed89ce1-82f4-4b89-a7f4-51e7ff274bd3</link>
+      <pubDate>Thu, 24 Jul 2025 20:20:37 GMT</pubDate>
+      <author>General Reporter</author>
+      <guid>https://example.com/mixed-general/0ed89ce1-82f4-4b89-a7f4-51e7ff274bd3</guid>
+    </item>
+    <item>
+      <title><![CDATA[Weather update: snow expected this weekend]]></title>
+      <description><![CDATA[General interest news about weather update: snow expected this weekend]]></description>
+      <link>https://example.com/mixed-general/c19f3d14-a7ef-488b-a9b9-580cd20692d9</link>
+      <pubDate>Sun, 03 Aug 2025 20:20:37 GMT</pubDate>
+      <author>Entertainment Writer</author>
+      <guid>https://example.com/mixed-general/c19f3d14-a7ef-488b-a9b9-580cd20692d9</guid>
+    </item>
+  </channel>
+</rss>
